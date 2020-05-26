@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
                     borderSide: BorderSide(),
                   ),
                 ),
-                // initialCountryCode: 'IN',
+                initialCountryCode: 'IN',
                 onChanged: (phone) {
                   print(phone.completeNumber);
                 },

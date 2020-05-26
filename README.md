@@ -1,14 +1,55 @@
-# intl_phone_field
+# International Phone Field Package
 
-A new Flutter package project.
+A customised Flutter TextFormField to input international phone number along with country code.
 
-## Getting Started
+This widget can be used to make customised text field to take phone number input for any country along with an option to choose country code from a dropdown.
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+## Screenshots
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+<img src="https://github.com/vanshg395/intl_phone_field/blob/master/1.png?raw=true" height="500px"> <img src="https://github.com/vanshg395/intl_phone_field/blob/master/2.png?raw=true" height="500px"> <img src="https://github.com/vanshg395/intl_phone_field/blob/master/3.png?raw=true" height="500px">
+
+## Installing
+
+To use this package:
+
+Add the following to your `pubspec.yaml` file:
+
+```yaml
+dependencies:
+    intl_phone_field: ^1.0.0
+```
+
+## How to Use
+
+Simply create a `IntlPhoneField` widget, and pass the required params:
+
+```dart
+IntlPhoneField(
+    decoration: InputDecoration(
+        labelText: 'Phone Number',
+        border: OutlineInputBorder(
+            borderSide: BorderSide(),
+        ),
+    ),
+    initialCountryCode: 'IN',
+    onChanged: (phone) {
+        print(phone.completeNumber);
+    },
+) 
+```
+
+
+Use `initialCountryCode` to set an initial Country Code.
+
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## LICENSE
+
+GNU GENERAL PUBLIC LICENSE 3.0
+
+
+
