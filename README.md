@@ -16,7 +16,7 @@ Add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-    intl_phone_field: ^1.0.0
+    intl_phone_field: ^1.0.1
 ```
 
 ## How to Use
@@ -47,9 +47,14 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
+## CONTRIBUTORS
+
+* [Vansh Goel](https://github.com/vanshg395/)
+
 ## LICENSE
 
-GNU GENERAL PUBLIC LICENSE 3.0
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 
 
 

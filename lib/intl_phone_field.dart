@@ -9,9 +9,10 @@ class IntlPhoneField extends StatefulWidget {
   final TextAlign textAlign;
   final Function onPressed;
   final bool readOnly;
-  final Function validator;
   final FormFieldSetter<PhoneNumber> onSaved;
   final ValueChanged<PhoneNumber> onChanged;
+  final FormFieldValidator<String> validator;
+  final bool autoValidate;
   final TextInputType keyboardType;
   final TextEditingController controller;
   final FocusNode focusNode;
@@ -29,6 +30,7 @@ class IntlPhoneField extends StatefulWidget {
     this.onPressed,
     this.readOnly = false,
     this.keyboardType = TextInputType.text,
+    this.autoValidate = true,
     this.controller,
     this.focusNode,
     this.decoration,
@@ -46,8 +48,8 @@ class IntlPhoneField extends StatefulWidget {
 class _IntlPhoneFieldState extends State<IntlPhoneField> {
   Map<String, dynamic> _selectedCountry =
       countries.where((item) => item['code'] == 'AF').toList()[0];
-
   List<dynamic> filteredCountries = countries;
+  FormFieldValidator<String> validator;
 
   @override
   void initState() {
@@ -56,6 +58,15 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       _selectedCountry = countries
           .where((item) => item['code'] == widget.initialCountryCode)
           .toList()[0];
+    }
+    if (widget.autoValidate) {
+      validator = (value) {
+        if (value.length != 10) {
+          return 'Invalid Mobile Number';
+        }
+      };
+    } else {
+      validator = widget.validator;
     }
   }
 
@@ -182,7 +193,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                     countryCode: _selectedCountry['dial_code'], number: value),
               );
             },
-            validator: widget.validator,
+            validator: validator,
             keyboardType: widget.keyboardType,
           ),
         ),
