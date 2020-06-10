@@ -1,4 +1,4 @@
-const List<dynamic> countries = [
+const List<Map<String, String>> countries = [
   {
     "name": "Afghanistan",
     "flag": "🇦🇫",
