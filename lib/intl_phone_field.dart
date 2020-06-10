@@ -1,13 +1,15 @@
 library intl_phone_field;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import './countries.dart';
 import './phone_number.dart';
 
 class IntlPhoneField extends StatefulWidget {
   final bool obscureText;
   final TextAlign textAlign;
-  final Function onPressed;
+  final VoidCallback onTap;
   final bool readOnly;
   final FormFieldSetter<PhoneNumber> onSaved;
   final ValueChanged<PhoneNumber> onChanged;
@@ -16,20 +18,25 @@ class IntlPhoneField extends StatefulWidget {
   final TextInputType keyboardType;
   final TextEditingController controller;
   final FocusNode focusNode;
-  final Function onSubmitted;
+  final void Function(String) onSubmitted;
 
   /// 2 Letter ISO Code
   final String initialCountryCode;
   final InputDecoration decoration;
   final TextStyle style;
+  final bool showDropdownIcon;
+  final String countrySearchHintText;
+
+  final BoxDecoration dropdownDecoration;
+  final TextInputFormatter formatter;
 
   IntlPhoneField({
     this.initialCountryCode,
     this.obscureText = false,
     this.textAlign = TextAlign.left,
-    this.onPressed,
+    this.onTap,
     this.readOnly = false,
-    this.keyboardType = TextInputType.text,
+    this.keyboardType = TextInputType.number,
     this.autoValidate = true,
     this.controller,
     this.focusNode,
@@ -39,6 +46,10 @@ class IntlPhoneField extends StatefulWidget {
     this.validator,
     this.onChanged,
     this.onSaved,
+    this.showDropdownIcon = true,
+    this.dropdownDecoration = const BoxDecoration(),
+    this.countrySearchHintText = 'Search by Country Name',
+    this.formatter,
   });
 
   @override
@@ -46,28 +57,26 @@ class IntlPhoneField extends StatefulWidget {
 }
 
 class _IntlPhoneFieldState extends State<IntlPhoneField> {
-  Map<String, dynamic> _selectedCountry =
-      countries.where((item) => item['code'] == 'AF').toList()[0];
-  List<dynamic> filteredCountries = countries;
+  Map<String, String> _selectedCountry =
+      countries.firstWhere((item) => item['code'] == 'US');
+  List<Map<String, String>> filteredCountries = countries;
   FormFieldValidator<String> validator;
+  final TextInputFormatter formatter =
+      TextInputFormatter.withFunction((oldValue, newValue) {
+    if (newValue.text.length <= oldValue.text.length) return newValue;
+    return newValue.text.length > 10 ? oldValue : newValue;
+  });
 
   @override
   void initState() {
     super.initState();
     if (widget.initialCountryCode != null) {
       _selectedCountry = countries
-          .where((item) => item['code'] == widget.initialCountryCode)
-          .toList()[0];
+          .firstWhere((item) => item['code'] == widget.initialCountryCode);
     }
-    if (widget.autoValidate) {
-      validator = (value) {
-        if (value.length != 10) {
-          return 'Invalid Mobile Number';
-        }
-      };
-    } else {
-      validator = widget.validator;
-    }
+    validator = widget.autoValidate
+        ? (value) => value.length != 10 ? 'Invalid Mobile Number' : null
+        : widget.validator;
   }
 
   Future<void> _changeCountry() async {
@@ -83,22 +92,22 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                 TextField(
                   decoration: InputDecoration(
                     suffixIcon: Icon(Icons.search),
-                    labelText: 'Search by Country Name',
+                    labelText: widget.countrySearchHintText,
                   ),
                   onChanged: (value) {
                     setState(() {
-                      filteredCountries = countries.where((country) {
-                        return country['name'].toLowerCase().contains(value);
-                      }).toList();
+                      filteredCountries = countries
+                          .where((country) =>
+                              country['name'].toLowerCase().contains(value))
+                          .toList();
                     });
                   },
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: 20),
                 Expanded(
                   child: ListView.builder(
                     shrinkWrap: true,
+                    itemCount: filteredCountries.length,
                     itemBuilder: (ctx, index) => Column(
                       children: <Widget>[
                         ListTile(
@@ -115,22 +124,13 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                             style: TextStyle(fontWeight: FontWeight.w700),
                           ),
                           onTap: () {
-                            _selectedCountry = countries
-                                .where(
-                                  (country) =>
-                                      country['code'] ==
-                                      filteredCountries[index]['code'],
-                                )
-                                .toList()[0];
+                            _selectedCountry = filteredCountries[index];
                             Navigator.of(context).pop();
                           },
                         ),
-                        Divider(
-                          thickness: 1,
-                        ),
+                        Divider(thickness: 1),
                       ],
                     ),
-                    itemCount: filteredCountries.length,
                   ),
                 ),
               ],
@@ -146,58 +146,79 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        InkWell(
-          child: Container(
-            width: 100,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  _selectedCountry['flag'],
-                  style: TextStyle(fontSize: 30),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                FittedBox(
-                  child: Text(
-                    _selectedCountry['dial_code'],
-                    style: TextStyle(fontWeight: FontWeight.w700),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          onTap: _changeCountry,
-        ),
+        _buildFlagsButton(),
+        SizedBox(width: 8),
         Expanded(
           child: TextFormField(
             readOnly: widget.readOnly,
             obscureText: widget.obscureText,
             textAlign: widget.textAlign,
-            onTap: widget.onPressed,
+            onTap: () {
+              if (widget.onTap != null) widget.onTap();
+            },
             controller: widget.controller,
             focusNode: widget.focusNode,
-            onFieldSubmitted: widget.onSubmitted,
+            onFieldSubmitted: (s) {
+              if (widget.onSubmitted != null) widget.onSubmitted(s);
+            },
             decoration: widget.decoration,
             style: widget.style,
             onSaved: (value) {
-              widget.onSaved(
-                PhoneNumber(
-                    countryCode: _selectedCountry['dial_code'], number: value),
-              );
+              if (widget.onSaved != null)
+                widget.onSaved(
+                  PhoneNumber(
+                      countryCode: _selectedCountry['dial_code'],
+                      number: value),
+                );
             },
             onChanged: (value) {
-              widget.onChanged(
-                PhoneNumber(
-                    countryCode: _selectedCountry['dial_code'], number: value),
-              );
+              if (widget.onChanged != null)
+                widget.onChanged(
+                  PhoneNumber(
+                      countryCode: _selectedCountry['dial_code'],
+                      number: value),
+                );
             },
             validator: validator,
             keyboardType: widget.keyboardType,
+            inputFormatters: [widget.formatter ?? formatter],
           ),
         ),
       ],
+    );
+  }
+
+  DecoratedBox _buildFlagsButton() {
+    return DecoratedBox(
+      decoration: widget.dropdownDecoration,
+      child: InkWell(
+        borderRadius: widget.dropdownDecoration.borderRadius,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              if (widget.showDropdownIcon) ...[
+                Icon(Icons.arrow_drop_down),
+                SizedBox(width: 4)
+              ],
+              Text(
+                _selectedCountry['flag'],
+                style: TextStyle(fontSize: 24),
+              ),
+              SizedBox(width: 8),
+              FittedBox(
+                child: Text(
+                  _selectedCountry['dial_code'],
+                  style: TextStyle(fontWeight: FontWeight.w700),
+                ),
+              ),
+              SizedBox(width: 8),
+            ],
+          ),
+        ),
+        onTap: _changeCountry,
+      ),
     );
   }
 }

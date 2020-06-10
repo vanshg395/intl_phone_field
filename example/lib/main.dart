@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 void main() {
@@ -29,9 +28,7 @@ class _MyAppState extends State<MyApp> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(
-                  height: 30,
-                ),
+                SizedBox(height: 30),
                 TextField(
                   decoration: InputDecoration(
                     labelText: 'Name',
@@ -61,7 +58,6 @@ class _MyAppState extends State<MyApp> {
                       borderSide: BorderSide(),
                     ),
                   ),
-                  initialCountryCode: 'IN',
                   onChanged: (phone) {
                     print(phone.completeNumber);
                   },
