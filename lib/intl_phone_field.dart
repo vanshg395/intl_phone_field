@@ -2,6 +2,7 @@ library intl_phone_field;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl_phone_field/country.dart';
 
 import './countries.dart';
 import './phone_number.dart';
@@ -14,7 +15,6 @@ class IntlPhoneField extends StatefulWidget {
   final FormFieldSetter<PhoneNumber> onSaved;
   final ValueChanged<PhoneNumber> onChanged;
   final FormFieldValidator<String> validator;
-  final bool autoValidate;
   final TextInputType keyboardType;
   final TextEditingController controller;
   final FocusNode focusNode;
@@ -28,7 +28,12 @@ class IntlPhoneField extends StatefulWidget {
   final String countrySearchHintText;
 
   final BoxDecoration dropdownDecoration;
-  final TextInputFormatter formatter;
+  final List<TextInputFormatter> formatters;
+  final Widget Function(BuildContext,
+      {int currentLength, int maxLength, bool isFocused}) buildCounter;
+
+  final int targetLength;
+  final String invalidNumberText;
 
   IntlPhoneField({
     this.initialCountryCode,
@@ -37,7 +42,6 @@ class IntlPhoneField extends StatefulWidget {
     this.onTap,
     this.readOnly = false,
     this.keyboardType = TextInputType.number,
-    this.autoValidate = true,
     this.controller,
     this.focusNode,
     this.decoration,
@@ -49,7 +53,10 @@ class IntlPhoneField extends StatefulWidget {
     this.showDropdownIcon = true,
     this.dropdownDecoration = const BoxDecoration(),
     this.countrySearchHintText = 'Search by Country Name',
-    this.formatter,
+    this.formatters,
+    this.buildCounter,
+    this.targetLength = 10,
+    this.invalidNumberText = 'Invalid phone number !',
   });
 
   @override
@@ -61,11 +68,6 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       countries.firstWhere((item) => item['code'] == 'US');
   List<Map<String, String>> filteredCountries = countries;
   FormFieldValidator<String> validator;
-  final TextInputFormatter formatter =
-      TextInputFormatter.withFunction((oldValue, newValue) {
-    if (newValue.text.length <= oldValue.text.length) return newValue;
-    return newValue.text.length > 10 ? oldValue : newValue;
-  });
 
   @override
   void initState() {
@@ -74,9 +76,11 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       _selectedCountry = countries
           .firstWhere((item) => item['code'] == widget.initialCountryCode);
     }
-    validator = widget.autoValidate
-        ? (value) => value.length != 10 ? 'Invalid Mobile Number' : null
-        : widget.validator;
+    validator = widget.validator ?? widget.targetLength != null
+        ? ((value) => value.length != widget.targetLength
+            ? widget.invalidNumberText
+            : null)
+        : null;
   }
 
   Future<void> _changeCountry() async {
@@ -145,6 +149,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         _buildFlagsButton(),
         SizedBox(width: 8),
@@ -153,21 +158,27 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             readOnly: widget.readOnly,
             obscureText: widget.obscureText,
             textAlign: widget.textAlign,
-            onTap: () {
-              if (widget.onTap != null) widget.onTap();
-            },
+            onTap: widget.onTap,
             controller: widget.controller,
             focusNode: widget.focusNode,
-            onFieldSubmitted: (s) {
-              if (widget.onSubmitted != null) widget.onSubmitted(s);
-            },
+            onFieldSubmitted: widget.onSubmitted,
             decoration: widget.decoration,
             style: widget.style,
+            maxLength: widget.targetLength,
+            buildCounter: widget.targetLength == null
+                ? null
+                : (_, {currentLength, maxLength, isFocused}) {
+                    return Text("$currentLength/$maxLength",
+                        style: TextStyle(
+                            color: currentLength != maxLength
+                                ? Colors.red
+                                : null));
+                  },
             onSaved: (value) {
               if (widget.onSaved != null)
                 widget.onSaved(
                   PhoneNumber(
-                      countryCode: _selectedCountry['dial_code'],
+                      country: Country.fromJson(_selectedCountry),
                       number: value),
                 );
             },
@@ -175,13 +186,13 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
               if (widget.onChanged != null)
                 widget.onChanged(
                   PhoneNumber(
-                      countryCode: _selectedCountry['dial_code'],
+                      country: Country.fromJson(_selectedCountry),
                       number: value),
                 );
             },
             validator: validator,
             keyboardType: widget.keyboardType,
-            inputFormatters: [widget.formatter ?? formatter],
+            inputFormatters: widget.formatters,
           ),
         ),
       ],

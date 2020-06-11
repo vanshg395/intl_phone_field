@@ -1,15 +1,19 @@
 import 'package:flutter/foundation.dart';
+import 'package:intl_phone_field/country.dart';
 
 class PhoneNumber {
-  String countryCode;
+  Country country;
   String number;
 
   PhoneNumber({
-    @required this.countryCode,
+    @required this.country,
     @required this.number,
   });
 
   String get completeNumber {
-    return countryCode + number;
+    return country.dialCode + number;
   }
+
+  @override
+  String toString() => "PhoneNumber($completeNumber)";
 }

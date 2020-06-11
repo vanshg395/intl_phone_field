@@ -37,9 +37,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                SizedBox(height: 10),
                 TextField(
                   decoration: InputDecoration(
                     labelText: 'Email',
@@ -52,14 +50,14 @@ class _MyAppState extends State<MyApp> {
                   height: 10,
                 ),
                 IntlPhoneField(
+                  initialCountryCode: 'UK',
                   decoration: InputDecoration(
-                    labelText: 'Phone Number',
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(),
-                    ),
-                  ),
-                  onChanged: (phone) {
-                    print(phone.completeNumber);
+                      labelText: 'Phone Number', border: OutlineInputBorder()),
+                  invalidNumberText: 'This is an invalid number !',
+                  countrySearchHintText: 'Here you can search a country',
+                  onChanged: (number) {
+                    print(number);
+                    print(number.country.flag);
                   },
                 ),
                 SizedBox(
