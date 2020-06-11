@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
                   height: 10,
                 ),
                 IntlPhoneField(
-                  initialCountryCode: 'UK',
+                  initialCountryCode: 'GB',
                   decoration: InputDecoration(
                       labelText: 'Phone Number', border: OutlineInputBorder()),
                   invalidNumberText: 'This is an invalid number !',
