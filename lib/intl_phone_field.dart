@@ -19,16 +19,18 @@ class IntlPhoneField extends StatefulWidget {
   final TextEditingController controller;
   final FocusNode focusNode;
   final void Function(String) onSubmitted;
+  final int maxLength;
+  final bool enabled;
+  final Brightness keyboardAppearance;
 
   /// 2 Letter ISO Code
   final String initialCountryCode;
   final InputDecoration decoration;
   final TextStyle style;
   final bool showDropdownIcon;
-  final String countrySearchHintText;
 
   final BoxDecoration dropdownDecoration;
-  final TextInputFormatter formatter;
+  final List<TextInputFormatter> inputFormatters;
 
   IntlPhoneField({
     this.initialCountryCode,
@@ -48,8 +50,10 @@ class IntlPhoneField extends StatefulWidget {
     this.onSaved,
     this.showDropdownIcon = true,
     this.dropdownDecoration = const BoxDecoration(),
-    this.countrySearchHintText = 'Search by Country Name',
-    this.formatter,
+    this.inputFormatters,
+    this.maxLength = 10,
+    this.enabled = true,
+    this.keyboardAppearance = Brightness.light,
   });
 
   @override
@@ -61,11 +65,11 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       countries.firstWhere((item) => item['code'] == 'US');
   List<Map<String, String>> filteredCountries = countries;
   FormFieldValidator<String> validator;
-  final TextInputFormatter formatter =
-      TextInputFormatter.withFunction((oldValue, newValue) {
-    if (newValue.text.length <= oldValue.text.length) return newValue;
-    return newValue.text.length > 10 ? oldValue : newValue;
-  });
+  // final TextInputFormatter formatter =
+  //     TextInputFormatter.withFunction((oldValue, newValue) {
+  //   if (newValue.text.length <= oldValue.text.length) return newValue;
+  //   return newValue.text.length > 10 ? oldValue : newValue;
+  // });
 
   @override
   void initState() {
@@ -92,7 +96,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                 TextField(
                   decoration: InputDecoration(
                     suffixIcon: Icon(Icons.search),
-                    labelText: widget.countrySearchHintText,
+                    labelText: 'Search by Country Name',
                   ),
                   onChanged: (value) {
                     setState(() {
@@ -161,7 +165,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             onFieldSubmitted: (s) {
               if (widget.onSubmitted != null) widget.onSubmitted(s);
             },
-            decoration: widget.decoration,
+            decoration: widget.decoration.copyWith(
+              counter: SizedBox(),
+            ),
             style: widget.style,
             onSaved: (value) {
               if (widget.onSaved != null)
@@ -181,7 +187,10 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             },
             validator: validator,
             keyboardType: widget.keyboardType,
-            inputFormatters: [widget.formatter ?? formatter],
+            inputFormatters: widget.inputFormatters,
+            maxLength: widget.maxLength,
+            enabled: widget.enabled,
+            keyboardAppearance: widget.keyboardAppearance,
           ),
         ),
       ],
