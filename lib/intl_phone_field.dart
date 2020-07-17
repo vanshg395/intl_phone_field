@@ -173,6 +173,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
               if (widget.onSaved != null)
                 widget.onSaved(
                   PhoneNumber(
+                      countryISOCode: _selectedCountry['code'],
                       countryCode: _selectedCountry['dial_code'],
                       number: value),
                 );
@@ -181,6 +182,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
               if (widget.onChanged != null)
                 widget.onChanged(
                   PhoneNumber(
+                      countryISOCode: _selectedCountry['code'],
                       countryCode: _selectedCountry['dial_code'],
                       number: value),
                 );
