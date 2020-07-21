@@ -22,6 +22,7 @@ class IntlPhoneField extends StatefulWidget {
   final int maxLength;
   final bool enabled;
   final Brightness keyboardAppearance;
+  final String initialValue;
 
   /// 2 Letter ISO Code
   final String initialCountryCode;
@@ -38,6 +39,7 @@ class IntlPhoneField extends StatefulWidget {
     this.textAlign = TextAlign.left,
     this.onTap,
     this.readOnly = false,
+    this.initialValue,
     this.keyboardType = TextInputType.number,
     this.autoValidate = true,
     this.controller,
@@ -154,6 +156,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         SizedBox(width: 8),
         Expanded(
           child: TextFormField(
+            initialValue: widget.initialValue,
             readOnly: widget.readOnly,
             obscureText: widget.obscureText,
             textAlign: widget.textAlign,
@@ -165,26 +168,26 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             onFieldSubmitted: (s) {
               if (widget.onSubmitted != null) widget.onSubmitted(s);
             },
-            decoration: widget.decoration.copyWith(
-              counter: SizedBox(),
-            ),
+            decoration: widget.decoration,
             style: widget.style,
             onSaved: (value) {
               if (widget.onSaved != null)
                 widget.onSaved(
                   PhoneNumber(
-                      countryISOCode: _selectedCountry['code'],
-                      countryCode: _selectedCountry['dial_code'],
-                      number: value),
+                    countryISOCode: _selectedCountry['code'],
+                    countryCode: _selectedCountry['dial_code'],
+                    number: value,
+                  ),
                 );
             },
             onChanged: (value) {
               if (widget.onChanged != null)
                 widget.onChanged(
                   PhoneNumber(
-                      countryISOCode: _selectedCountry['code'],
-                      countryCode: _selectedCountry['dial_code'],
-                      number: value),
+                    countryISOCode: _selectedCountry['code'],
+                    countryCode: _selectedCountry['dial_code'],
+                    number: value,
+                  ),
                 );
             },
             validator: validator,
