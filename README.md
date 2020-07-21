@@ -16,12 +16,12 @@ Add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-    intl_phone_field: ^1.2.0
+  intl_phone_field: ^1.3.0
 ```
 
 ## How to Use
 
-Simply create a `IntlPhoneField` widget, and pass the required params:
+Simply create a `IntlPhoneField` widget, and pass the required params:z
 
 ```dart
 IntlPhoneField(
@@ -35,26 +35,21 @@ IntlPhoneField(
     onChanged: (phone) {
         print(phone.completeNumber);
     },
-) 
+)
 ```
-
 
 Use `initialCountryCode` to set an initial Country Code.
 
-
 ## Contributing
+
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
 ## CONTRIBUTORS
 
-* [Vansh Goel](https://github.com/vanshg395/)
+- [Vansh Goel](https://github.com/vanshg395/)
 
 ## LICENSE
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-
-
-
-
