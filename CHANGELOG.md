@@ -1,3 +1,7 @@
+## [1.4.1] - Improved Documentation.
+
+- More Documentation added for properties.
+
 ## [1.4.0] - Bug Fixes and improvements.
 
 - Searchbar label text can be now set.
