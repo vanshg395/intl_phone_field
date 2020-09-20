@@ -159,8 +159,8 @@ class IntlPhoneField extends StatefulWidget {
       this.enabled = true,
       this.keyboardAppearance = Brightness.light,
       this.searchText = 'Search by Country Name',
-      this.countryCodeTextColor = Colors.black,
-      this.dropDownArrowColor = Colors.black});
+      this.countryCodeTextColor,
+      this.dropDownArrowColor});
 
   @override
   _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
