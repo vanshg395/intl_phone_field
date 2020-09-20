@@ -19,7 +19,6 @@ class IntlPhoneField extends StatefulWidget {
   final TextEditingController controller;
   final FocusNode focusNode;
   final void Function(String) onSubmitted;
-  final int maxLength;
   final bool enabled;
   final Brightness keyboardAppearance;
   final String initialValue;
@@ -33,30 +32,32 @@ class IntlPhoneField extends StatefulWidget {
   final BoxDecoration dropdownDecoration;
   final List<TextInputFormatter> inputFormatters;
 
-  IntlPhoneField({
-    this.initialCountryCode,
-    this.obscureText = false,
-    this.textAlign = TextAlign.left,
-    this.onTap,
-    this.readOnly = false,
-    this.initialValue,
-    this.keyboardType = TextInputType.number,
-    this.autoValidate = true,
-    this.controller,
-    this.focusNode,
-    this.decoration,
-    this.style,
-    this.onSubmitted,
-    this.validator,
-    this.onChanged,
-    this.onSaved,
-    this.showDropdownIcon = true,
-    this.dropdownDecoration = const BoxDecoration(),
-    this.inputFormatters,
-    this.maxLength = 10,
-    this.enabled = true,
-    this.keyboardAppearance = Brightness.light,
-  });
+  /// Placeholder Text to Display in Searchbar for searching countries
+  final String searchText;
+
+  IntlPhoneField(
+      {this.initialCountryCode,
+      this.obscureText = false,
+      this.textAlign = TextAlign.left,
+      this.onTap,
+      this.readOnly = false,
+      this.initialValue,
+      this.keyboardType = TextInputType.number,
+      this.autoValidate = true,
+      this.controller,
+      this.focusNode,
+      this.decoration,
+      this.style,
+      this.onSubmitted,
+      this.validator,
+      this.onChanged,
+      this.onSaved,
+      this.showDropdownIcon = true,
+      this.dropdownDecoration = const BoxDecoration(),
+      this.inputFormatters,
+      this.enabled = true,
+      this.keyboardAppearance = Brightness.light,
+      this.searchText = 'Search by Country Name'});
 
   @override
   _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
@@ -89,6 +90,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     filteredCountries = countries;
     await showDialog(
       context: context,
+      useRootNavigator: false,
       child: StatefulBuilder(
         builder: (ctx, setState) => Dialog(
           child: Container(
@@ -98,13 +100,14 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                 TextField(
                   decoration: InputDecoration(
                     suffixIcon: Icon(Icons.search),
-                    labelText: 'Search by Country Name',
+                    labelText: widget.searchText,
                   ),
                   onChanged: (value) {
                     setState(() {
                       filteredCountries = countries
-                          .where((country) =>
-                              country['name'].toLowerCase().contains(value.toLowerCase()))
+                          .where((country) => country['name']
+                              .toLowerCase()
+                              .contains(value.toLowerCase()))
                           .toList();
                     });
                   },
@@ -193,7 +196,6 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             validator: validator,
             keyboardType: widget.keyboardType,
             inputFormatters: widget.inputFormatters,
-            maxLength: widget.maxLength,
             enabled: widget.enabled,
             keyboardAppearance: widget.keyboardAppearance,
           ),

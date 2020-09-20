@@ -1,3 +1,8 @@
+## [1.4.0] - Bug Fixes and improvements.
+
+- Searchbar label text can be now set.
+- Picker popup bug fixed.
+
 ## [1.3.0] - Added more parameters
 
 - Initial Value can now be set.
