@@ -130,6 +130,12 @@ class IntlPhoneField extends StatefulWidget {
   /// Placeholder Text to Display in Searchbar for searching countries
   final String searchText;
 
+  /// Color of the country code
+  final Color countryCodeTextColor;
+
+  /// Color of the drop down arrow
+  final Color dropDownArrowColor;
+
   IntlPhoneField(
       {this.initialCountryCode,
       this.obscureText = false,
@@ -152,7 +158,9 @@ class IntlPhoneField extends StatefulWidget {
       this.inputFormatters,
       this.enabled = true,
       this.keyboardAppearance = Brightness.light,
-      this.searchText = 'Search by Country Name'});
+      this.searchText = 'Search by Country Name',
+      this.countryCodeTextColor = Colors.black,
+      this.dropDownArrowColor = Colors.black});
 
   @override
   _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
@@ -305,7 +313,10 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               if (widget.showDropdownIcon) ...[
-                Icon(Icons.arrow_drop_down),
+                Icon(
+                  Icons.arrow_drop_down,
+                  color: widget.dropDownArrowColor,
+                ),
                 SizedBox(width: 4)
               ],
               Text(
@@ -316,7 +327,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
               FittedBox(
                 child: Text(
                   _selectedCountry['dial_code'],
-                  style: TextStyle(fontWeight: FontWeight.w700),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: widget.countryCodeTextColor),
                 ),
               ),
               SizedBox(width: 8),
