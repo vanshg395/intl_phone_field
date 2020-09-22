@@ -1,3 +1,7 @@
+## [1.4.2] - Improved Documentation.
+
+- Color change for Dropdown Icon and Dialog is now added.
+
 ## [1.4.1] - Improved Documentation.
 
 - More Documentation added for properties.
