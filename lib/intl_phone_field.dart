@@ -221,9 +221,10 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                     itemBuilder: (ctx, index) => Column(
                       children: <Widget>[
                         ListTile(
-                          leading: Text(
-                            filteredCountries[index]['flag'],
-                            style: TextStyle(fontSize: 30),
+                          leading: Image.asset(
+                            'assets/flags/${filteredCountries[index]['code'].toLowerCase()}.png',
+                            package: 'intl_phone_field',
+                            width: 32,
                           ),
                           title: Text(
                             filteredCountries[index]['name'],
@@ -323,9 +324,10 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                 ),
                 SizedBox(width: 4)
               ],
-              Text(
-                _selectedCountry['flag'],
-                style: TextStyle(fontSize: 24),
+              Image.asset(
+                'assets/flags/${_selectedCountry['code'].toLowerCase()}.png',
+                package: 'intl_phone_field',
+                width: 32,
               ),
               SizedBox(width: 8),
               FittedBox(
