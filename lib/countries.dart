@@ -318,7 +318,7 @@ const List<Map<String, String>> countries = [
     "dial_code": "+506",
   },
   {
-    "name": "Cote d'Ivoire",
+    "name": "Côte d'Ivoire",
     "flag": "🇨🇮",
     "code": "CI",
     "dial_code": "+225",
