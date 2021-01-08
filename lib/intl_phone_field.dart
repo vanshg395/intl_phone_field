@@ -192,62 +192,64 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     await showDialog(
       context: context,
       useRootNavigator: false,
-      child: StatefulBuilder(
-        builder: (ctx, setState) => Dialog(
-          child: Container(
-            padding: EdgeInsets.all(10),
-            child: Column(
-              children: <Widget>[
-                TextField(
-                  decoration: InputDecoration(
-                    suffixIcon: Icon(Icons.search),
-                    labelText: widget.searchText,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (ctx, setState) => Dialog(
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(
+                      suffixIcon: Icon(Icons.search),
+                      labelText: widget.searchText,
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        filteredCountries = countries
+                            .where((country) => country['name']
+                            .toLowerCase()
+                            .contains(value.toLowerCase()))
+                            .toList();
+                      });
+                    },
                   ),
-                  onChanged: (value) {
-                    setState(() {
-                      filteredCountries = countries
-                          .where((country) => country['name']
-                              .toLowerCase()
-                              .contains(value.toLowerCase()))
-                          .toList();
-                    });
-                  },
-                ),
-                SizedBox(height: 20),
-                Expanded(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: filteredCountries.length,
-                    itemBuilder: (ctx, index) => Column(
-                      children: <Widget>[
-                        ListTile(
-                          leading: Text(
-                            filteredCountries[index]['flag'],
-                            style: TextStyle(fontSize: 30),
+                  SizedBox(height: 20),
+                  Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: filteredCountries.length,
+                      itemBuilder: (ctx, index) => Column(
+                        children: <Widget>[
+                          ListTile(
+                            leading: Text(
+                              filteredCountries[index]['flag'],
+                              style: TextStyle(fontSize: 30),
+                            ),
+                            title: Text(
+                              filteredCountries[index]['name'],
+                              style: TextStyle(fontWeight: FontWeight.w700),
+                            ),
+                            trailing: Text(
+                              filteredCountries[index]['dial_code'],
+                              style: TextStyle(fontWeight: FontWeight.w700),
+                            ),
+                            onTap: () {
+                              _selectedCountry = filteredCountries[index];
+                              Navigator.of(context).pop();
+                            },
                           ),
-                          title: Text(
-                            filteredCountries[index]['name'],
-                            style: TextStyle(fontWeight: FontWeight.w700),
-                          ),
-                          trailing: Text(
-                            filteredCountries[index]['dial_code'],
-                            style: TextStyle(fontWeight: FontWeight.w700),
-                          ),
-                          onTap: () {
-                            _selectedCountry = filteredCountries[index];
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                        Divider(thickness: 1),
-                      ],
+                          Divider(thickness: 1),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
     setState(() {});
   }
