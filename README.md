@@ -6,7 +6,7 @@ This widget can be used to make customised text field to take phone number input
 
 ## Screenshots
 
-<img src="https://github.com/vanshg395/intl_phone_field/blob/master/1.png?raw=true" height="500px"> <img src="https://github.com/vanshg395/intl_phone_field/blob/master/2.png?raw=true" height="500px"> <img src="https://github.com/vanshg395/intl_phone_field/blob/master/3.png?raw=true" height="500px">
+<img src="https://github.com/nibaji/intl_phone_field/blob/master/1.png?raw=true" height="500px"> <img src="https://github.com/nibaji/intl_phone_field/blob/master/2.png?raw=true" height="500px"> <img src="https://github.com/vanshg395/nibaji/blob/master/3.png?raw=true" height="500px">
 
 ## Installing
 
@@ -16,7 +16,8 @@ Add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  intl_phone_field: ^1.4.2
+  intl_phone_field:
+    git: https://github.com/nibaji/intl_phone_field.git
 ```
 
 ## How to Use
@@ -49,6 +50,7 @@ Please make sure to update tests as appropriate.
 ## CONTRIBUTORS
 
 - [Vansh Goel](https://github.com/vanshg395/)
+- [Nidhun Balaji T R](https://github.com/nibaji/)
 
 ## LICENSE
 
