@@ -104,6 +104,9 @@ class IntlPhoneField extends StatefulWidget {
 
   /// 2 Letter ISO Code
   final String initialCountryCode;
+  
+  /// Country code
+  final String initialDialCode;
 
   /// The decoration to show around the text field.
   ///
@@ -140,6 +143,7 @@ class IntlPhoneField extends StatefulWidget {
 
   IntlPhoneField(
       {this.initialCountryCode,
+      this.initialDialCode,
       this.obscureText = false,
       this.textAlign = TextAlign.left,
       this.onTap,
@@ -181,6 +185,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     if (widget.initialCountryCode != null) {
       _selectedCountry = countries
           .firstWhere((item) => item['code'] == widget.initialCountryCode);
+    } else if(widget.initialDialCode != null) {
+      _selectedCountry = countries
+          .firstWhere((item) => item['dial_code'] == widget.initialDialCode);
     }
     validator = widget.autoValidate
         ? (value) => value.length != 10 ? 'Invalid Mobile Number' : null
