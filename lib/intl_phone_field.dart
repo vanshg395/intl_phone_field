@@ -24,6 +24,7 @@ class IntlPhoneField extends StatefulWidget {
   ///  * [onEditingComplete], [onSubmitted], [onSelectionChanged]:
   ///    which are more specialized input change notifications.
   final ValueChanged<PhoneNumber> onChanged;
+  final ValueChanged<PhoneNumber> onCountryChanged;
   final FormFieldValidator<String> validator;
   final bool autoValidate;
 
@@ -154,6 +155,7 @@ class IntlPhoneField extends StatefulWidget {
       this.onSubmitted,
       this.validator,
       this.onChanged,
+      this.onCountryChanged,
       this.onSaved,
       this.showDropdownIcon = true,
       this.dropdownDecoration = const BoxDecoration(),
@@ -236,6 +238,18 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                               ),
                               onTap: () {
                                 _selectedCountry = filteredCountries[index];
+
+                                if (widget.onCountryChanged != null) {
+                                  widget.onCountryChanged(
+                                    PhoneNumber(
+                                      countryISOCode: _selectedCountry['code'],
+                                      countryCode:
+                                          _selectedCountry['dial_code'],
+                                      number: '',
+                                    ),
+                                  );
+                                }
+
                                 Navigator.of(context).pop();
                               },
                             ),
