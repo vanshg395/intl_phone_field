@@ -192,7 +192,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     await showDialog(
       context: context,
       useRootNavigator: false,
-      child: StatefulBuilder(
+      builder:(context)=> StatefulBuilder(
         builder: (ctx, setState) => Dialog(
           child: Container(
             padding: EdgeInsets.all(10),
