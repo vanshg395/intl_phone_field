@@ -6,14 +6,15 @@ import 'package:flutter/services.dart';
 import './countries.dart';
 import './phone_number.dart';
 
+// ignore: must_be_immutable
 class IntlPhoneField extends StatefulWidget {
   final bool obscureText;
   final TextAlign textAlign;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   /// {@macro flutter.widgets.editableText.readOnly}
   final bool readOnly;
-  final FormFieldSetter<PhoneNumber> onSaved;
+  final FormFieldSetter<PhoneNumber>? onSaved;
 
   /// {@macro flutter.widgets.editableText.onChanged}
   ///
@@ -23,9 +24,9 @@ class IntlPhoneField extends StatefulWidget {
   ///    runs and can validate and change ("format") the input value.
   ///  * [onEditingComplete], [onSubmitted], [onSelectionChanged]:
   ///    which are more specialized input change notifications.
-  final ValueChanged<PhoneNumber> onChanged;
-  final ValueChanged<PhoneNumber> onCountryChanged;
-  final FormFieldValidator<String> validator;
+  final ValueChanged<PhoneNumber>? onChanged;
+  final ValueChanged<PhoneNumber>? onCountryChanged;
+  final FormFieldValidator<String>? validator;
   final bool autoValidate;
 
   /// {@macro flutter.widgets.editableText.keyboardType}
@@ -34,7 +35,7 @@ class IntlPhoneField extends StatefulWidget {
   /// Controls the text being edited.
   ///
   /// If null, this widget will create its own [TextEditingController].
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   /// Defines the keyboard focus for this widget.
   ///
@@ -74,7 +75,7 @@ class IntlPhoneField extends StatefulWidget {
   ///
   /// This widget builds an [EditableText] and will ensure that the keyboard is
   /// showing when it is tapped by calling [EditableTextState.requestKeyboard()].
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
 
   /// {@macro flutter.widgets.editableText.onSubmitted}
   ///
@@ -83,7 +84,7 @@ class IntlPhoneField extends StatefulWidget {
   ///  * [EditableText.onSubmitted] for an example of how to handle moving to
   ///    the next/previous field when using [TextInputAction.next] and
   ///    [TextInputAction.previous] for [textInputAction].
-  final void Function(String) onSubmitted;
+  final void Function(String)? onSubmitted;
 
   /// If false the text field is "disabled": it ignores taps and its
   /// [decoration] is rendered in grey.
@@ -101,10 +102,10 @@ class IntlPhoneField extends StatefulWidget {
 
   /// Initial Value for the field.
   /// This property can be used to pre-fill the field.
-  final String initialValue;
+  final String? initialValue;
 
   /// 2 Letter ISO Code
-  final String initialCountryCode;
+  final String? initialCountryCode;
 
   /// The decoration to show around the text field.
   ///
@@ -113,31 +114,31 @@ class IntlPhoneField extends StatefulWidget {
   ///
   /// Specify null to remove the decoration entirely (including the
   /// extra padding introduced by the decoration to save space for the labels).
-  final InputDecoration decoration;
+  final InputDecoration? decoration;
 
   /// The style to use for the text being edited.
   ///
   /// This text style is also used as the base style for the [decoration].
   ///
   /// If null, defaults to the `subtitle1` text style from the current [Theme].
-  final TextStyle style;
+  final TextStyle? style;
   final bool showDropdownIcon;
 
   final BoxDecoration dropdownDecoration;
 
   /// {@macro flutter.widgets.editableText.inputFormatters}
-  final List<TextInputFormatter> inputFormatters;
+  final List<TextInputFormatter>? inputFormatters;
 
   /// Placeholder Text to Display in Searchbar for searching countries
   final String searchText;
 
   /// Color of the country code
-  final Color countryCodeTextColor;
+  final Color? countryCodeTextColor;
 
   /// Color of the drop down arrow
-  final Color dropDownArrowColor;
+  final Color? dropDownArrowColor;
 
-  TextInputAction textInputAction;
+  TextInputAction? textInputAction;
 
   IntlPhoneField(
       {this.initialCountryCode,
@@ -175,7 +176,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   Map<String, String> _selectedCountry =
       countries.firstWhere((item) => item['code'] == 'US');
   List<Map<String, String>> filteredCountries = countries;
-  FormFieldValidator<String> validator;
+  FormFieldValidator<String>? validator;
 
   @override
   void initState() {
@@ -185,7 +186,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           .firstWhere((item) => item['code'] == widget.initialCountryCode);
     }
     validator = widget.autoValidate
-        ? (value) => value.length != 10 ? 'Invalid Mobile Number' : null
+        ? ((value) => value != null && value.length != 10
+            ? 'Invalid Mobile Number'
+            : null)
         : widget.validator;
   }
 
@@ -194,7 +197,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     await showDialog(
       context: context,
       useRootNavigator: false,
-      builder:(context)=> StatefulBuilder(
+      builder: (context) => StatefulBuilder(
         builder: (ctx, setState) => Dialog(
           child: Container(
             padding: EdgeInsets.all(10),
@@ -208,7 +211,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                   onChanged: (value) {
                     setState(() {
                       filteredCountries = countries
-                          .where((country) => country['name']
+                          .where((country) => country['name']!
                               .toLowerCase()
                               .contains(value.toLowerCase()))
                           .toList();
@@ -224,27 +227,26 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                       children: <Widget>[
                         ListTile(
                           leading: Image.asset(
-                            'assets/flags/${filteredCountries[index]['code'].toLowerCase()}.png',
+                            'assets/flags/${filteredCountries[index]['code']!.toLowerCase()}.png',
                             package: 'intl_phone_field',
                             width: 32,
                           ),
                           title: Text(
-                            filteredCountries[index]['name'],
+                            filteredCountries[index]['name']!,
                             style: TextStyle(fontWeight: FontWeight.w700),
                           ),
                           trailing: Text(
-                            filteredCountries[index]['dial_code'],
+                            filteredCountries[index]['dial_code']!,
                             style: TextStyle(fontWeight: FontWeight.w700),
                           ),
                           onTap: () {
                             _selectedCountry = filteredCountries[index];
 
                             if (widget.onCountryChanged != null) {
-                              widget.onCountryChanged(
+                              widget.onCountryChanged!(
                                 PhoneNumber(
                                   countryISOCode: _selectedCountry['code'],
-                                  countryCode:
-                                  _selectedCountry['dial_code'],
+                                  countryCode: _selectedCountry['dial_code'],
                                   number: '',
                                 ),
                               );
@@ -280,18 +282,18 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             obscureText: widget.obscureText,
             textAlign: widget.textAlign,
             onTap: () {
-              if (widget.onTap != null) widget.onTap();
+              if (widget.onTap != null) widget.onTap!();
             },
             controller: widget.controller,
             focusNode: widget.focusNode,
             onFieldSubmitted: (s) {
-              if (widget.onSubmitted != null) widget.onSubmitted(s);
+              if (widget.onSubmitted != null) widget.onSubmitted!(s);
             },
             decoration: widget.decoration,
             style: widget.style,
             onSaved: (value) {
               if (widget.onSaved != null)
-                widget.onSaved(
+                widget.onSaved!(
                   PhoneNumber(
                     countryISOCode: _selectedCountry['code'],
                     countryCode: _selectedCountry['dial_code'],
@@ -301,7 +303,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             },
             onChanged: (value) {
               if (widget.onChanged != null)
-                widget.onChanged(
+                widget.onChanged!(
                   PhoneNumber(
                     countryISOCode: _selectedCountry['code'],
                     countryCode: _selectedCountry['dial_code'],
@@ -325,7 +327,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     return DecoratedBox(
       decoration: widget.dropdownDecoration,
       child: InkWell(
-        borderRadius: widget.dropdownDecoration.borderRadius,
+        borderRadius: widget.dropdownDecoration.borderRadius as BorderRadius?,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Row(
@@ -339,14 +341,14 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                 SizedBox(width: 4)
               ],
               Image.asset(
-                'assets/flags/${_selectedCountry['code'].toLowerCase()}.png',
+                'assets/flags/${_selectedCountry['code']!.toLowerCase()}.png',
                 package: 'intl_phone_field',
                 width: 32,
               ),
               SizedBox(width: 8),
               FittedBox(
                 child: Text(
-                  _selectedCountry['dial_code'],
+                  _selectedCountry['dial_code']!,
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
                       color: widget.countryCodeTextColor),
