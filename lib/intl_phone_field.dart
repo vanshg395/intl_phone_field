@@ -107,9 +107,6 @@ class IntlPhoneField extends StatefulWidget {
   /// 2 Letter ISO Code
   final String? initialCountryCode;
 
-  /// List of 2 Letter ISO Codes of countries to show. Defaults to showing the inbuilt list of all countries.
-  final List<String> countries;
-
   /// The decoration to show around the text field.
   ///
   /// By default, draws a horizontal line under the text field but can be
@@ -148,7 +145,6 @@ class IntlPhoneField extends StatefulWidget {
       this.obscureText = false,
       this.textAlign = TextAlign.left,
       this.onTap,
-      this.countries,
       this.readOnly = false,
       this.initialValue,
       this.keyboardType = TextInputType.number,
@@ -177,24 +173,17 @@ class IntlPhoneField extends StatefulWidget {
 }
 
 class _IntlPhoneFieldState extends State<IntlPhoneField> {
-
-  List<Map<String, String>> defaultCountries;
-  List<Map<String, String>> filteredCountries;
-  Map<String, String> _selectedCountry = countries.firstWhere((item) => item['code'] == 'US');;
+  Map<String, String> _selectedCountry =
+      countries.firstWhere((item) => item['code'] == 'US');
+  List<Map<String, String>> filteredCountries = countries;
   FormFieldValidator<String>? validator;
-
 
   @override
   void initState() {
     super.initState();
-    defaultCountries = widget.countries == null 
-        ? countries
-        : countries.where((country) => widget.countries.contains(country['code'])).toList();
-    filteredCountries = defaultCountries;
-    _selectedCountry = defaultCountries
-        .firstWhere((item) => item['code'] == 'US', orElse: () => defaultCountries.first);
     if (widget.initialCountryCode != null) {
-      _selectedCountry = defaultCountries.firstWhere((item) => item['code'] == widget.initialCountryCode);
+      _selectedCountry = countries
+          .firstWhere((item) => item['code'] == widget.initialCountryCode);
     }
     validator = widget.autoValidate
         ? ((value) => value != null && value.length != 10
@@ -204,7 +193,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   }
 
   Future<void> _changeCountry() async {
-    filteredCountries = defaultCountries;
+    filteredCountries = countries;
     await showDialog(
       context: context,
       useRootNavigator: false,
@@ -221,9 +210,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                   ),
                   onChanged: (value) {
                     setState(() {
-                      filteredCountries = defaultCountries
-                          .where((country) => country['name']
-                   
+                      filteredCountries = countries
+                          .where((country) => country['name']!
                               .toLowerCase()
                               .contains(value.toLowerCase()))
                           .toList();
