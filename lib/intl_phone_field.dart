@@ -141,6 +141,9 @@ class IntlPhoneField extends StatefulWidget {
   /// Color of the drop down arrow
   final Color? dropDownArrowColor;
 
+  /// Whether this text field should focus itself if nothing else is already focused.
+  final bool autofocus;
+
   TextInputAction? textInputAction;
 
   IntlPhoneField(
@@ -170,6 +173,7 @@ class IntlPhoneField extends StatefulWidget {
       this.searchText = 'Search by Country Name',
       this.countryCodeTextColor,
       this.dropDownArrowColor,
+      this.autofocus = false,
       this.textInputAction});
 
   @override
@@ -177,9 +181,9 @@ class IntlPhoneField extends StatefulWidget {
 }
 
 class _IntlPhoneFieldState extends State<IntlPhoneField> {
-  late List<Map<String, String>> _countryList;
-  late Map<String, String> _selectedCountry;
-  late List<Map<String, String>> filteredCountries;
+  late List<Map<String, dynamic>> _countryList;
+  late Map<String, dynamic> _selectedCountry;
+  late List<Map<String, dynamic>> filteredCountries;
 
   FormFieldValidator<String>? validator;
 
@@ -247,7 +251,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                             style: TextStyle(fontWeight: FontWeight.w700),
                           ),
                           trailing: Text(
-                            filteredCountries[index]['dial_code']!,
+                            '+${filteredCountries[index]['dial_code']}',
                             style: TextStyle(fontWeight: FontWeight.w700),
                           ),
                           onTap: () {
@@ -257,7 +261,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                               widget.onCountryChanged!(
                                 PhoneNumber(
                                   countryISOCode: _selectedCountry['code'],
-                                  countryCode: _selectedCountry['dial_code'],
+                                  countryCode:
+                                      '+${_selectedCountry['dial_code']}',
                                   number: '',
                                 ),
                               );
@@ -307,7 +312,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                 widget.onSaved!(
                   PhoneNumber(
                     countryISOCode: _selectedCountry['code'],
-                    countryCode: _selectedCountry['dial_code'],
+                    countryCode: '+${_selectedCountry['dial_code']}',
                     number: value,
                   ),
                 );
@@ -317,16 +322,18 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                 widget.onChanged!(
                   PhoneNumber(
                     countryISOCode: _selectedCountry['code'],
-                    countryCode: _selectedCountry['dial_code'],
+                    countryCode: '+${_selectedCountry['dial_code']}',
                     number: value,
                   ),
                 );
             },
             validator: validator,
+            maxLength: _selectedCountry['max_length'],
             keyboardType: widget.keyboardType,
             inputFormatters: widget.inputFormatters,
             enabled: widget.enabled,
             keyboardAppearance: widget.keyboardAppearance,
+            autofocus: widget.autofocus,
             textInputAction: widget.textInputAction,
           ),
         ),
@@ -359,7 +366,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
               SizedBox(width: 8),
               FittedBox(
                 child: Text(
-                  _selectedCountry['dial_code']!,
+                  '+${_selectedCountry['dial_code']}',
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
                       color: widget.countryCodeTextColor),
