@@ -143,6 +143,9 @@ class IntlPhoneField extends StatefulWidget {
 
   /// Whether this text field should focus itself if nothing else is already focused.
   final bool autofocus;
+  
+  /// Autovalidate mode for text form field
+  final AutovalidateMode? autovalidateMode; 
 
   TextInputAction? textInputAction;
 
@@ -174,7 +177,8 @@ class IntlPhoneField extends StatefulWidget {
       this.countryCodeTextColor,
       this.dropDownArrowColor,
       this.autofocus = false,
-      this.textInputAction});
+      this.textInputAction,
+      this.autovalidateMode});
 
   @override
   _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
@@ -335,6 +339,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             keyboardAppearance: widget.keyboardAppearance,
             autofocus: widget.autofocus,
             textInputAction: widget.textInputAction,
+            autovalidateMode: widget.autovalidateMode,
           ),
         ),
       ],

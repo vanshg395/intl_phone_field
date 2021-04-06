@@ -1,3 +1,7 @@
+## [2.0.1] - Added autoValidateMode parameter.
+
+- Parameter added to control autovalidateMode of text input.
+
 ## [1.4.2] - Improved Documentation.
 
 - Color change for Dropdown Icon and Dialog is now added.
