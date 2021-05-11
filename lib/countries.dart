@@ -333,7 +333,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇨🇴",
     "code": "CO",
     "dial_code": 57,
-    "max_length": 0
+    "max_length": 10
   },
   {
     "name": "Comoros",
