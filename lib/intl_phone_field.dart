@@ -155,6 +155,8 @@ class IntlPhoneField extends StatefulWidget {
 
   FontWeight countryCodeFontWeight;
 
+  final String errorInvalidPhoneNumber;
+
   IntlPhoneField(
       {this.initialCountryCode,
       this.obscureText = false,
@@ -180,6 +182,7 @@ class IntlPhoneField extends StatefulWidget {
       this.enabled = true,
       this.keyboardAppearance = Brightness.light,
       this.searchText = 'Search by Country Name',
+      this.errorInvalidPhoneNumber = 'Invalid mobile number',
       this.countryCodeTextColor,
       this.countryCodeTextSize,
       this.dropDownArrowColor,
@@ -215,7 +218,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
     validator = widget.autoValidate
         ? ((value) => value != null && value.length != 10
-            ? 'Invalid Mobile Number'
+            ? widget.errorInvalidPhoneNumber
             : null)
         : widget.validator;
   }
