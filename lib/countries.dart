@@ -1243,7 +1243,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇵🇹",
     "code": "PT",
     "dial_code": 351,
-    "max_length": 1
+    "max_length": 9
   },
   {
     "name": "Puerto Rico",
