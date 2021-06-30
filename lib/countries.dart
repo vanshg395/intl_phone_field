@@ -193,7 +193,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇧🇦",
     "code": "BA",
     "dial_code": 387,
-    "max_length": 8
+    "max_length": 9
   },
   {
     "name": "Botswana",
@@ -977,7 +977,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇲🇷",
     "code": "MR",
     "dial_code": 222,
-    "max_length": 7
+    "max_length": 8
   },
   {
     "name": "Mauritius",
