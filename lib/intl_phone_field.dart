@@ -11,7 +11,7 @@ class IntlPhoneField extends StatefulWidget {
   final bool obscureText;
   final TextAlign textAlign;
   final VoidCallback? onTap;
-
+  
   /// {@macro flutter.widgets.editableText.readOnly}
   final bool readOnly;
   final FormFieldSetter<PhoneNumber>? onSaved;
