@@ -214,7 +214,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇧🇷",
     "code": "BR",
     "dial_code": 55,
-    "max_length": 10
+    "max_length": 11
   },
   {
     "name": "British Indian Ocean Territory",
