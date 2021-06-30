@@ -1,3 +1,13 @@
+## [2.0.1] 
+- Update maximum length of phone numbers of several countries.
+- Add dropDownArrowIcon parameter.
+
+## [2.0.0] - Null-Safe Compatibility.
+
+- Package is now null-safe.
+- onCountryChanged param added.
+- Other Fixes.
+
 ## [1.4.2] - Improved Documentation.
 
 - Color change for Dropdown Icon and Dialog is now added.

@@ -12,11 +12,17 @@ This widget can be used to make customised text field to take phone number input
 
 To use this package:
 
-Add the following to your `pubspec.yaml` file:
+Run this command:
+
+```yaml
+flutter pub add intl_phone_field
+```
+
+Or, add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  intl_phone_field: ^1.4.2
+  intl_phone_field: ^2.0.1
 ```
 
 ## How to Use
