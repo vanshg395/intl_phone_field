@@ -55,6 +55,7 @@ Please make sure to update tests as appropriate.
 ## CONTRIBUTORS
 
 - [Vansh Goel](https://github.com/vanshg395/)
+- [Alex N'Guessan](https://github.com/marcaureln/)
 
 ## LICENSE
 
