@@ -138,11 +138,9 @@ class IntlPhoneField extends StatefulWidget {
   /// Color of the country code
   final Color? countryCodeTextColor;
 
-  /// Color of the drop down arrow
-  final Color? dropDownArrowColor;
-
-  /// Icon of the Drop down arrow
-  final IconData? dropDownArrowIcon;
+  /// Icon of the drop down button
+  /// Default is [Icon(Icons.arrow_drop_down)]
+  final Icon dropDownIcon;
 
   /// Whether this text field should focus itself if nothing else is already focused.
   final bool autofocus;
@@ -178,8 +176,7 @@ class IntlPhoneField extends StatefulWidget {
       this.keyboardAppearance = Brightness.light,
       this.searchText = 'Search by Country Name',
       this.countryCodeTextColor,
-      this.dropDownArrowColor,
-      this.dropDownArrowIcon,
+      this.dropDownIcon = const Icon(Icons.arrow_drop_down),
       this.autofocus = false,
       this.textInputAction,
       this.autovalidateMode});
@@ -361,10 +358,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               if (widget.showDropdownIcon) ...[
-                Icon(
-                  widget.dropDownArrowIcon ?? Icons.arrow_drop_down,
-                  color: widget.dropDownArrowColor,
-                ),
+                widget.dropDownIcon,
                 SizedBox(width: 4)
               ],
               Image.asset(
