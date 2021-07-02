@@ -1,6 +1,13 @@
-## [2.0.1] - Added autoValidateMode parameter.
+## [2.0.1]
 
-- Parameter added to control autovalidateMode of text input.
+- Update maximum length of phone numbers of several countries.
+- Add dropDownArrowIcon parameter.
+
+## [2.0.0] - Null-Safe Compatibility.
+
+- Package is now null-safe.
+- onCountryChanged param added.
+- Other Fixes.
 
 ## [1.4.2] - Improved Documentation.
 

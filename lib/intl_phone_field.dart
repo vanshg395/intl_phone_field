@@ -11,7 +11,7 @@ class IntlPhoneField extends StatefulWidget {
   final bool obscureText;
   final TextAlign textAlign;
   final VoidCallback? onTap;
-
+  
   /// {@macro flutter.widgets.editableText.readOnly}
   final bool readOnly;
   final FormFieldSetter<PhoneNumber>? onSaved;
@@ -141,6 +141,9 @@ class IntlPhoneField extends StatefulWidget {
   /// Color of the drop down arrow
   final Color? dropDownArrowColor;
 
+  /// Icon of the Drop down arrow
+  final IconData? dropDownArrowIcon;
+
   /// Whether this text field should focus itself if nothing else is already focused.
   final bool autofocus;
   
@@ -176,6 +179,7 @@ class IntlPhoneField extends StatefulWidget {
       this.searchText = 'Search by Country Name',
       this.countryCodeTextColor,
       this.dropDownArrowColor,
+      this.dropDownArrowIcon,
       this.autofocus = false,
       this.textInputAction,
       this.autovalidateMode});
@@ -358,7 +362,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             children: <Widget>[
               if (widget.showDropdownIcon) ...[
                 Icon(
-                  Icons.arrow_drop_down,
+                  widget.dropDownArrowIcon ?? Icons.arrow_drop_down,
                   color: widget.dropDownArrowColor,
                 ),
                 SizedBox(width: 4)

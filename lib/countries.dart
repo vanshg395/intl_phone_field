@@ -74,7 +74,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇦🇷",
     "code": "AR",
     "dial_code": 54,
-    "max_length": 10
+    "max_length": 12
   },
   {
     "name": "Armenia",
@@ -193,7 +193,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇧🇦",
     "code": "BA",
     "dial_code": 387,
-    "max_length": 8
+    "max_length": 9
   },
   {
     "name": "Botswana",
@@ -214,7 +214,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇧🇷",
     "code": "BR",
     "dial_code": 55,
-    "max_length": 10
+    "max_length": 11
   },
   {
     "name": "British Indian Ocean Territory",
@@ -333,7 +333,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇨🇴",
     "code": "CO",
     "dial_code": 57,
-    "max_length": 0
+    "max_length": 10
   },
   {
     "name": "Comoros",
@@ -375,7 +375,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇨🇮",
     "code": "CI",
     "dial_code": 225,
-    "max_length": 8
+    "max_length": 10
   },
   {
     "name": "Croatia",
@@ -445,7 +445,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇪🇬",
     "code": "EG",
     "dial_code": 20,
-    "max_length": 9
+    "max_length": 10
   },
   {
     "name": "El Salvador",
@@ -571,7 +571,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇬🇭",
     "code": "GH",
     "dial_code": 233,
-    "max_length": 9
+    "max_length": 10
   },
   {
     "name": "Gibraltar",
@@ -977,7 +977,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇲🇷",
     "code": "MR",
     "dial_code": 222,
-    "max_length": 7
+    "max_length": 8
   },
   {
     "name": "Mauritius",
@@ -1173,7 +1173,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇵🇰",
     "code": "PK",
     "dial_code": 92,
-    "max_length": 11
+    "max_length": 10
   },
   {
     "name": "Palau",
@@ -1243,7 +1243,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇵🇹",
     "code": "PT",
     "dial_code": 351,
-    "max_length": 1
+    "max_length": 9
   },
   {
     "name": "Puerto Rico",
@@ -1257,7 +1257,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇶🇦",
     "code": "QA",
     "dial_code": 974,
-    "max_length": 10
+    "max_length": 8
   },
   {
     "name": "Romania",
@@ -1551,7 +1551,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇹🇬",
     "code": "TG",
     "dial_code": 228,
-    "max_length": 7
+    "max_length": 8
   },
   {
     "name": "Tokelau",
