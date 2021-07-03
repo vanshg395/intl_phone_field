@@ -10,6 +10,7 @@ import './phone_number.dart';
 class IntlPhoneField extends StatefulWidget {
   final bool obscureText;
   final TextAlign textAlign;
+  final TextAlignVertical? textAlignVertical;
   final VoidCallback? onTap;
 
   /// {@macro flutter.widgets.editableText.readOnly}
@@ -162,6 +163,7 @@ class IntlPhoneField extends StatefulWidget {
       {this.initialCountryCode,
       this.obscureText = false,
       this.textAlign = TextAlign.left,
+      this.textAlignVertical,
       this.onTap,
       this.readOnly = false,
       this.initialValue,
@@ -312,6 +314,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             readOnly: widget.readOnly,
             obscureText: widget.obscureText,
             textAlign: widget.textAlign,
+            textAlignVertical: widget.textAlignVertical,
             onTap: () {
               if (widget.onTap != null) widget.onTap!();
             },
