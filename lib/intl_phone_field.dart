@@ -26,6 +26,8 @@ class IntlPhoneField extends StatefulWidget {
   ///    which are more specialized input change notifications.
   final ValueChanged<PhoneNumber>? onChanged;
   final ValueChanged<PhoneNumber>? onCountryChanged;
+
+  /// For validator to work, turn [autoValidate] to [false]
   final FormFieldValidator<String>? validator;
   final bool autoValidate;
 
@@ -213,9 +215,10 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         orElse: () => _countryList.first);
 
     validator = widget.autoValidate
-        ? ((value) => value != null && value.length != 10
-            ? 'Invalid Mobile Number'
-            : null)
+        ? ((value) =>
+            value != null && value.length != _selectedCountry['max_length']
+                ? 'Invalid Mobile Number'
+                : null)
         : widget.validator;
   }
 
