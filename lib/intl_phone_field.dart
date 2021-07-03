@@ -11,7 +11,7 @@ class IntlPhoneField extends StatefulWidget {
   final bool obscureText;
   final TextAlign textAlign;
   final VoidCallback? onTap;
-  
+
   /// {@macro flutter.widgets.editableText.readOnly}
   final bool readOnly;
   final FormFieldSetter<PhoneNumber>? onSaved;
@@ -138,15 +138,21 @@ class IntlPhoneField extends StatefulWidget {
   /// Color of the country code
   final Color? countryCodeTextColor;
 
-  /// Icon of the drop down button
+  /// Icon of the drop down button.
+  ///
   /// Default is [Icon(Icons.arrow_drop_down)]
   final Icon dropDownIcon;
 
   /// Whether this text field should focus itself if nothing else is already focused.
   final bool autofocus;
-  
+
   /// Autovalidate mode for text form field
-  final AutovalidateMode? autovalidateMode; 
+  final AutovalidateMode? autovalidateMode;
+
+  /// Whether to show or hide country flag.
+  ///
+  /// Default value is [true].
+  final bool showCountryFlag;
 
   TextInputAction? textInputAction;
 
@@ -179,7 +185,8 @@ class IntlPhoneField extends StatefulWidget {
       this.dropDownIcon = const Icon(Icons.arrow_drop_down),
       this.autofocus = false,
       this.textInputAction,
-      this.autovalidateMode});
+      this.autovalidateMode,
+      this.showCountryFlag = true});
 
   @override
   _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
@@ -361,12 +368,14 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                 widget.dropDownIcon,
                 SizedBox(width: 4)
               ],
-              Image.asset(
-                'assets/flags/${_selectedCountry['code']!.toLowerCase()}.png',
-                package: 'intl_phone_field',
-                width: 32,
-              ),
-              SizedBox(width: 8),
+              if (widget.showCountryFlag) ...[
+                Image.asset(
+                  'assets/flags/${_selectedCountry['code']!.toLowerCase()}.png',
+                  package: 'intl_phone_field',
+                  width: 32,
+                ),
+                SizedBox(width: 8)
+              ],
               FittedBox(
                 child: Text(
                   '+${_selectedCountry['dial_code']}',
