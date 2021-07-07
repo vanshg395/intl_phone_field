@@ -89,8 +89,10 @@ class IntlPhoneField extends StatefulWidget {
   ///    [TextInputAction.previous] for [textInputAction].
   final void Function(String)? onSubmitted;
 
-  /// If false the text field is "disabled": it ignores taps and its
-  /// [decoration] is rendered in grey.
+  /// If false the widget is "disabled": it ignores taps, the [TextFormField]'s
+  /// [decoration] is rendered in grey,
+  /// [decoration]'s [InputDecoration.counterText] is set to `""`,
+  /// and the drop down icon is hidden no matter [showDropdownIcon] value.
   ///
   /// If non-null this property overrides the [decoration]'s
   /// [Decoration.enabled] property.
@@ -128,6 +130,8 @@ class IntlPhoneField extends StatefulWidget {
   ///
   /// If null, defaults to the `subtitle1` text style from the current [Theme].
   final TextStyle? style;
+
+  /// Won't work if [enabled] is set to `false`.
   final bool showDropdownIcon;
 
   final BoxDecoration dropdownDecoration;
@@ -154,7 +158,7 @@ class IntlPhoneField extends StatefulWidget {
 
   /// Whether to show or hide country flag.
   ///
-  /// Default value is [true].
+  /// Default value is `true`.
   final bool showCountryFlag;
 
   TextInputAction? textInputAction;
@@ -323,7 +327,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             onFieldSubmitted: (s) {
               if (widget.onSubmitted != null) widget.onSubmitted!(s);
             },
-            decoration: widget.decoration,
+            decoration: widget.decoration?.copyWith(
+              counterText: !widget.enabled ? '' : null,
+            ),
             style: widget.style,
             onSaved: (value) {
               if (widget.onSaved != null)
@@ -370,7 +376,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              if (widget.showDropdownIcon) ...[
+              if (widget.enabled && widget.showDropdownIcon) ...[
                 widget.dropDownIcon,
                 SizedBox(width: 4)
               ],
@@ -394,7 +400,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             ],
           ),
         ),
-        onTap: _changeCountry,
+        onTap: widget.enabled ? _changeCountry : null,
       ),
     );
   }
