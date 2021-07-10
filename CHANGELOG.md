@@ -1,3 +1,12 @@
+## [2.1.0] - Added more parameters
+
+- **Breaking** dropDownArrowIcon and dropDownArrowColor parameters are now replaced by dropDownIcon.
+- Control autovalidateMode of text input added.
+- showCountryFlag param added.
+- textAlignVertical param added.
+- Setting enabled to false disable the dropdown button too.
+- Minor fixes.
+
 ## [2.0.1]
 
 - Update maximum length of phone numbers of several countries.
