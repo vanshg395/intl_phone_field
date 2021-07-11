@@ -145,6 +145,9 @@ class IntlPhoneField extends StatefulWidget {
   /// Color of the country code
   final Color? countryCodeTextColor;
 
+  /// Position of an icon [leading, trailing]
+  final IconPosition iconPosition;
+
   /// Icon of the drop down button.
   ///
   /// Default is [Icon(Icons.arrow_drop_down)]
@@ -190,6 +193,7 @@ class IntlPhoneField extends StatefulWidget {
       this.keyboardAppearance = Brightness.light,
       this.searchText = 'Search by Country Name',
       this.countryCodeTextColor,
+      this.iconPosition = IconPosition.leading,
       this.dropDownIcon = const Icon(Icons.arrow_drop_down),
       this.autofocus = false,
       this.textInputAction,
@@ -376,7 +380,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              if (widget.enabled && widget.showDropdownIcon) ...[
+              if (widget.enabled &&
+                  widget.showDropdownIcon &&
+                  widget.iconPosition == IconPosition.leading) ...[
                 widget.dropDownIcon,
                 SizedBox(width: 4)
               ],
@@ -397,6 +403,12 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                 ),
               ),
               SizedBox(width: 8),
+              if (widget.enabled &&
+                  widget.showDropdownIcon &&
+                  widget.iconPosition == IconPosition.trailing) ...[
+                widget.dropDownIcon,
+                SizedBox(width: 4)
+              ],
             ],
           ),
         ),
@@ -404,4 +416,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       ),
     );
   }
+}
+
+enum IconPosition {
+  leading,
+  trailing,
 }
