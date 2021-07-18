@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 class PhoneNumber {
   String? countryISOCode;
   String? countryCode;
