@@ -164,6 +164,9 @@ class IntlPhoneField extends StatefulWidget {
   /// Default value is `true`.
   final bool showCountryFlag;
 
+  ///Whether to hide the textfield
+  final bool hideTextField;
+
   TextInputAction? textInputAction;
 
   IntlPhoneField(
@@ -198,7 +201,8 @@ class IntlPhoneField extends StatefulWidget {
       this.autofocus = false,
       this.textInputAction,
       this.autovalidateMode,
-      this.showCountryFlag = true});
+      this.showCountryFlag = true,
+      this.hideTextField = false});
 
   @override
   _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
@@ -314,8 +318,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     return Row(
       children: <Widget>[
         _buildFlagsButton(),
-        SizedBox(width: 8),
-        Expanded(
+        widget.hideTextField?Container():SizedBox(width: 8),
+        widget.hideTextField?Container():Expanded(
           child: TextFormField(
             initialValue: widget.initialValue,
             readOnly: widget.readOnly,
