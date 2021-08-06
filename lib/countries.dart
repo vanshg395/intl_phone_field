@@ -256,7 +256,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇰🇭",
     "code": "KH",
     "dial_code": 855,
-    "max_length": 8
+    "max_length": 9
   },
   {
     "name": "Cameroon",
@@ -935,7 +935,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇲🇾",
     "code": "MY",
     "dial_code": 60,
-    "max_length": 9
+    "max_length": 11
   },
   {
     "name": "Maldives",
@@ -1677,7 +1677,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇻🇳",
     "code": "VN",
     "dial_code": 84,
-    "max_length": 10
+    "max_length": 11
   },
   {
     "name": "Virgin Islands, British",
