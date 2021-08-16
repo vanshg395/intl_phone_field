@@ -250,10 +250,10 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                   ),
                   onChanged: (value) {
                     filteredCountries = _countryList
-                      .where((country) => country['name']!
-                      .toLowerCase()
-                      .contains(value.toLowerCase()))
-                      .toList();
+                        .where((country) => country['name']!
+                            .toLowerCase()
+                            .contains(value.toLowerCase()))
+                        .toList();
                     if (this.mounted) setState(() {});
                   },
                 ),
