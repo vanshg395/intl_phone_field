@@ -4,10 +4,12 @@
 - Control autovalidateMode of text input added.
 - showCountryFlag param added.
 - textAlignVertical param added.
+- Icon position feature added.
 - Setting enabled to false disable the dropdown button too.
+- Update maximum length of phone numbers of several countries.
 - Minor fixes.
 
-## [2.0.1]
+## [2.0.1] - Release
 
 - Update maximum length of phone numbers of several countries.
 - Add dropDownArrowIcon parameter.
