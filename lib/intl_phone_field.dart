@@ -29,8 +29,10 @@ class IntlPhoneField extends StatefulWidget {
   final ValueChanged<PhoneNumber>? onChanged;
   final ValueChanged<PhoneNumber>? onCountryChanged;
 
-  /// For validator to work, turn [autoValidate] to [false]
+  /// For validator to work, turn [autoValidateMode] to [AutoValidateMode.onUserInteraction]
   final FutureOr<String?> Function(String?)? validator;
+
+  @Deprecated('use autoValidateMode instead as it offers more options')
   final bool autoValidate;
 
   /// {@macro flutter.widgets.editableText.keyboardType}
@@ -180,7 +182,7 @@ class IntlPhoneField extends StatefulWidget {
     this.onTap,
     this.readOnly = false,
     this.initialValue,
-    this.keyboardType = TextInputType.number,
+    this.keyboardType = TextInputType.phone,
     this.autoValidate = true,
     this.controller,
     this.focusNode,
@@ -203,7 +205,7 @@ class IntlPhoneField extends StatefulWidget {
     this.dropDownIcon = const Icon(Icons.arrow_drop_down),
     this.autofocus = false,
     this.textInputAction,
-    this.autovalidateMode,
+    this.autovalidateMode = AutovalidateMode.onUserInteraction,
     this.showCountryFlag = true,
     this.invalidNumberMessage,
   });
@@ -218,7 +220,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   late List<Country> filteredCountries;
   late String number;
 
-  String? validatorMessage;
+  String? validationMessage;
 
   @override
   void initState() {
@@ -338,12 +340,14 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           number: value,
         );
         // validate here to take care of async validation
-        if (widget.autoValidate)
-          validatorMessage = value.length != _selectedCountry.maxLength ? (widget.invalidNumberMessage ?? 'Invalid Mobile Number') : null;
-        if (validatorMessage == null) validatorMessage = await widget.validator?.call(phoneNumber.completeNumber);
+        var msg;
+        if (widget.autovalidateMode != AutovalidateMode.disabled)
+          msg = value.length != _selectedCountry.maxLength ? (widget.invalidNumberMessage ?? 'Invalid Mobile Number') : null;
+        msg ??= await widget.validator?.call(phoneNumber.completeNumber);
+        setState(() => validationMessage = msg);
         widget.onChanged?.call(phoneNumber);
       },
-      validator: (value) => validatorMessage,
+      validator: (value) => validationMessage,
       maxLength: _selectedCountry.maxLength,
       keyboardType: widget.keyboardType,
       inputFormatters: widget.inputFormatters,
