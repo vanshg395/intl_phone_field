@@ -1,5 +1,7 @@
 library intl_phone_field;
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -28,7 +30,7 @@ class IntlPhoneField extends StatefulWidget {
   final ValueChanged<PhoneNumber>? onCountryChanged;
 
   /// For validator to work, turn [autoValidate] to [false]
-  final FormFieldValidator<String>? validator;
+  final FutureOr<String?> Function(String?)? validator;
   final bool autoValidate;
 
   /// {@macro flutter.widgets.editableText.keyboardType}
@@ -216,37 +218,23 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   late List<Country> filteredCountries;
   late String number;
 
-  FormFieldValidator<String>? validator;
+  String? validatorMessage;
 
   @override
   void initState() {
     super.initState();
-    _countryList = widget.countries == null
-        ? countries
-        : countries
-            .where((country) => widget.countries!.contains(country.code))
-            .toList();
+    _countryList = widget.countries == null ? countries : countries.where((country) => widget.countries!.contains(country.code)).toList();
     filteredCountries = _countryList;
     number = widget.initialValue ?? '';
     if (widget.initialCountryCode == null && number.startsWith('+')) {
       number = number.substring(1);
       // parse initial value
-      _selectedCountry = countries.firstWhere(
-          (country) => number.startsWith(country.dialCode),
-          orElse: () => _countryList.first);
+      _selectedCountry = countries.firstWhere((country) => number.startsWith(country.dialCode), orElse: () => _countryList.first);
       number = number.substring(_selectedCountry.dialCode.length);
     } else {
-      _selectedCountry = _countryList.firstWhere(
-          (item) => item.code == (widget.initialCountryCode ?? 'US'),
-          orElse: () => _countryList.first);
+      _selectedCountry =
+          _countryList.firstWhere((item) => item.code == (widget.initialCountryCode ?? 'US'), orElse: () => _countryList.first);
     }
-
-    validator = widget.autoValidate
-        ? ((value) =>
-            value != null && value.length != _selectedCountry.maxLength
-                ? (widget.invalidNumberMessage ?? 'Invalid Mobile Number')
-                : null)
-        : widget.validator;
   }
 
   Future<void> _changeCountry() async {
@@ -266,11 +254,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                     labelText: widget.searchText,
                   ),
                   onChanged: (value) {
-                    filteredCountries = _countryList
-                        .where((country) => country.name
-                            .toLowerCase()
-                            .contains(value.toLowerCase()))
-                        .toList();
+                    filteredCountries = _countryList.where((country) => country.name.toLowerCase().contains(value.toLowerCase())).toList();
                     if (this.mounted) setState(() {});
                   },
                 ),
@@ -347,16 +331,19 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           ),
         );
       },
-      onChanged: (value) {
-        widget.onChanged?.call(
-          PhoneNumber(
-            countryISOCode: _selectedCountry.code,
-            countryCode: '+${_selectedCountry.dialCode}',
-            number: value,
-          ),
+      onChanged: (value) async {
+        final phoneNumber = PhoneNumber(
+          countryISOCode: _selectedCountry.code,
+          countryCode: '+${_selectedCountry.dialCode}',
+          number: value,
         );
+        // validate here to take care of async validation
+        if (widget.autoValidate)
+          validatorMessage = value.length != _selectedCountry.maxLength ? (widget.invalidNumberMessage ?? 'Invalid Mobile Number') : null;
+        if (validatorMessage == null) validatorMessage = await widget.validator?.call(phoneNumber.completeNumber);
+        widget.onChanged?.call(phoneNumber);
       },
-      validator: validator,
+      validator: (value) => validatorMessage,
       maxLength: _selectedCountry.maxLength,
       keyboardType: widget.keyboardType,
       inputFormatters: widget.inputFormatters,
@@ -379,9 +366,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              if (widget.enabled &&
-                  widget.showDropdownIcon &&
-                  widget.iconPosition == IconPosition.leading) ...[
+              if (widget.enabled && widget.showDropdownIcon && widget.iconPosition == IconPosition.leading) ...[
                 widget.dropDownIcon,
                 SizedBox(width: 4),
               ],
@@ -396,14 +381,11 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
               FittedBox(
                 child: Text(
                   '+${_selectedCountry.dialCode}',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1, //TextStyle(fontWeight: FontWeight.w700, color: widget.countryCodeTextColor),
+                  style:
+                      Theme.of(context).textTheme.bodyText1, //TextStyle(fontWeight: FontWeight.w700, color: widget.countryCodeTextColor),
                 ),
               ),
-              if (widget.enabled &&
-                  widget.showDropdownIcon &&
-                  widget.iconPosition == IconPosition.trailing) ...[
+              if (widget.enabled && widget.showDropdownIcon && widget.iconPosition == IconPosition.trailing) ...[
                 SizedBox(width: 4),
                 widget.dropDownIcon,
               ],
