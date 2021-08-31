@@ -342,7 +342,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         // validate here to take care of async validation
         var msg;
         if (widget.autovalidateMode != AutovalidateMode.disabled)
-          msg = value.length != _selectedCountry.maxLength ? (widget.invalidNumberMessage ?? 'Invalid Mobile Number') : null;
+          msg = value.length < _selectedCountry.minLength || value.length > _selectedCountry.maxLength
+              ? (widget.invalidNumberMessage ?? 'Invalid Mobile Number')
+              : null;
         msg ??= await widget.validator?.call(phoneNumber.completeNumber);
         setState(() => validationMessage = msg);
         widget.onChanged?.call(phoneNumber);
