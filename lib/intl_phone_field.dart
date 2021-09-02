@@ -131,6 +131,9 @@ class IntlPhoneField extends StatefulWidget {
   /// If null, defaults to the `subtitle1` text style from the current [Theme].
   final TextStyle? style;
 
+  /// Show 0/Max Lenght
+  final bool showMaxLength;
+  
   /// Won't work if [enabled] is set to `false`.
   final bool showDropdownIcon;
 
@@ -169,6 +172,7 @@ class IntlPhoneField extends StatefulWidget {
   IntlPhoneField(
       {this.initialCountryCode,
       this.obscureText = false,
+      this.showMaxLength = true,  
       this.textAlign = TextAlign.left,
       this.textAlignVertical,
       this.onTap,
@@ -355,7 +359,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                 );
             },
             validator: validator,
-            maxLength: _selectedCountry['max_length'],
+            maxLength: widget.showMaxLength ? _selectedCountry['max_length'] : null,
             keyboardType: widget.keyboardType,
             inputFormatters: widget.inputFormatters,
             enabled: widget.enabled,
