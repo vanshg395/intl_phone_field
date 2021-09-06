@@ -164,6 +164,8 @@ class IntlPhoneField extends StatefulWidget {
   /// Default value is `true`.
   final bool showCountryFlag;
 
+  final Color? cursorColor;
+
   TextInputAction? textInputAction;
 
   IntlPhoneField(
@@ -198,7 +200,8 @@ class IntlPhoneField extends StatefulWidget {
       this.autofocus = false,
       this.textInputAction,
       this.autovalidateMode,
-      this.showCountryFlag = true});
+      this.showCountryFlag = true,
+      this.cursorColor});
 
   @override
   _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
@@ -322,6 +325,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             obscureText: widget.obscureText,
             textAlign: widget.textAlign,
             textAlignVertical: widget.textAlignVertical,
+            cursorColor: widget.cursorColor,
             onTap: () {
               if (widget.onTap != null) widget.onTap!();
             },
