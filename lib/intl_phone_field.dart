@@ -9,6 +9,7 @@ import './phone_number.dart';
 // ignore: must_be_immutable
 class IntlPhoneField extends StatefulWidget {
   final bool obscureText;
+  final bool dialCodeSearch;
   final TextAlign textAlign;
   final TextAlignVertical? textAlignVertical;
   final VoidCallback? onTap;
@@ -200,6 +201,7 @@ class IntlPhoneField extends StatefulWidget {
       this.textInputAction,
       this.autovalidateMode,
       this.showCountryFlag = true,
+      this.dialCodeSearch = false,
       this.cursorColor});
 
   @override
@@ -251,8 +253,13 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                     labelText: widget.searchText,
                   ),
                   onChanged: (value) {
+                    String searchField =
+                        this.widget.dialCodeSearch && isNumeric(value)
+                            ? 'dial_code'
+                            : 'name';
                     filteredCountries = _countryList
-                        .where((country) => country['name']!
+                        .where((country) => country[searchField]!
+                            .toString()
                             .toLowerCase()
                             .contains(value.toLowerCase()))
                         .toList();
@@ -415,6 +422,13 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         onTap: widget.enabled ? _changeCountry : null,
       ),
     );
+  }
+
+  bool isNumeric(String s) {
+    if (s == null) {
+      return false;
+    }
+    return double.tryParse(s) != null;
   }
 }
 
