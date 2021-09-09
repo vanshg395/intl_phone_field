@@ -139,14 +139,13 @@ class IntlPhoneField extends StatefulWidget {
 
   final BoxDecoration dropdownDecoration;
 
+  final TextStyle? dropdownTextStyle;
+
   /// {@macro flutter.widgets.editableText.inputFormatters}
   final List<TextInputFormatter>? inputFormatters;
 
   /// Placeholder Text to Display in Searchbar for searching countries
   final String searchText;
-
-  /// Color of the country code
-  final Color? countryCodeTextColor;
 
   /// Position of an icon [leading, trailing]
   final IconPosition iconPosition;
@@ -167,6 +166,8 @@ class IntlPhoneField extends StatefulWidget {
   /// Default value is `true`.
   final bool showCountryFlag;
 
+  final Color? cursorColor;
+
   TextInputAction? textInputAction;
 
   IntlPhoneField(
@@ -183,6 +184,7 @@ class IntlPhoneField extends StatefulWidget {
       this.focusNode,
       this.decoration,
       this.style,
+      this.dropdownTextStyle,
       this.onSubmitted,
       this.validator,
       this.onChanged,
@@ -195,14 +197,15 @@ class IntlPhoneField extends StatefulWidget {
       this.enabled = true,
       this.keyboardAppearance = Brightness.light,
       this.searchText = 'Search by Country Name',
-      this.countryCodeTextColor,
       this.iconPosition = IconPosition.leading,
       this.dropDownIcon = const Icon(Icons.arrow_drop_down),
       this.autofocus = false,
       this.textInputAction,
       this.autovalidateMode,
-      this.disableMaxLength = false,  
-      this.showCountryFlag = true});
+      this.showCountryFlag = true,
+      this.cursorColor,
+      this.disableMaxLength = false});
+
 
   @override
   _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
@@ -326,6 +329,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             obscureText: widget.obscureText,
             textAlign: widget.textAlign,
             textAlignVertical: widget.textAlignVertical,
+            cursorColor: widget.cursorColor,
             onTap: () {
               if (widget.onTap != null) widget.onTap!();
             },
@@ -400,9 +404,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
               FittedBox(
                 child: Text(
                   '+${_selectedCountry['dial_code']}',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: widget.countryCodeTextColor),
+                  style: widget.dropdownTextStyle,
                 ),
               ),
               SizedBox(width: 8),
