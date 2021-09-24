@@ -219,6 +219,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   late Country _selectedCountry;
   late List<Country> filteredCountries;
   late String number;
+  bool hasChanged = false;
 
   String? validationMessage;
 
@@ -236,6 +237,14 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     } else {
       _selectedCountry =
           _countryList.firstWhere((item) => item.code == (widget.initialCountryCode ?? 'US'), orElse: () => _countryList.first);
+    }
+    if (widget.autovalidateMode == AutovalidateMode.always) {
+      var x = widget.validator?.call(widget.initialValue);
+      if (x is String) {
+        setState(() => validationMessage = x);
+      } else {
+        (x as Future).then((msg) => setState(() => validationMessage = msg));
+      }
     }
   }
 
@@ -334,6 +343,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         );
       },
       onChanged: (value) async {
+        hasChanged = true;
         final phoneNumber = PhoneNumber(
           countryISOCode: _selectedCountry.code,
           countryCode: '+${_selectedCountry.dialCode}',
@@ -341,12 +351,13 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         );
         // validate here to take care of async validation
         var msg;
-        if (widget.autovalidateMode != AutovalidateMode.disabled)
+        if (widget.autovalidateMode != AutovalidateMode.disabled) {
           msg = value.length < _selectedCountry.minLength || value.length > _selectedCountry.maxLength
               ? (widget.invalidNumberMessage ?? 'Invalid Mobile Number')
               : null;
-        msg ??= await widget.validator?.call(phoneNumber.completeNumber);
-        setState(() => validationMessage = msg);
+          msg ??= await widget.validator?.call(phoneNumber.completeNumber);
+          setState(() => validationMessage = msg);
+        }
         widget.onChanged?.call(phoneNumber);
       },
       validator: (value) => validationMessage,
