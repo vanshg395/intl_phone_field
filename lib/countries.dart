@@ -711,7 +711,7 @@ const List<Map<String, dynamic>> countries = [
     "flag": "🇮🇩",
     "code": "ID",
     "dial_code": 62,
-    "max_length": 10
+    "max_length": 13
   },
   {
     "name": "Iran, Islamic Republic of Persian Gulf",
