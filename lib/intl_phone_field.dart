@@ -168,6 +168,13 @@ class IntlPhoneField extends StatefulWidget {
 
   final Color? cursorColor;
 
+  /// The padding of the Flags Button.
+  ///
+  /// The amount of insets that are applied to the Flags Button.
+  ///
+  /// If unset, defaults to [const EdgeInsets.symmetric(vertical: 8)].
+  final EdgeInsetsGeometry flagsButtonPadding;
+
   TextInputAction? textInputAction;
 
   IntlPhoneField(
@@ -204,8 +211,9 @@ class IntlPhoneField extends StatefulWidget {
       this.autovalidateMode,
       this.showCountryFlag = true,
       this.cursorColor,
-      this.disableMaxLength = false});
-
+      this.disableMaxLength = false,
+      this.flagsButtonPadding = const EdgeInsets.symmetric(vertical: 8),
+    });
 
   @override
   _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
@@ -383,7 +391,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       child: InkWell(
         borderRadius: widget.dropdownDecoration.borderRadius as BorderRadius?,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
+          padding: widget.flagsButtonPadding,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
