@@ -132,6 +132,9 @@ class IntlPhoneField extends StatefulWidget {
   /// If null, defaults to the `subtitle1` text style from the current [Theme].
   final TextStyle? style;
 
+  /// Disable view Max Length
+  final bool disableMaxLength;
+  
   /// Won't work if [enabled] is set to `false`.
   final bool showDropdownIcon;
 
@@ -165,6 +168,13 @@ class IntlPhoneField extends StatefulWidget {
   final bool showCountryFlag;
 
   final Color? cursorColor;
+
+  /// The padding of the Flags Button.
+  ///
+  /// The amount of insets that are applied to the Flags Button.
+  ///
+  /// If unset, defaults to [const EdgeInsets.symmetric(vertical: 8)].
+  final EdgeInsetsGeometry flagsButtonPadding;
 
   TextInputAction? textInputAction;
 
@@ -202,7 +212,10 @@ class IntlPhoneField extends StatefulWidget {
       this.autovalidateMode,
       this.showCountryFlag = true,
       this.dialCodeSearch = false,
-      this.cursorColor});
+      this.cursorColor,
+      this.disableMaxLength = false,
+      this.flagsButtonPadding = const EdgeInsets.symmetric(vertical: 8),
+    });
 
   @override
   _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
@@ -365,7 +378,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                 );
             },
             validator: validator,
-            maxLength: _selectedCountry['max_length'],
+            maxLength: widget.disableMaxLength ? null : _selectedCountry['max_length'],
             keyboardType: widget.keyboardType,
             inputFormatters: widget.inputFormatters,
             enabled: widget.enabled,
@@ -385,7 +398,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       child: InkWell(
         borderRadius: widget.dropdownDecoration.borderRadius as BorderRadius?,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
+          padding: widget.flagsButtonPadding,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
