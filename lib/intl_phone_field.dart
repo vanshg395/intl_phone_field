@@ -432,12 +432,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     );
   }
 
-  bool isNumeric(String s) {
-    if (s == null) {
-      return false;
-    }
-    return double.tryParse(s) != null;
-  }
+  bool isNumeric(String s) => s.isNotEmpty && double.tryParse(s) != null;
 }
 
 enum IconPosition {
