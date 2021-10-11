@@ -10,6 +10,7 @@ import './phone_number.dart';
 
 class IntlPhoneField extends StatefulWidget {
   final bool obscureText;
+  final bool dialCodeSearch;
   final TextAlign textAlign;
   final TextAlignVertical? textAlignVertical;
   final VoidCallback? onTap;
@@ -134,19 +135,21 @@ class IntlPhoneField extends StatefulWidget {
   /// If null, defaults to the `subtitle1` text style from the current [Theme].
   final TextStyle? style;
 
+  /// Disable view Min/Max Length check
+  final bool disableLengthCheck;
+
   /// Won't work if [enabled] is set to `false`.
   final bool showDropdownIcon;
 
   final BoxDecoration dropdownDecoration;
+
+  final TextStyle? dropdownTextStyle;
 
   /// {@macro flutter.widgets.editableText.inputFormatters}
   final List<TextInputFormatter>? inputFormatters;
 
   /// Placeholder Text to Display in Searchbar for searching countries
   final String searchText;
-
-  /// Color of the country code
-  final Color? countryCodeTextColor;
 
   /// Position of an icon [leading, trailing]
   final IconPosition iconPosition;
@@ -171,6 +174,14 @@ class IntlPhoneField extends StatefulWidget {
   ///
   /// Default value is `Invalid Mobile Number`.
   final String? invalidNumberMessage;
+  final Color? cursorColor;
+
+  /// The padding of the Flags Button.
+  ///
+  /// The amount of insets that are applied to the Flags Button.
+  ///
+  /// If unset, defaults to [const EdgeInsets.symmetric(vertical: 8)].
+  final EdgeInsetsGeometry flagsButtonPadding;
 
   final TextInputAction? textInputAction;
 
@@ -188,6 +199,7 @@ class IntlPhoneField extends StatefulWidget {
     this.focusNode,
     this.decoration = const InputDecoration(),
     this.style,
+    this.dropdownTextStyle,
     this.onSubmitted,
     this.validator,
     this.onChanged,
@@ -200,13 +212,16 @@ class IntlPhoneField extends StatefulWidget {
     this.enabled = true,
     this.keyboardAppearance = Brightness.light,
     this.searchText = 'Search by Country Name',
-    this.countryCodeTextColor,
     this.iconPosition = IconPosition.leading,
     this.dropDownIcon = const Icon(Icons.arrow_drop_down),
     this.autofocus = false,
     this.textInputAction,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
     this.showCountryFlag = true,
+    this.dialCodeSearch = true,
+    this.cursorColor,
+    this.disableLengthCheck = false,
+    this.flagsButtonPadding = const EdgeInsets.symmetric(vertical: 8),
     this.invalidNumberMessage,
   });
 
@@ -265,7 +280,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                     labelText: widget.searchText,
                   ),
                   onChanged: (value) {
-                    filteredCountries = _countryList.where((country) => country.name.toLowerCase().contains(value.toLowerCase())).toList();
+                    filteredCountries = this.widget.dialCodeSearch && isNumeric(value)
+                        ? _countryList.where((country) => country.dialCode.contains(value)).toList()
+                        : _countryList.where((country) => country.name.toLowerCase().contains(value.toLowerCase())).toList();
                     if (this.mounted) setState(() {});
                   },
                 ),
@@ -324,6 +341,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       obscureText: widget.obscureText,
       textAlign: widget.textAlign,
       textAlignVertical: widget.textAlignVertical,
+      cursorColor: widget.cursorColor,
       onTap: widget.onTap,
       controller: widget.controller,
       focusNode: widget.focusNode,
@@ -352,16 +370,16 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         // validate here to take care of async validation
         var msg;
         if (widget.autovalidateMode != AutovalidateMode.disabled) {
-          msg = value.length < _selectedCountry.minLength || value.length > _selectedCountry.maxLength
-              ? (widget.invalidNumberMessage ?? 'Invalid Mobile Number')
-              : null;
+          msg = widget.disableLengthCheck || value.length >= _selectedCountry.minLength && value.length <= _selectedCountry.maxLength
+              ? null
+              : (widget.invalidNumberMessage ?? 'Invalid Mobile Number');
           msg ??= await widget.validator?.call(phoneNumber.completeNumber);
           setState(() => validationMessage = msg);
         }
         widget.onChanged?.call(phoneNumber);
       },
       validator: (value) => validationMessage,
-      maxLength: _selectedCountry.maxLength,
+      maxLength: widget.disableLengthCheck ? null : _selectedCountry.maxLength,
       keyboardType: widget.keyboardType,
       inputFormatters: widget.inputFormatters,
       enabled: widget.enabled,
@@ -378,7 +396,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       child: InkWell(
         borderRadius: widget.dropdownDecoration.borderRadius as BorderRadius?,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
+          padding: widget.flagsButtonPadding,
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -398,8 +416,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
               FittedBox(
                 child: Text(
                   '+${_selectedCountry.dialCode}',
-                  style:
-                      Theme.of(context).textTheme.bodyText1, //TextStyle(fontWeight: FontWeight.w700, color: widget.countryCodeTextColor),
+                  style: widget.dropdownTextStyle,
                 ),
               ),
               if (widget.enabled && widget.showDropdownIcon && widget.iconPosition == IconPosition.trailing) ...[
@@ -413,6 +430,13 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         onTap: widget.enabled ? _changeCountry : null,
       ),
     );
+  }
+
+  bool isNumeric(String s) {
+    if (s == null) {
+      return false;
+    }
+    return double.tryParse(s) != null;
   }
 }
 

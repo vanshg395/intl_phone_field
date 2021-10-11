@@ -1,3 +1,5 @@
+![Pub](https://img.shields.io/pub/v/intl_phone_field)
+
 # International Phone Field Package
 
 A customised Flutter TextFormField to input international phone number along with country code.
