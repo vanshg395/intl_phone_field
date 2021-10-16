@@ -1125,7 +1125,7 @@ const List<Country> countries = [
     code: "MU",
     dialCode: "230",
     minLength: 7,
-    maxLength: 7,
+    maxLength: 8,
   ),
   Country(
     name: "Mayotte",
