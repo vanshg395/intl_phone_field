@@ -175,6 +175,10 @@ class IntlPhoneField extends StatefulWidget {
   /// Default value is `Invalid Mobile Number`.
   final String? invalidNumberMessage;
   final Color? cursorColor;
+  final double? cursorHeight;
+  final Radius? cursorRadius;
+  final double cursorWidth;
+  final bool? showCursor;
 
   /// The padding of the Flags Button.
   ///
@@ -223,6 +227,10 @@ class IntlPhoneField extends StatefulWidget {
     this.disableLengthCheck = false,
     this.flagsButtonPadding = const EdgeInsets.symmetric(vertical: 8),
     this.invalidNumberMessage,
+    this.cursorHeight,
+    this.cursorRadius = Radius.zero,
+    this.cursorWidth = 2.0,
+    this.showCursor = true,
   });
 
   @override
@@ -241,17 +249,21 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   @override
   void initState() {
     super.initState();
-    _countryList = widget.countries == null ? countries : countries.where((country) => widget.countries!.contains(country.code)).toList();
+    _countryList = widget.countries == null
+        ? countries
+        : countries.where((country) => widget.countries!.contains(country.code)).toList();
     filteredCountries = _countryList;
     number = widget.initialValue ?? '';
     if (widget.initialCountryCode == null && number.startsWith('+')) {
       number = number.substring(1);
       // parse initial value
-      _selectedCountry = countries.firstWhere((country) => number.startsWith(country.dialCode), orElse: () => _countryList.first);
+      _selectedCountry = countries.firstWhere((country) => number.startsWith(country.dialCode),
+          orElse: () => _countryList.first);
       number = number.substring(_selectedCountry.dialCode.length);
     } else {
-      _selectedCountry =
-          _countryList.firstWhere((item) => item.code == (widget.initialCountryCode ?? 'US'), orElse: () => _countryList.first);
+      _selectedCountry = _countryList.firstWhere(
+          (item) => item.code == (widget.initialCountryCode ?? 'US'),
+          orElse: () => _countryList.first);
     }
     if (widget.autovalidateMode == AutovalidateMode.always) {
       var x = widget.validator?.call(widget.initialValue);
@@ -282,7 +294,10 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                   onChanged: (value) {
                     filteredCountries = this.widget.dialCodeSearch && isNumeric(value)
                         ? _countryList.where((country) => country.dialCode.contains(value)).toList()
-                        : _countryList.where((country) => country.name.toLowerCase().contains(value.toLowerCase())).toList();
+                        : _countryList
+                            .where((country) =>
+                                country.name.toLowerCase().contains(value.toLowerCase()))
+                            .toList();
                     if (this.mounted) setState(() {});
                   },
                 ),
@@ -345,6 +360,10 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       onTap: widget.onTap,
       controller: widget.controller,
       focusNode: widget.focusNode,
+      cursorHeight: widget.cursorHeight,
+      cursorRadius: widget.cursorRadius,
+      cursorWidth: widget.cursorWidth,
+      showCursor: widget.showCursor,
       onFieldSubmitted: widget.onSubmitted,
       decoration: widget.decoration.copyWith(
         prefix: _buildFlagsButton(),
@@ -370,7 +389,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         // validate here to take care of async validation
         var msg;
         if (widget.autovalidateMode != AutovalidateMode.disabled) {
-          msg = widget.disableLengthCheck || value.length >= _selectedCountry.minLength && value.length <= _selectedCountry.maxLength
+          msg = widget.disableLengthCheck ||
+                  value.length >= _selectedCountry.minLength &&
+                      value.length <= _selectedCountry.maxLength
               ? null
               : (widget.invalidNumberMessage ?? 'Invalid Mobile Number');
           msg ??= await widget.validator?.call(phoneNumber.completeNumber);
@@ -401,7 +422,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              if (widget.enabled && widget.showDropdownIcon && widget.iconPosition == IconPosition.leading) ...[
+              if (widget.enabled &&
+                  widget.showDropdownIcon &&
+                  widget.iconPosition == IconPosition.leading) ...[
                 widget.dropDownIcon,
                 SizedBox(width: 4),
               ],
@@ -419,7 +442,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                   style: widget.dropdownTextStyle,
                 ),
               ),
-              if (widget.enabled && widget.showDropdownIcon && widget.iconPosition == IconPosition.trailing) ...[
+              if (widget.enabled &&
+                  widget.showDropdownIcon &&
+                  widget.iconPosition == IconPosition.trailing) ...[
                 SizedBox(width: 4),
                 widget.dropDownIcon,
               ],
