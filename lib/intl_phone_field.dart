@@ -113,8 +113,6 @@ class IntlPhoneField extends StatefulWidget {
   /// Controller to control the IntlPhoneInput state.
   final IntlPhoneFieldController? controller;
 
-  final EdgeInsetsGeometry? contentPadding;
-
   /// Initial Value for the field.
   /// This property can be used to pre-fill the field.
   final String? initialValue;
@@ -217,7 +215,6 @@ class IntlPhoneField extends StatefulWidget {
     this.dropdownDecoration = const BoxDecoration(),
     this.inputFormatters,
     this.enabled = true,
-    this.contentPadding,
     this.keyboardAppearance = Brightness.light,
     this.searchText = 'Search by Country Name',
     this.iconPosition = IconPosition.leading,
@@ -381,8 +378,6 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       decoration: widget.decoration.copyWith(
         prefix: _buildFlagsButton(),
         counterText: !widget.enabled ? '' : null,
-        contentPadding: widget.contentPadding ??
-            EdgeInsets.symmetric(vertical: 10).add(EdgeInsets.only(left: 10)),
       ),
       style: widget.style,
       onSaved: (value) {
