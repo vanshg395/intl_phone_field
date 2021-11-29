@@ -43,7 +43,7 @@ class IntlPhoneField extends StatefulWidget {
   /// Controls the text being edited.
   ///
   /// If null, this widget will create its own [TextEditingController].
-  final TextEditingController? controller;
+  final TextEditingController? fieldController;
 
   /// Defines the keyboard focus for this widget.
   ///
@@ -109,6 +109,8 @@ class IntlPhoneField extends StatefulWidget {
   ///
   /// If unset, defaults to the brightness of [ThemeData.primaryColorBrightness].
   final Brightness keyboardAppearance;
+
+  final IntlPhoneFieldController? controller;
 
   /// Initial Value for the field.
   /// This property can be used to pre-fill the field.
@@ -196,6 +198,7 @@ class IntlPhoneField extends StatefulWidget {
     this.initialValue,
     this.keyboardType = TextInputType.phone,
     this.autovalidate = true,
+    this.fieldController,
     this.controller,
     this.focusNode,
     this.decoration = const InputDecoration(),
@@ -235,6 +238,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   late Country _selectedCountry;
   late List<Country> filteredCountries;
   late String number;
+
+  late final TextEditingController _fieldController = TextEditingController();
+
   bool hasChanged = false;
 
   String? validationMessage;
@@ -242,6 +248,10 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   @override
   void initState() {
     super.initState();
+    IntlPhoneFieldController? _controller = widget.controller;
+    if (_controller != null) {
+      _controller.hydratePhoneNumber = _hydratePhoneNumber;
+    }
     _countryList = widget.countries == null
         ? countries
         : countries
@@ -352,14 +362,16 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      initialValue: number,
+      initialValue: number.isNotEmpty ? number : null,
       readOnly: widget.readOnly,
       obscureText: widget.obscureText,
       textAlign: widget.textAlign,
       textAlignVertical: widget.textAlignVertical,
       cursorColor: widget.cursorColor,
       onTap: widget.onTap,
-      controller: widget.controller,
+      controller: widget.fieldController != null
+          ? widget.fieldController
+          : _fieldController,
       focusNode: widget.focusNode,
       onFieldSubmitted: widget.onSubmitted,
       decoration: widget.decoration.copyWith(
@@ -457,9 +469,43 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   }
 
   bool isNumeric(String s) => s.isNotEmpty && double.tryParse(s) != null;
+
+  void _hydratePhoneNumber(String phoneNumber) {
+    for (Country country in countries) {
+      if (phoneNumber.startsWith('+${country.dialCode}')) {
+        if (country != _selectedCountry) {
+          widget.onCountryChanged?.call(
+            PhoneNumber(
+              countryISOCode: country.code,
+              countryCode: '+${country.dialCode}',
+              number: phoneNumber.replaceFirst("+${country.dialCode}", ""),
+            ),
+          );
+        }
+        _selectedCountry = country;
+        if (this.widget.fieldController != null) {
+          widget.fieldController!.text =
+              phoneNumber.replaceFirst("+${country.dialCode}", "");
+        } else {
+          _fieldController.text =
+              phoneNumber.replaceFirst("+${country.dialCode}", "");
+        }
+        setState(() => {});
+        break;
+      }
+    }
+  }
 }
 
 enum IconPosition {
   leading,
   trailing,
+}
+
+class IntlPhoneFieldController {
+  Function(String)? hydratePhoneNumber;
+
+  void dispose() {
+    hydratePhoneNumber = null;
+  }
 }
