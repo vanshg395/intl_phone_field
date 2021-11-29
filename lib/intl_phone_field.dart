@@ -483,6 +483,14 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             ),
           );
         }
+        if (phoneNumber.replaceFirst("+${country.dialCode}", "") !=
+            (widget.fieldController ?? _fieldController).text) {
+          widget.onChanged?.call(PhoneNumber(
+            countryISOCode: country.code,
+            countryCode: '+${country.dialCode}',
+            number: phoneNumber.replaceFirst("+${country.dialCode}", ""),
+          ));
+        }
         _selectedCountry = country;
         if (this.widget.fieldController != null) {
           widget.fieldController!.text =

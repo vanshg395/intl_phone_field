@@ -12,6 +12,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   GlobalKey<FormState> _formKey = GlobalKey();
+  IntlPhoneFieldController _controller = new IntlPhoneFieldController();
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +53,7 @@ class _MyAppState extends State<MyApp> {
                   height: 10,
                 ),
                 IntlPhoneField(
+                  controller: _controller,
                   decoration: InputDecoration(
                     labelText: 'Phone Number',
                     border: OutlineInputBorder(
