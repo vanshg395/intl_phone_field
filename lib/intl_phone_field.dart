@@ -248,14 +248,18 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       number = number.substring(1);
       // parse initial value
       _selectedCountry = countries.firstWhere((country) => number.startsWith(country.fullCountryCode), orElse: () => _countryList.first);
-      number = number.substring(_selectedCountry.fullCountryCode.length);
+
+      // remove country code from the initial number value
+      number = number.replaceFirst(RegExp("^${_selectedCountry.fullCountryCode}"), "");
     } else {
       _selectedCountry =
           _countryList.firstWhere((item) => item.code == (widget.initialCountryCode ?? 'US'), orElse: () => _countryList.first);
+
+      // remove country code from the initial number value
       if(number.startsWith('+')){
-        number = number.substring(_selectedCountry.fullCountryCode.length+1);
+        number = number.replaceFirst(RegExp("^\+${_selectedCountry.fullCountryCode}"), "");
       }else{
-        number = number.substring(_selectedCountry.fullCountryCode.length);
+        number = number.replaceFirst(RegExp("^${_selectedCountry.fullCountryCode}"), "");
       }
     }
     if (widget.autovalidateMode == AutovalidateMode.always) {
@@ -369,7 +373,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         hasChanged = true;
         final phoneNumber = PhoneNumber(
           countryISOCode: _selectedCountry.code,
-          countryCode: '+${_selectedCountry.dialCode}',
+          countryCode: '+${_selectedCountry.fullCountryCode}',
           number: value,
         );
         // validate here to take care of async validation
@@ -420,7 +424,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
               ],
               FittedBox(
                 child: Text(
-                  '+${_selectedCountry.dialCode}',
+                  '+${_selectedCountry.fullCountryCode}',
                   style: widget.dropdownTextStyle,
                 ),
               ),
