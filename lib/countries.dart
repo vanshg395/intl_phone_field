@@ -2008,7 +2008,7 @@ class Country {
   }
 
   String get displayCC {
-    if (this.regionCode != null && this.regionCode != "") {
+    if (this.regionCode != "") {
       return "${this.dialCode} ${this.regionCode}";
     }
     return this.dialCode;
