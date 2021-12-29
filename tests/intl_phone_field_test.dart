@@ -4,9 +4,10 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
 
 class TestWidget extends StatelessWidget {
-  const TestWidget({Key? key, required this.phoneNumber}) : super(key: key);
+  const TestWidget({Key? key, required this.phoneNumber, this.countryCode}) : super(key: key);
 
   final String phoneNumber;
+  final String? countryCode;
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,7 @@ class TestWidget extends StatelessWidget {
           appBar: AppBar(title: Text("")),
           body: IntlPhoneField(
             initialValue: phoneNumber,
+            initialCountryCode: countryCode,
           ),
         ));
   }
@@ -25,11 +27,11 @@ void main() {
   testWidgets('Test intl_phone_field setup with completeNumber',
       (WidgetTester tester) async {
     await tester.pumpWidget(TestWidget(
-      phoneNumber: '+447891234567',
+      phoneNumber: '+447891234467',
     ));
 
     final countryCodeFinder = find.text('+44');
-    final numberFinder = find.text('7891234567');
+    final numberFinder = find.text('7891234467');
 
     expect(countryCodeFinder, findsOneWidget);
     expect(numberFinder, findsOneWidget);
@@ -39,16 +41,27 @@ void main() {
           (WidgetTester tester) async {
         await tester.pumpWidget(TestWidget(
           phoneNumber: '+441481960194',
+          countryCode: 'GG',
         ));
 
         final countryCodeFinder = find.text('+441481');
         final numberFinder = find.text('960194');
-        //final countryISOCodeFinder = find.text('GG');
-        //final phoneNumberFinder = find.byType(PhoneNumber);
 
         expect(countryCodeFinder, findsOneWidget);
         expect(numberFinder, findsOneWidget);
-        //expect(countryISOCodeFinder, findsOneWidget);
-        //expect(phoneNumberFinder, findsOneWidget);
+      });
+
+  testWidgets('Test intl_phone_field setup with UK number: +447891244567',
+          (WidgetTester tester) async {
+        await tester.pumpWidget(TestWidget(
+          phoneNumber: '+447891244567',
+          countryCode: 'GB',
+        ));
+
+        final countryCodeFinder = find.text('+44');
+        final numberFinder = find.text('7891244567');
+
+        expect(countryCodeFinder, findsOneWidget);
+        expect(numberFinder, findsOneWidget);
       });
 }
