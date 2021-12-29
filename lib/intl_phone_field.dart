@@ -248,11 +248,11 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       number = number.substring(1);
       // parse initial value
       _selectedCountry = countries.firstWhere((country) => number.startsWith(country.fullCountryCode), orElse: () => _countryList.first);
-      number = number.substring(_selectedCountry.fullCountryCode.length);
     } else {
       _selectedCountry =
           _countryList.firstWhere((item) => item.code == (widget.initialCountryCode ?? 'US'), orElse: () => _countryList.first);
     }
+    number = number.substring(_selectedCountry.fullCountryCode.length);
     if (widget.autovalidateMode == AutovalidateMode.always) {
       var x = widget.validator?.call(widget.initialValue);
       if (x is String) {
