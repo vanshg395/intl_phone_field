@@ -247,8 +247,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     if (widget.initialCountryCode == null && number.startsWith('+')) {
       number = number.substring(1);
       // parse initial value
-      _selectedCountry = countries.firstWhere((country) => number.startsWith(country.dialCode), orElse: () => _countryList.first);
-      number = number.substring(_selectedCountry.dialCode.length);
+      _selectedCountry = countries.firstWhere((country) => number.startsWith(country.fullCountryCode), orElse: () => _countryList.first);
+      number = number.substring(_selectedCountry.fullCountryCode.length);
     } else {
       _selectedCountry =
           _countryList.firstWhere((item) => item.code == (widget.initialCountryCode ?? 'US'), orElse: () => _countryList.first);
@@ -312,7 +312,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                             widget.onCountryChanged?.call(
                               PhoneNumber(
                                 countryISOCode: _selectedCountry.code,
-                                countryCode: '+${_selectedCountry.dialCode}',
+                                countryCode: '+${_selectedCountry.fullCountryCode}',
                                 number: '',
                               ),
                             );
@@ -355,7 +355,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         widget.onSaved?.call(
           PhoneNumber(
             countryISOCode: _selectedCountry.code,
-            countryCode: '+${_selectedCountry.dialCode}',
+            countryCode: '+${_selectedCountry.dialCode}${_selectedCountry.regionCode}',
             number: value!,
           ),
         );
