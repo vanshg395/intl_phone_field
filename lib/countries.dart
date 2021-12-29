@@ -1,5 +1,5 @@
 // see: https://en.wikipedia.org/wiki/List_of_country_calling_codes
-// for list of country/calling codes 
+// for list of country/calling codes
 
 const List<Country> countries = [
   Country(
@@ -2003,7 +2003,14 @@ class Country {
     this.regionCode = "",
   });
 
-  String get fullCountryCode{
+  String get fullCountryCode {
     return this.dialCode + this.regionCode;
+  }
+
+  String get displayCC {
+    if (this.regionCode != null && this.regionCode != "") {
+      return "${this.dialCode} ${this.regionCode}";
+    }
+    return this.dialCode;
   }
 }

@@ -44,7 +44,7 @@ void main() {
           countryCode: 'GG',
         ));
 
-        final countryCodeFinder = find.text('+441481');
+        final countryCodeFinder = find.text('+44 1481');
         final numberFinder = find.text('960194');
 
         expect(countryCodeFinder, findsOneWidget);

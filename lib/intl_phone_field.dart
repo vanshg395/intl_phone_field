@@ -313,7 +313,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                             style: TextStyle(fontWeight: FontWeight.w700),
                           ),
                           trailing: Text(
-                            '+${filteredCountries[index].dialCode}',
+                            '+${filteredCountries[index].displayCC}',
                             style: TextStyle(fontWeight: FontWeight.w700),
                           ),
                           onTap: () {
@@ -424,7 +424,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
               ],
               FittedBox(
                 child: Text(
-                  '+${_selectedCountry.fullCountryCode}',
+                  '+${_selectedCountry.displayCC}',
                   style: widget.dropdownTextStyle,
                 ),
               ),
