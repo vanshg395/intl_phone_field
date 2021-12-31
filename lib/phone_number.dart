@@ -22,6 +22,14 @@ class PhoneNumber {
     } else {
       number = completeNumber.substring(country.dialCode.length+country.regionCode.length);
     }
+
+    return PhoneNumber(countryISOCode: country.code,
+        countryCode: country.dialCode + country.regionCode,
+        number: number);
+  }
+
+  bool isValidNumber(){
+    Country country = getCountry(completeNumber);
     if( number.length < country.minLength){
       throw NumberTooShortException();
     }
@@ -29,10 +37,7 @@ class PhoneNumber {
     if( number.length > country.maxLength){
       throw NumberTooLongException();
     }
-
-    return PhoneNumber(countryISOCode: country.code,
-        countryCode: country.dialCode + country.regionCode,
-        number: number);
+    return true;
   }
 
   String get completeNumber {

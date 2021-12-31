@@ -19,15 +19,17 @@ void main() {
       String expected = "+447891234567";
 
       expect(actual, expected);
+      expect(phoneNumber.isValidNumber(), true);
     });
 
     test('create a Guernsey number', () {
       PhoneNumber phoneNumber = PhoneNumber(
-          countryISOCode: "UK", countryCode: "+44", number: "1481960194");
+          countryISOCode: "GG", countryCode: "+441481", number: "960194");
       String actual = phoneNumber.completeNumber;
       String expected = "+441481960194";
 
       expect(actual, expected);
+      expect(phoneNumber.isValidNumber(), true);
     });
 
     test('look up UK as a country code', () {
@@ -50,18 +52,22 @@ void main() {
       expect(phoneNumber.countryISOCode, "HK");
       expect(phoneNumber.countryCode, "852");
       expect(phoneNumber.number, "12345678");
+      expect(phoneNumber.isValidNumber(), true);
     });
 
-    test('cannot create from too short number +8521234567', () {
+    test('Number is too short number +8521234567', () {
+      PhoneNumber ph =
+          PhoneNumber.fromCompleteNumber(completeNumber: "+8521234567");
       expect(
-          () => PhoneNumber.fromCompleteNumber(completeNumber: "+8521234567"),
-          throwsA(TypeMatcher<NumberTooShortException>()));
+          () => ph.isValidNumber(), throwsA(TypeMatcher<NumberTooShortException>()));
     });
 
     test('cannot create from too long number +852123456789', () {
+      PhoneNumber ph =
+          PhoneNumber.fromCompleteNumber(completeNumber: "+852123456789");
+
       expect(
-          () => PhoneNumber.fromCompleteNumber(completeNumber: "+852123456789"),
-          throwsA(TypeMatcher<NumberTooLongException>()));
+          () => ph.isValidNumber(), throwsA(TypeMatcher<NumberTooLongException>()));
     });
 
     test('create UK PhoneNumber from +447891234567', () {
@@ -70,6 +76,7 @@ void main() {
       expect(phoneNumber.countryISOCode, "GB");
       expect(phoneNumber.countryCode, "44");
       expect(phoneNumber.number, "7891234567");
+      expect(phoneNumber.isValidNumber(), true);
     });
 
     test('create Guernsey PhoneNumber from +441481960194', () {
@@ -78,6 +85,7 @@ void main() {
       expect(phoneNumber.countryISOCode, "GG");
       expect(phoneNumber.countryCode, "441481");
       expect(phoneNumber.number, "960194");
+      expect(phoneNumber.isValidNumber(), true);
     });
   });
 }
