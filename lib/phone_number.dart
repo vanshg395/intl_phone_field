@@ -15,29 +15,41 @@ class PhoneNumber {
   });
 
   factory PhoneNumber.fromCompleteNumber({required String completeNumber}){
-    Country country = getCountry(completeNumber);
-    String number;
-    if (completeNumber.startsWith('+')) {
-      number = completeNumber.substring(1+country.dialCode.length+country.regionCode.length);
-    } else {
-      number = completeNumber.substring(country.dialCode.length+country.regionCode.length);
+    if(completeNumber == "") {
+      return PhoneNumber(countryISOCode: "",
+          countryCode: "",
+          number: "");
     }
 
-    return PhoneNumber(countryISOCode: country.code,
-        countryCode: country.dialCode + country.regionCode,
-        number: number);
+    try{
+      Country country = getCountry(completeNumber);
+      String number;
+      if (completeNumber.startsWith('+')) {
+        number = completeNumber.substring(1+country.dialCode.length+country.regionCode.length);
+      } else {
+        number = completeNumber.substring(country.dialCode.length+country.regionCode.length);
+      }
+      return PhoneNumber(countryISOCode: country.code,
+          countryCode: country.dialCode + country.regionCode,
+          number: number);
+    } on Exception catch(e){
+      return PhoneNumber(countryISOCode: "",
+          countryCode: "",
+          number: "");
+    }
+
   }
 
   bool isValidNumber(){
-    Country country = getCountry(completeNumber);
-    if( number.length < country.minLength){
-      throw NumberTooShortException();
-    }
+      Country country = getCountry(completeNumber);
+      if( number.length < country.minLength){
+        throw NumberTooShortException();
+      }
 
-    if( number.length > country.maxLength){
-      throw NumberTooLongException();
-    }
-    return true;
+      if( number.length > country.maxLength){
+        throw NumberTooLongException();
+      }
+      return true;
   }
 
   String get completeNumber {
@@ -45,6 +57,10 @@ class PhoneNumber {
   }
 
   static Country getCountry(String phoneNumber) {
+    if(phoneNumber == ""){
+      throw NumberTooShortException();
+    }
+
     if (phoneNumber.startsWith('+')) {
       return countries.firstWhere((country) =>
           phoneNumber

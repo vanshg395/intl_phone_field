@@ -46,6 +46,15 @@ void main() {
       expect(country.regionCode, "1481");
     });
 
+    test('create with empty complete number', () {
+      PhoneNumber phoneNumber =
+      PhoneNumber.fromCompleteNumber(completeNumber: "");
+      expect(phoneNumber.countryISOCode, "");
+      expect(phoneNumber.countryCode, "");
+      expect(phoneNumber.number, "");
+      expect(() => phoneNumber.isValidNumber(), throwsA(TypeMatcher<NumberTooShortException>()));
+    });
+
     test('create HK  number +85212345678', () {
       PhoneNumber phoneNumber =
           PhoneNumber.fromCompleteNumber(completeNumber: "+85212345678");
