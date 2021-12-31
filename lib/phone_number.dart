@@ -1,5 +1,8 @@
 import 'countries.dart';
 
+class NumberTooLongException implements Exception{}
+class NumberTooShortException implements Exception{}
+
 class PhoneNumber {
   String countryISOCode;
   String countryCode;
@@ -19,6 +22,14 @@ class PhoneNumber {
     } else {
       number = completeNumber.substring(country.dialCode.length+country.regionCode.length);
     }
+    if( number.length < country.minLength){
+      throw NumberTooShortException();
+    }
+
+    if( number.length > country.maxLength){
+      throw NumberTooLongException();
+    }
+
     return PhoneNumber(countryISOCode: country.code,
         countryCode: country.dialCode + country.regionCode,
         number: number);
