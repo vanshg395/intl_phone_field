@@ -48,11 +48,12 @@ void main() {
 
     test('create with empty complete number', () {
       PhoneNumber phoneNumber =
-      PhoneNumber.fromCompleteNumber(completeNumber: "");
+          PhoneNumber.fromCompleteNumber(completeNumber: "");
       expect(phoneNumber.countryISOCode, "");
       expect(phoneNumber.countryCode, "");
       expect(phoneNumber.number, "");
-      expect(() => phoneNumber.isValidNumber(), throwsA(TypeMatcher<NumberTooShortException>()));
+      expect(() => phoneNumber.isValidNumber(),
+          throwsA(TypeMatcher<NumberTooShortException>()));
     });
 
     test('create HK  number +85212345678', () {
@@ -67,16 +68,16 @@ void main() {
     test('Number is too short number +8521234567', () {
       PhoneNumber ph =
           PhoneNumber.fromCompleteNumber(completeNumber: "+8521234567");
-      expect(
-          () => ph.isValidNumber(), throwsA(TypeMatcher<NumberTooShortException>()));
+      expect(() => ph.isValidNumber(),
+          throwsA(TypeMatcher<NumberTooShortException>()));
     });
 
     test('cannot create from too long number +852123456789', () {
       PhoneNumber ph =
           PhoneNumber.fromCompleteNumber(completeNumber: "+852123456789");
 
-      expect(
-          () => ph.isValidNumber(), throwsA(TypeMatcher<NumberTooLongException>()));
+      expect(() => ph.isValidNumber(),
+          throwsA(TypeMatcher<NumberTooLongException>()));
     });
 
     test('create UK PhoneNumber from +447891234567', () {
@@ -95,6 +96,16 @@ void main() {
       expect(phoneNumber.countryCode, "441481");
       expect(phoneNumber.number, "960194");
       expect(phoneNumber.isValidNumber(), true);
+    });
+
+    test('create alpha character in  PhoneNumber from +44abcdef', () {
+      expect(() => PhoneNumber.fromCompleteNumber(completeNumber: "+44abcdef"),
+          throwsA(TypeMatcher<InvalidCharactersException>()));
+    });
+
+    test('create alpha character in  PhoneNumber from +44abcdef1', () {
+      expect(() => PhoneNumber.fromCompleteNumber(completeNumber: "+44abcdef1"),
+          throwsA(TypeMatcher<InvalidCharactersException>()));
     });
   });
 }
