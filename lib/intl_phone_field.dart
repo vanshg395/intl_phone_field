@@ -191,6 +191,7 @@ class IntlPhoneField extends StatefulWidget {
   final PickerDialogStyle? pickerDialogStyle;
 
   IntlPhoneField({
+    Key? key,
     this.initialCountryCode,
     this.obscureText = false,
     this.textAlign = TextAlign.left,
@@ -229,7 +230,7 @@ class IntlPhoneField extends StatefulWidget {
     this.flagsButtonPadding = const EdgeInsets.symmetric(vertical: 8),
     this.invalidNumberMessage,
     this.pickerDialogStyle,
-  });
+  }) : super(key: key);
 
   @override
   _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
