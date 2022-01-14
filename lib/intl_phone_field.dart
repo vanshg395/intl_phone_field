@@ -176,6 +176,10 @@ class IntlPhoneField extends StatefulWidget {
   /// Default value is `Invalid Mobile Number`.
   final String? invalidNumberMessage;
   final Color? cursorColor;
+  final double? cursorHeight;
+  final Radius? cursorRadius;
+  final double cursorWidth;
+  final bool? showCursor;
 
   /// The padding of the Flags Button.
   ///
@@ -229,6 +233,10 @@ class IntlPhoneField extends StatefulWidget {
     this.disableLengthCheck = false,
     this.flagsButtonPadding = const EdgeInsets.symmetric(vertical: 8),
     this.invalidNumberMessage,
+    this.cursorHeight,
+    this.cursorRadius = Radius.zero,
+    this.cursorWidth = 2.0,
+    this.showCursor = true,
     this.pickerDialogStyle,
   }) : super(key: key);
 
@@ -319,6 +327,10 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       onTap: widget.onTap,
       controller: widget.controller,
       focusNode: widget.focusNode,
+      cursorHeight: widget.cursorHeight,
+      cursorRadius: widget.cursorRadius,
+      cursorWidth: widget.cursorWidth,
+      showCursor: widget.showCursor,
       onFieldSubmitted: widget.onSubmitted,
       decoration: widget.decoration.copyWith(
         prefix: _buildFlagsButton(),
