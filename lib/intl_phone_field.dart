@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl_phone_field/country_picker_dialog.dart';
 
 import './countries.dart';
 import './phone_number.dart';
@@ -189,7 +190,12 @@ class IntlPhoneField extends StatefulWidget {
 
   final TextInputAction? textInputAction;
 
+  /// Optional set of styles to allow for customizing the country search
+  /// & pick dialog
+  final PickerDialogStyle? pickerDialogStyle;
+
   IntlPhoneField({
+    Key? key,
     this.initialCountryCode,
     this.obscureText = false,
     this.textAlign = TextAlign.left,
@@ -231,7 +237,8 @@ class IntlPhoneField extends StatefulWidget {
     this.cursorRadius = Radius.zero,
     this.cursorWidth = 2.0,
     this.showCursor = true,
-  });
+    this.pickerDialogStyle,
+  }) : super(key: key);
 
   @override
   _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
@@ -251,13 +258,16 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     super.initState();
     _countryList = widget.countries == null
         ? countries
-        : countries.where((country) => widget.countries!.contains(country.code)).toList();
+        : countries
+            .where((country) => widget.countries!.contains(country.code))
+            .toList();
     filteredCountries = _countryList;
     number = widget.initialValue ?? '';
     if (widget.initialCountryCode == null && number.startsWith('+')) {
       number = number.substring(1);
       // parse initial value
-      _selectedCountry = countries.firstWhere((country) => number.startsWith(country.dialCode),
+      _selectedCountry = countries.firstWhere(
+          (country) => number.startsWith(country.dialCode),
           orElse: () => _countryList.first);
       number = number.substring(_selectedCountry.dialCode.length);
     } else {
@@ -281,67 +291,24 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       context: context,
       useRootNavigator: false,
       builder: (context) => StatefulBuilder(
-        builder: (ctx, setState) => Dialog(
-          child: Container(
-            padding: EdgeInsets.all(10),
-            child: Column(
-              children: <Widget>[
-                TextField(
-                  decoration: InputDecoration(
-                    suffixIcon: Icon(Icons.search),
-                    labelText: widget.searchText,
-                  ),
-                  onChanged: (value) {
-                    filteredCountries = this.widget.dialCodeSearch && isNumeric(value)
-                        ? _countryList.where((country) => country.dialCode.contains(value)).toList()
-                        : _countryList
-                            .where((country) =>
-                                country.name.toLowerCase().contains(value.toLowerCase()))
-                            .toList();
-                    if (this.mounted) setState(() {});
-                  },
-                ),
-                SizedBox(height: 20),
-                Expanded(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: filteredCountries.length,
-                    itemBuilder: (ctx, index) => Column(
-                      children: <Widget>[
-                        ListTile(
-                          leading: Image.asset(
-                            'assets/flags/${filteredCountries[index].code.toLowerCase()}.png',
-                            package: 'intl_phone_field',
-                            width: 32,
-                          ),
-                          title: Text(
-                            filteredCountries[index].name,
-                            style: TextStyle(fontWeight: FontWeight.w700),
-                          ),
-                          trailing: Text(
-                            '+${filteredCountries[index].dialCode}',
-                            style: TextStyle(fontWeight: FontWeight.w700),
-                          ),
-                          onTap: () {
-                            _selectedCountry = filteredCountries[index];
-                            widget.onCountryChanged?.call(
-                              PhoneNumber(
-                                countryISOCode: _selectedCountry.code,
-                                countryCode: '+${_selectedCountry.dialCode}',
-                                number: '',
-                              ),
-                            );
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                        Divider(thickness: 1),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+        builder: (ctx, setState) => CountryPickerDialog(
+          style: widget.pickerDialogStyle,
+          filteredCountries: filteredCountries,
+          searchText: widget.searchText,
+          dialCodeSearch: widget.dialCodeSearch,
+          countryList: _countryList,
+          selectedCountry: _selectedCountry,
+          onCountryChanged: (Country country) {
+            _selectedCountry = country;
+            widget.onCountryChanged?.call(
+              PhoneNumber(
+                countryISOCode: country.code,
+                countryCode: '+${country.dialCode}',
+                number: '',
+              ),
+            );
+            setState(() {});
+          },
         ),
       ),
     );
@@ -456,8 +423,6 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       ),
     );
   }
-
-  bool isNumeric(String s) => s.isNotEmpty && double.tryParse(s) != null;
 }
 
 enum IconPosition {
