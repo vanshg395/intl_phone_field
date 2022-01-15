@@ -34,9 +34,6 @@ class IntlPhoneField extends StatefulWidget {
   /// For validator to work, turn [autoValidateMode] to [AutoValidateMode.onUserInteraction]
   final FutureOr<String?> Function(String?)? validator;
 
-  @Deprecated('use autovalidateMode instead as it offers more options')
-  final bool autovalidate;
-
   /// {@macro flutter.widgets.editableText.keyboardType}
   final TextInputType keyboardType;
 
@@ -204,7 +201,6 @@ class IntlPhoneField extends StatefulWidget {
     this.readOnly = false,
     this.initialValue,
     this.keyboardType = TextInputType.phone,
-    this.autovalidate = true,
     this.controller,
     this.focusNode,
     this.decoration = const InputDecoration(),
