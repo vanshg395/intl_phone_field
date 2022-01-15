@@ -153,12 +153,12 @@ class IntlPhoneField extends StatefulWidget {
   final String searchText;
 
   /// Position of an icon [leading, trailing]
-  final IconPosition iconPosition;
+  final IconPosition dropdownIconPosition;
 
   /// Icon of the drop down button.
   ///
   /// Default is [Icon(Icons.arrow_drop_down)]
-  final Icon dropDownIcon;
+  final Icon dropdownIcon;
 
   /// Whether this text field should focus itself if nothing else is already focused.
   final bool autofocus;
@@ -222,8 +222,8 @@ class IntlPhoneField extends StatefulWidget {
     this.enabled = true,
     this.keyboardAppearance = Brightness.light,
     this.searchText = 'Search by Country Name',
-    this.iconPosition = IconPosition.leading,
-    this.dropDownIcon = const Icon(Icons.arrow_drop_down),
+    this.dropdownIconPosition = IconPosition.leading,
+    this.dropdownIcon = const Icon(Icons.arrow_drop_down),
     this.autofocus = false,
     this.textInputAction,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
@@ -391,8 +391,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             children: <Widget>[
               if (widget.enabled &&
                   widget.showDropdownIcon &&
-                  widget.iconPosition == IconPosition.leading) ...[
-                widget.dropDownIcon,
+                  widget.dropdownIconPosition == IconPosition.leading) ...[
+                widget.dropdownIcon,
                 SizedBox(width: 4),
               ],
               if (widget.showCountryFlag) ...[
@@ -411,9 +411,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
               ),
               if (widget.enabled &&
                   widget.showDropdownIcon &&
-                  widget.iconPosition == IconPosition.trailing) ...[
+                  widget.dropdownIconPosition == IconPosition.trailing) ...[
                 SizedBox(width: 4),
-                widget.dropDownIcon,
+                widget.dropdownIcon,
               ],
               SizedBox(width: 8),
             ],
