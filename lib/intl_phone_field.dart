@@ -11,7 +11,6 @@ import './phone_number.dart';
 
 class IntlPhoneField extends StatefulWidget {
   final bool obscureText;
-  final bool dialCodeSearch;
   final TextAlign textAlign;
   final TextAlignVertical? textAlignVertical;
   final VoidCallback? onTap;
@@ -224,7 +223,6 @@ class IntlPhoneField extends StatefulWidget {
     this.textInputAction,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
     this.showCountryFlag = true,
-    this.dialCodeSearch = true,
     this.cursorColor,
     this.disableLengthCheck = false,
     this.flagsButtonPadding = EdgeInsets.zero,
@@ -291,7 +289,6 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           style: widget.pickerDialogStyle,
           filteredCountries: filteredCountries,
           searchText: widget.searchText,
-          dialCodeSearch: widget.dialCodeSearch,
           countryList: _countryList,
           selectedCountry: _selectedCountry,
           onCountryChanged: (Country country) {

@@ -39,14 +39,12 @@ class CountryPickerDialog extends StatefulWidget {
   final Country selectedCountry;
   final ValueChanged<Country> onCountryChanged;
   final String searchText;
-  final bool dialCodeSearch;
   final List<Country> filteredCountries;
   final PickerDialogStyle? style;
 
   CountryPickerDialog({
     Key? key,
     required this.searchText,
-    required this.dialCodeSearch,
     required this.countryList,
     required this.onCountryChanged,
     required this.selectedCountry,
@@ -87,8 +85,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                         labelText: widget.searchText,
                       ),
                   onChanged: (value) {
-                    _filteredCountries = this.widget.dialCodeSearch &&
-                            isNumeric(value)
+                    _filteredCountries = isNumeric(value)
                         ? widget.countryList
                             .where(
                                 (country) => country.dialCode.contains(value))
