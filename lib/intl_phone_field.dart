@@ -216,7 +216,8 @@ class IntlPhoneField extends StatefulWidget {
     this.inputFormatters,
     this.enabled = true,
     this.keyboardAppearance,
-    this.searchText = 'Search by Country Name',
+    @Deprecated('Use searchFieldInputDecoration of PickerDialogStyle instead')
+        this.searchText = 'Search country',
     this.dropdownIconPosition = IconPosition.leading,
     this.dropdownIcon = const Icon(Icons.arrow_drop_down),
     this.autofocus = false,
