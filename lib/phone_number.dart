@@ -12,4 +12,7 @@ class PhoneNumber {
   String get completeNumber {
     return countryCode + number;
   }
+
+  String toString() =>
+      'PhoneNumber(countryISOCode: $countryISOCode, countryCode: $countryCode, number: $number)';
 }

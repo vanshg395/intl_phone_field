@@ -33,7 +33,8 @@ class IntlPhoneField extends StatefulWidget {
   ///  * [onEditingComplete], [onSubmitted], [onSelectionChanged]:
   ///    which are more specialized input change notifications.
   final ValueChanged<PhoneNumber>? onChanged;
-  final ValueChanged<PhoneNumber>? onCountryChanged;
+
+  final ValueChanged<Country>? onCountryChanged;
 
   /// For validator to work, turn [autovalidateMode] to [AutovalidateMode.onUserInteraction]
   final FutureOr<String?> Function(String?)? validator;
@@ -314,13 +315,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           selectedCountry: _selectedCountry,
           onCountryChanged: (Country country) {
             _selectedCountry = country;
-            widget.onCountryChanged?.call(
-              PhoneNumber(
-                countryISOCode: country.code,
-                countryCode: '+${country.dialCode}',
-                number: '',
-              ),
-            );
+            widget.onCountryChanged?.call(country);
             setState(() {});
           },
         ),
