@@ -24,12 +24,12 @@ Or, add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  intl_phone_field: ^2.1.0
+  intl_phone_field: ^3.0.0
 ```
 
 ## How to Use
 
-Simply create a `IntlPhoneField` widget, and pass the required params:z
+Simply create a `IntlPhoneField` widget, and pass the required params:
 
 ```dart
 IntlPhoneField(

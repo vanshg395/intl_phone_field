@@ -1,3 +1,20 @@
+## [3.0.0] - Release
+- Add minimal country length.
+- Update minimum and maximum length of phone numbers of several countries.
+- Support country search by dial code.
+- Move flag button to TextFormField's `prefixIcon` (always displayed and get rid of alignment issues).
+- Add `dropdownTextStyle`, customize style use for the country dial code.
+- Add `disableLengthCheck`, disable view minimum and maximum length check.
+- Add a CountryPickerDialog widget and PickerDialogStyle (set of styles to allow the country search dialog customization).
+- Add `flagsButtonPadding`, set custom padding around flag button.
+- Add `invalidNumberMessage`, te message to be displayed on validation error.
+- Add cursor customization options: `cursorColor`, `cursorHeight`, `cursorRadius`, `cursorWidth` and `showCursor`.
+- Switch from country List of Maps to List of Country objects.
+- `keyboardAppearance` use default `ThemeData.brightness`
+- **Breaking** Rename `dropDownIcon` to `dropdownIcon` and `iconPosition` to `dropdownIconPosition`.
+- **Breaking** Remove `autovalidate`.
+- **Breaking** Add asynchronous validation.
+
 ## [2.1.0] - Added more parameters
 
 - **Breaking** dropDownArrowIcon and dropDownArrowColor parameters are now replaced by dropDownIcon.
