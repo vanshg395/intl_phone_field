@@ -104,8 +104,8 @@ class IntlPhoneField extends StatefulWidget {
   ///
   /// This setting is only honored on iOS devices.
   ///
-  /// If unset, defaults to the brightness of [ThemeData.primaryColorBrightness].
-  final Brightness keyboardAppearance;
+  /// If unset, defaults to the brightness of [ThemeData.brightness].
+  final Brightness? keyboardAppearance;
 
   /// Initial Value for the field.
   /// This property can be used to pre-fill the field.
@@ -216,7 +216,7 @@ class IntlPhoneField extends StatefulWidget {
     this.dropdownDecoration = const BoxDecoration(),
     this.inputFormatters,
     this.enabled = true,
-    this.keyboardAppearance = Brightness.light,
+    this.keyboardAppearance,
     this.searchText = 'Search by Country Name',
     this.dropdownIconPosition = IconPosition.leading,
     this.dropdownIcon = const Icon(Icons.arrow_drop_down),
