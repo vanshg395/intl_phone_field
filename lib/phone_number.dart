@@ -1,9 +1,7 @@
-import 'package:flutter/foundation.dart';
-
 class PhoneNumber {
-  String? countryISOCode;
-  String? countryCode;
-  String? number;
+  String countryISOCode;
+  String countryCode;
+  String number;
 
   PhoneNumber({
     required this.countryISOCode,
@@ -12,6 +10,6 @@ class PhoneNumber {
   });
 
   String get completeNumber {
-    return countryCode! + number!;
+    return countryCode + number;
   }
 }
