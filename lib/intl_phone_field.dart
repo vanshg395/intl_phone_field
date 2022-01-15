@@ -10,8 +10,13 @@ import './countries.dart';
 import './phone_number.dart';
 
 class IntlPhoneField extends StatefulWidget {
+  /// Whether to hide the text being edited (e.g., for passwords).
   final bool obscureText;
+
+  /// How the text should be aligned horizontally.
   final TextAlign textAlign;
+
+  /// How the text should be aligned vertically.
   final TextAlignVertical? textAlignVertical;
   final VoidCallback? onTap;
 
@@ -30,7 +35,7 @@ class IntlPhoneField extends StatefulWidget {
   final ValueChanged<PhoneNumber>? onChanged;
   final ValueChanged<PhoneNumber>? onCountryChanged;
 
-  /// For validator to work, turn [autoValidateMode] to [AutoValidateMode.onUserInteraction]
+  /// For validator to work, turn [autovalidateMode] to [AutovalidateMode.onUserInteraction]
   final FutureOr<String?> Function(String?)? validator;
 
   /// {@macro flutter.widgets.editableText.keyboardType}
@@ -140,12 +145,16 @@ class IntlPhoneField extends StatefulWidget {
 
   final BoxDecoration dropdownDecoration;
 
+  /// The style use for the country dial code.
   final TextStyle? dropdownTextStyle;
 
   /// {@macro flutter.widgets.editableText.inputFormatters}
   final List<TextInputFormatter>? inputFormatters;
 
-  /// Placeholder Text to Display in Searchbar for searching countries
+  /// The text that describes the search input field.
+  ///
+  /// When the input field is empty and unfocused, the label is displayed on top of the input field (i.e., at the same location on the screen where text may be entered in the input field).
+  /// When the input field receives focus (or if the field is non-empty), the label moves above (i.e., vertically adjacent to) the input field.
   final String searchText;
 
   /// Position of an icon [leading, trailing]
@@ -171,10 +180,20 @@ class IntlPhoneField extends StatefulWidget {
   ///
   /// Default value is `Invalid Mobile Number`.
   final String? invalidNumberMessage;
+
+  /// The color of the cursor.
   final Color? cursorColor;
+
+  /// How tall the cursor will be.
   final double? cursorHeight;
+
+  /// How rounded the corners of the cursor should be.
   final Radius? cursorRadius;
+
+  /// How thick the cursor will be.
   final double cursorWidth;
+
+  /// Whether to show cursor.
   final bool? showCursor;
 
   /// The padding of the Flags Button.
@@ -184,6 +203,7 @@ class IntlPhoneField extends StatefulWidget {
   /// If unset, defaults to [EdgeInsets.zero].
   final EdgeInsetsGeometry flagsButtonPadding;
 
+  /// The type of action button to use for the keyboard.
   final TextInputAction? textInputAction;
 
   /// Optional set of styles to allow for customizing the country search
