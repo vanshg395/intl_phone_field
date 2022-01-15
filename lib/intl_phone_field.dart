@@ -185,7 +185,7 @@ class IntlPhoneField extends StatefulWidget {
   ///
   /// The amount of insets that are applied to the Flags Button.
   ///
-  /// If unset, defaults to [const EdgeInsets.symmetric(vertical: 8)].
+  /// If unset, defaults to [EdgeInsets.zero].
   final EdgeInsetsGeometry flagsButtonPadding;
 
   final TextInputAction? textInputAction;
@@ -231,7 +231,7 @@ class IntlPhoneField extends StatefulWidget {
     this.dialCodeSearch = true,
     this.cursorColor,
     this.disableLengthCheck = false,
-    this.flagsButtonPadding = const EdgeInsets.symmetric(vertical: 8),
+    this.flagsButtonPadding = EdgeInsets.zero,
     this.invalidNumberMessage,
     this.cursorHeight,
     this.cursorRadius = Radius.zero,
@@ -333,7 +333,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       showCursor: widget.showCursor,
       onFieldSubmitted: widget.onSubmitted,
       decoration: widget.decoration.copyWith(
-        prefix: _buildFlagsButton(),
+        prefixIcon: _buildFlagsButton(),
         counterText: !widget.enabled ? '' : null,
       ),
       style: widget.style,
