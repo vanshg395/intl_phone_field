@@ -836,8 +836,8 @@ const List<Country> countries = [
     flag: "🇮🇪",
     code: "IE",
     dialCode: "353",
-    minLength: 11,
-    maxLength: 11,
+    minLength: 7,
+    maxLength: 9,
   ),
   Country(
     name: "Isle of Man",
