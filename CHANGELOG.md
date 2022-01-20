@@ -1,3 +1,7 @@
+## [3.0.1] - Release
+
+- Fix [#146](https://github.com/vanshg395/intl_phone_field/issues/146)
+
 ## [3.0.0] - Release
 
 - Add minimal country length.
