@@ -211,6 +211,13 @@ class IntlPhoneField extends StatefulWidget {
   /// & pick dialog
   final PickerDialogStyle? pickerDialogStyle;
 
+  /// The padding of the dropdown Button.
+  ///
+  /// The amount of insets that are applied to the dropdown and the flag button.
+  ///
+  /// If unset, defaults to [EdgeInsets.zero].
+  final EdgeInsets dropDownMargin;
+
   IntlPhoneField({
     Key? key,
     this.initialCountryCode,
@@ -254,6 +261,7 @@ class IntlPhoneField extends StatefulWidget {
     this.cursorWidth = 2.0,
     this.showCursor = true,
     this.pickerDialogStyle,
+    this.dropDownMargin = EdgeInsets.zero,
   }) : super(key: key);
 
   @override
@@ -387,8 +395,10 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     );
   }
 
-  DecoratedBox _buildFlagsButton() {
-    return DecoratedBox(
+  Container _buildFlagsButton() {
+    return Container(
+      margin: widget.dropDownMargin,
+      child: DecoratedBox(
       decoration: widget.dropdownDecoration,
       child: InkWell(
         borderRadius: widget.dropdownDecoration.borderRadius as BorderRadius?,
@@ -430,6 +440,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         ),
         onTap: widget.enabled ? _changeCountry : null,
       ),
+    ),
     );
   }
 }
