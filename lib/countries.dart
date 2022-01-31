@@ -725,7 +725,7 @@ const List<Country> countries = [
     code: "GN",
     dialCode: "224",
     minLength: 8,
-    maxLength: 8,
+    maxLength: 9,
   ),
   Country(
     name: "Guinea-Bissau",
