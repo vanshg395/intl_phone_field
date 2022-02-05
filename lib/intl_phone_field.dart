@@ -218,8 +218,11 @@ class IntlPhoneField extends StatefulWidget {
   /// If unset, defaults to [EdgeInsets.zero].
   final EdgeInsets dropDownMargin;
 
+  final String? Function(String?)? validate;
+
   IntlPhoneField({
     Key? key,
+    this.validate,
     this.initialCountryCode,
     this.obscureText = false,
     this.textAlign = TextAlign.left,
@@ -383,7 +386,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         }
         widget.onChanged?.call(phoneNumber);
       },
-      validator: (value) => validationMessage,
+      validator: widget.validate,
       maxLength: widget.disableLengthCheck ? null : _selectedCountry.maxLength,
       keyboardType: widget.keyboardType,
       inputFormatters: widget.inputFormatters,
