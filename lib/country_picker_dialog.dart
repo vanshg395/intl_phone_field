@@ -21,6 +21,8 @@ class PickerDialogStyle {
 
   final EdgeInsets? searchFieldPadding;
 
+  final double? width;
+
   PickerDialogStyle({
     this.backgroundColor,
     this.countryCodeStyle,
@@ -31,6 +33,7 @@ class PickerDialogStyle {
     this.searchFieldCursorColor,
     this.searchFieldInputDecoration,
     this.searchFieldPadding,
+    this.width,
   });
 }
 
@@ -70,7 +73,16 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaWidth = MediaQuery.of(context).size.width;
+    final width = widget.style?.width ?? mediaWidth;
+    final defaultHorizontalPadding = 40.0;
+    final defaultVerticalPadding = 24.0;
     return Dialog(
+      insetPadding: EdgeInsets.symmetric(
+          vertical: defaultVerticalPadding,
+          horizontal: mediaWidth > (width + defaultHorizontalPadding * 2)
+              ? (mediaWidth - width) / 2
+              : defaultHorizontalPadding),
       backgroundColor: widget.style?.backgroundColor,
       child: Container(
         padding: widget.style?.padding ?? EdgeInsets.all(10),
