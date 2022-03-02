@@ -1,3 +1,10 @@
+## [3.1.0] - Release
+
+- **Breaking** `validator` function parameter type is [PhoneNumber] now instead of [String].
+- Add `width` property to [PickerDialogStyle]
+- Add `flagsButtonMargin` property
+- Update phone number length of several countries.
+
 ## [3.0.1] - Release
 
 - Fix [#146](https://github.com/vanshg395/intl_phone_field/issues/146)
