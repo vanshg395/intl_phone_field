@@ -73,7 +73,7 @@ class _MyAppState extends State<MyApp> {
                   color: Theme.of(context).primaryColor,
                   textColor: Colors.white,
                   onPressed: () {
-                    _formKey.currentState.validate();
+                    _formKey.currentState?.validate();
                   },
                 ),
               ],
