@@ -36,8 +36,16 @@ class IntlPhoneField extends StatefulWidget {
 
   final ValueChanged<Country>? onCountryChanged;
 
-  /// For validator to work, turn [autovalidateMode] to [AutovalidateMode.onUserInteraction]
-  final FutureOr<String?> Function(String?)? validator;
+  /// An optional method that validates an input. Returns an error string to display if the input is invalid, or null otherwise.
+  ///
+  /// A [PhoneNumber] is passed to the validator as argument.
+  /// The validator can handle asynchronous validation when declared as a [Future].
+  /// Or run synchronously when declared as a [Function].
+  ///
+  /// By default, the validator checks whether the input number length is between selected country's phone numbers min and max length.
+  /// If `disableLengthCheck` is not set to `true`, your validator returned value will be overwritten by the default validator.
+  /// But, if `disableLengthCheck` is set to `true`, your validator will have to check phone number length itself.
+  final FutureOr<String?> Function(PhoneNumber?)? validator;
 
   /// {@macro flutter.widgets.editableText.keyboardType}
   final TextInputType keyboardType;
@@ -169,7 +177,13 @@ class IntlPhoneField extends StatefulWidget {
   /// Whether this text field should focus itself if nothing else is already focused.
   final bool autofocus;
 
-  /// Autovalidate mode for text form field
+  /// Autovalidate mode for text form field.
+  ///
+  /// If [AutovalidateMode.onUserInteraction], this FormField will only auto-validate after its content changes.
+  /// If [AutovalidateMode.always], it will auto-validate even without user interaction.
+  /// If [AutovalidateMode.disabled], auto-validation will be disabled.
+  ///
+  /// Defaults to [AutovalidateMode.onUserInteraction].
   final AutovalidateMode? autovalidateMode;
 
   /// Whether to show or hide country flag.
@@ -211,18 +225,15 @@ class IntlPhoneField extends StatefulWidget {
   /// & pick dialog
   final PickerDialogStyle? pickerDialogStyle;
 
-  /// The padding of the dropdown Button.
+  /// The margin of the country selector button.
   ///
-  /// The amount of insets that are applied to the dropdown and the flag button.
+  /// The amount of space to surround the country selector button.
   ///
   /// If unset, defaults to [EdgeInsets.zero].
-  final EdgeInsets dropDownMargin;
-
-  final String? Function(String?)? validate;
+  final EdgeInsets flagsButtonMargin;
 
   IntlPhoneField({
     Key? key,
-    this.validate,
     this.initialCountryCode,
     this.obscureText = false,
     this.textAlign = TextAlign.left,
@@ -258,13 +269,13 @@ class IntlPhoneField extends StatefulWidget {
     this.cursorColor,
     this.disableLengthCheck = false,
     this.flagsButtonPadding = EdgeInsets.zero,
-    this.invalidNumberMessage,
+    this.invalidNumberMessage = 'Invalid Mobile Number',
     this.cursorHeight,
     this.cursorRadius = Radius.zero,
     this.cursorWidth = 2.0,
     this.showCursor = true,
     this.pickerDialogStyle,
-    this.dropDownMargin = EdgeInsets.zero,
+    this.flagsButtonMargin = EdgeInsets.zero,
   }) : super(key: key);
 
   @override
@@ -276,9 +287,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   late Country _selectedCountry;
   late List<Country> filteredCountries;
   late String number;
-  bool hasChanged = false;
 
-  String? validationMessage;
+  String? validatorMessage;
 
   @override
   void initState() {
@@ -302,12 +312,22 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           (item) => item.code == (widget.initialCountryCode ?? 'US'),
           orElse: () => _countryList.first);
     }
+
     if (widget.autovalidateMode == AutovalidateMode.always) {
-      var x = widget.validator?.call(widget.initialValue);
-      if (x is String) {
-        setState(() => validationMessage = x);
+      final initialPhoneNumber = PhoneNumber(
+        countryISOCode: _selectedCountry.code,
+        countryCode: '+${_selectedCountry.dialCode}',
+        number: widget.initialValue ?? '',
+      );
+
+      final value = widget.validator?.call(initialPhoneNumber);
+
+      if (value is String) {
+        validatorMessage = value;
       } else {
-        (x as Future).then((msg) => setState(() => validationMessage = msg));
+        (value as Future).then((msg) {
+          validatorMessage = msg;
+        });
       }
     }
   }
@@ -367,26 +387,28 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         );
       },
       onChanged: (value) async {
-        hasChanged = true;
         final phoneNumber = PhoneNumber(
           countryISOCode: _selectedCountry.code,
           countryCode: '+${_selectedCountry.dialCode}',
           number: value,
         );
-        // validate here to take care of async validation
-        var msg;
+
         if (widget.autovalidateMode != AutovalidateMode.disabled) {
-          msg = widget.disableLengthCheck ||
-                  value.length >= _selectedCountry.minLength &&
-                      value.length <= _selectedCountry.maxLength
-              ? null
-              : (widget.invalidNumberMessage ?? 'Invalid Mobile Number');
-          msg ??= await widget.validator?.call(phoneNumber.completeNumber);
-          setState(() => validationMessage = msg);
+          validatorMessage = await widget.validator?.call(phoneNumber);
         }
+
         widget.onChanged?.call(phoneNumber);
       },
-      validator: widget.validate,
+      validator: (value) {
+        if (!widget.disableLengthCheck && value != null) {
+          return value.length >= _selectedCountry.minLength &&
+                  value.length <= _selectedCountry.maxLength
+              ? null
+              : widget.invalidNumberMessage;
+        }
+
+        return validatorMessage;
+      },
       maxLength: widget.disableLengthCheck ? null : _selectedCountry.maxLength,
       keyboardType: widget.keyboardType,
       inputFormatters: widget.inputFormatters,
@@ -400,50 +422,50 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
   Container _buildFlagsButton() {
     return Container(
-      margin: widget.dropDownMargin,
+      margin: widget.flagsButtonMargin,
       child: DecoratedBox(
-      decoration: widget.dropdownDecoration,
-      child: InkWell(
-        borderRadius: widget.dropdownDecoration.borderRadius as BorderRadius?,
-        child: Padding(
-          padding: widget.flagsButtonPadding,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              if (widget.enabled &&
-                  widget.showDropdownIcon &&
-                  widget.dropdownIconPosition == IconPosition.leading) ...[
-                widget.dropdownIcon,
-                SizedBox(width: 4),
-              ],
-              if (widget.showCountryFlag) ...[
-                Image.asset(
-                  'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
-                  package: 'intl_phone_field',
-                  width: 32,
+        decoration: widget.dropdownDecoration,
+        child: InkWell(
+          borderRadius: widget.dropdownDecoration.borderRadius as BorderRadius?,
+          child: Padding(
+            padding: widget.flagsButtonPadding,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                if (widget.enabled &&
+                    widget.showDropdownIcon &&
+                    widget.dropdownIconPosition == IconPosition.leading) ...[
+                  widget.dropdownIcon,
+                  SizedBox(width: 4),
+                ],
+                if (widget.showCountryFlag) ...[
+                  Image.asset(
+                    'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
+                    package: 'intl_phone_field',
+                    width: 32,
+                  ),
+                  SizedBox(width: 8),
+                ],
+                FittedBox(
+                  child: Text(
+                    '+${_selectedCountry.dialCode}',
+                    style: widget.dropdownTextStyle,
+                  ),
                 ),
+                if (widget.enabled &&
+                    widget.showDropdownIcon &&
+                    widget.dropdownIconPosition == IconPosition.trailing) ...[
+                  SizedBox(width: 4),
+                  widget.dropdownIcon,
+                ],
                 SizedBox(width: 8),
               ],
-              FittedBox(
-                child: Text(
-                  '+${_selectedCountry.dialCode}',
-                  style: widget.dropdownTextStyle,
-                ),
-              ),
-              if (widget.enabled &&
-                  widget.showDropdownIcon &&
-                  widget.dropdownIconPosition == IconPosition.trailing) ...[
-                SizedBox(width: 4),
-                widget.dropdownIcon,
-              ],
-              SizedBox(width: 8),
-            ],
+            ),
           ),
+          onTap: widget.enabled ? _changeCountry : null,
         ),
-        onTap: widget.enabled ? _changeCountry : null,
       ),
-    ),
     );
   }
 }
