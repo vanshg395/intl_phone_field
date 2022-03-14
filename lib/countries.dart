@@ -1884,8 +1884,8 @@ const List<Country> countries = [
     flag: "🇺🇾",
     code: "UY",
     dialCode: "598",
-    minLength: 11,
-    maxLength: 11,
+    minLength: 9,
+    maxLength: 9,
   ),
   Country(
     name: "Uzbekistan",
