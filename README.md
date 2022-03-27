@@ -24,7 +24,7 @@ Or, add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  intl_phone_field: ^3.0.0
+  intl_phone_field: ^3.1.0
 ```
 
 ## How to Use
