@@ -10,7 +10,7 @@ class PhoneNumber {
   });
 
   String get completeNumber {
-    return countryCode + number;
+    return countryCode + " " + number;
   }
 
   String toString() =>
