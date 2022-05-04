@@ -637,7 +637,7 @@ const List<Country> countries = [
     code: "GE",
     dialCode: "995",
     minLength: 8,
-    maxLength: 8,
+    maxLength: 9,
   ),
   Country(
     name: "Germany",
