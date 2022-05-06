@@ -501,7 +501,7 @@ const List<Country> countries = [
     code: "EC",
     dialCode: "593",
     minLength: 8,
-    maxLength: 8,
+    maxLength: 9,
   ),
   Country(
     name: "Egypt",
