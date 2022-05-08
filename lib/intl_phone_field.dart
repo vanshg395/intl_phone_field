@@ -124,7 +124,12 @@ class IntlPhoneField extends StatefulWidget {
   /// This property can be used to pre-fill the field.
   final String? initialValue;
 
-  /// 2 Letter ISO Code
+  /// 2 letter ISO Code or country dial code.
+  ///
+  /// ```dart
+  /// initialCountryCode: 'IN', // India
+  /// initialCountryCode: '+225', // Côte d'Ivoire
+  /// ```
   final String? initialCountryCode;
 
   /// List of 2 Letter ISO Codes of countries to show. Defaults to showing the inbuilt list of all countries.
@@ -309,7 +314,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       number = number.substring(_selectedCountry.dialCode.length);
     } else {
       _selectedCountry = _countryList.firstWhere(
-          (item) => '+${item.dialCode}' == (widget.initialCountryCode ?? '+1'),
+          (country) =>
+              '+${country.dialCode}' == widget.initialCountryCode ||
+              country.code == widget.initialCountryCode,
           orElse: () => _countryList.first);
     }
 
