@@ -309,7 +309,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       number = number.substring(_selectedCountry.dialCode.length);
     } else {
       _selectedCountry = _countryList.firstWhere(
-          (item) => item.code == (widget.initialCountryCode ?? 'US'),
+          (item) => '+${item.dialCode}' == (widget.initialCountryCode ?? '+1'),
           orElse: () => _countryList.first);
     }
 
