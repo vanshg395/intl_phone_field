@@ -24,12 +24,12 @@ Or, add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  intl_phone_field: ^2.1.0
+  intl_phone_field: ^3.1.0
 ```
 
 ## How to Use
 
-Simply create a `IntlPhoneField` widget, and pass the required params:z
+Simply create a `IntlPhoneField` widget, and pass the required params:
 
 ```dart
 IntlPhoneField(
@@ -54,9 +54,18 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
+Comment on Issue or Pull Request, asking @all-contributors to add a contributor:
+
+```shell
+@all-contributors please add @<username> for <contributions>
+```
+
+**\<contributions>**: See the [Emoji Key (Contribution Types Reference)](https://allcontributors.org/docs/en/emoji-key) for a list of valid contribution types.
+
 ## CONTRIBUTORS
 
 - [Vansh Goel](https://github.com/vanshg395/)
+- [Alex N'Guessan](https://github.com/marcaureln/)
 
 ## LICENSE
 

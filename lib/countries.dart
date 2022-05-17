@@ -513,7 +513,7 @@ const List<Country> countries = [
     code: "EC",
     dialCode: "593",
     minLength: 8,
-    maxLength: 8,
+    maxLength: 9,
   ),
   Country(
     name: "Egypt",
@@ -649,7 +649,7 @@ const List<Country> countries = [
     code: "GE",
     dialCode: "995",
     minLength: 8,
-    maxLength: 8,
+    maxLength: 9,
   ),
   Country(
     name: "Germany",
@@ -738,7 +738,7 @@ const List<Country> countries = [
     code: "GN",
     dialCode: "224",
     minLength: 8,
-    maxLength: 8,
+    maxLength: 9,
   ),
   Country(
     name: "Guinea-Bissau",
@@ -809,7 +809,7 @@ const List<Country> countries = [
     flag: "🇮🇸",
     code: "IS",
     dialCode: "354",
-    minLength: 9,
+    minLength: 7,
     maxLength: 9,
   ),
   Country(
@@ -849,8 +849,8 @@ const List<Country> countries = [
     flag: "🇮🇪",
     code: "IE",
     dialCode: "353",
-    minLength: 11,
-    maxLength: 11,
+    minLength: 7,
+    maxLength: 9,
   ),
   Country(
     name: "Isle of Man",
@@ -1075,8 +1075,8 @@ const List<Country> countries = [
     flag: "🇲🇼",
     code: "MW",
     dialCode: "265",
-    minLength: 8,
-    maxLength: 8,
+    minLength: 7,
+    maxLength: 9,
   ),
   Country(
     name: "Malaysia",
@@ -1308,7 +1308,7 @@ const List<Country> countries = [
     code: "NG",
     dialCode: "234",
     minLength: 10,
-    maxLength: 10,
+    maxLength: 11,
   ),
   Country(
     name: "Niue",
@@ -1723,7 +1723,7 @@ const List<Country> countries = [
     flag: "🇸🇪",
     code: "SE",
     dialCode: "46",
-    minLength: 13,
+    minLength: 7,
     maxLength: 13,
   ),
   Country(
@@ -1899,8 +1899,8 @@ const List<Country> countries = [
     flag: "🇺🇾",
     code: "UY",
     dialCode: "598",
-    minLength: 11,
-    maxLength: 11,
+    minLength: 9,
+    maxLength: 9,
   ),
   Country(
     name: "Uzbekistan",

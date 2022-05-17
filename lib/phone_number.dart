@@ -79,4 +79,7 @@ class PhoneNumber {
     return countries.firstWhere((country) =>
         phoneNumber.startsWith(country.dialCode + country.regionCode));
   }
+
+  String toString() =>
+      'PhoneNumber(countryISOCode: $countryISOCode, countryCode: $countryCode, number: $number)';
 }
