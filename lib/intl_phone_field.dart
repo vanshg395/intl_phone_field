@@ -4,12 +4,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl_phone_field/country_picker_dialog.dart';
+import 'package:intl_phone_field/country_picker.dart';
 
 import './countries.dart';
 import './phone_number.dart';
 
 class IntlPhoneField extends StatefulWidget {
+  /// Whether to show dialog or to show half modal.
+  final bool isDialog;
+
   /// Whether to hide the text being edited (e.g., for passwords).
   final bool obscureText;
 
@@ -239,6 +242,7 @@ class IntlPhoneField extends StatefulWidget {
 
   IntlPhoneField({
     Key? key,
+    this.isDialog = true,
     this.initialCountryCode,
     this.obscureText = false,
     this.textAlign = TextAlign.left,
@@ -341,24 +345,46 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
   Future<void> _changeCountry() async {
     filteredCountries = _countryList;
-    await showDialog(
-      context: context,
-      useRootNavigator: false,
-      builder: (context) => StatefulBuilder(
-        builder: (ctx, setState) => CountryPickerDialog(
-          style: widget.pickerDialogStyle,
-          filteredCountries: filteredCountries,
-          searchText: widget.searchText,
-          countryList: _countryList,
-          selectedCountry: _selectedCountry,
-          onCountryChanged: (Country country) {
-            _selectedCountry = country;
-            widget.onCountryChanged?.call(country);
-            setState(() {});
-          },
+    if (widget.isDialog)
+      await showDialog(
+        context: context,
+        useRootNavigator: false,
+        builder: (context) => StatefulBuilder(
+          builder: (ctx, setState) => CountryPicker(
+            isDialog: widget.isDialog,
+            style: widget.pickerDialogStyle,
+            filteredCountries: filteredCountries,
+            searchText: widget.searchText,
+            countryList: _countryList,
+            selectedCountry: _selectedCountry,
+            onCountryChanged: (Country country) {
+              _selectedCountry = country;
+              widget.onCountryChanged?.call(country);
+              setState(() {});
+            },
+          ),
         ),
-      ),
-    );
+      );
+    else
+      await showModalBottomSheet(
+        context: context,
+        builder: (context) => StatefulBuilder(
+          builder: (ctx, setState) => CountryPicker(
+            isDialog: widget.isDialog,
+            style: widget.pickerDialogStyle,
+            filteredCountries: filteredCountries,
+            searchText: widget.searchText,
+            countryList: _countryList,
+            selectedCountry: _selectedCountry,
+            onCountryChanged: (Country country) {
+              _selectedCountry = country;
+              widget.onCountryChanged?.call(country);
+              setState(() {});
+            },
+          ),
+        ),
+      );
+
     if (this.mounted) setState(() {});
   }
 
