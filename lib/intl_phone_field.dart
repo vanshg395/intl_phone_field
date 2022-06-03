@@ -9,6 +9,8 @@ import 'package:intl_phone_field/country_picker_dialog.dart';
 import './countries.dart';
 import './phone_number.dart';
 
+typedef CompareFunction = int Function(Country a, Country b);
+
 class IntlPhoneField extends StatefulWidget {
   /// Whether to hide the text being edited (e.g., for passwords).
   final bool obscureText;
@@ -238,7 +240,7 @@ class IntlPhoneField extends StatefulWidget {
   final EdgeInsets flagsButtonMargin;
 
   /// Define sorting functions for countries list
-  final Function<Country, Country>? sortCountries;
+  final CompareFunction? sortCountries;
   
   IntlPhoneField({
     Key? key,
