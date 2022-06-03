@@ -237,6 +237,9 @@ class IntlPhoneField extends StatefulWidget {
   /// If unset, defaults to [EdgeInsets.zero].
   final EdgeInsets flagsButtonMargin;
 
+  /// Define sorting functions for countries list
+  final Function<Country, Country>? sortCountries;
+  
   IntlPhoneField({
     Key? key,
     this.initialCountryCode,
@@ -281,6 +284,7 @@ class IntlPhoneField extends StatefulWidget {
     this.showCursor = true,
     this.pickerDialogStyle,
     this.flagsButtonMargin = EdgeInsets.zero,
+    this.sortCountries,
   }) : super(key: key);
 
   @override
@@ -303,6 +307,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         : countries
             .where((country) => widget.countries!.contains(country.code))
             .toList();
+    if (widget.sortCountries != null) {
+      _countryList.sort(widget.sortCountries);
+    }
     filteredCountries = _countryList;
     number = widget.initialValue ?? '';
     if (widget.initialCountryCode == null && number.startsWith('+')) {
