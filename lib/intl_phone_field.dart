@@ -310,7 +310,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             .where((country) => widget.countries!.contains(country.code))
             .toList();
     if (widget.sortCountries != null) {
-      _countryList.sort(widget.sortCountries);
+      List.from(_countryList)..sort(widget.sortCountries);
     }
     filteredCountries = _countryList;
     number = widget.initialValue ?? '';
