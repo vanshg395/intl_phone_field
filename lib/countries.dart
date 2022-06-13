@@ -488,7 +488,7 @@ const List<Country> countries = [
     maxLength: 7,
   ),
   Country(
-    name: "Dominican Republic 1",
+    name: "Dominican Republic 49",
     flag: "🇩🇴",
     code: "DO",
     dialCode: "1849",
@@ -496,7 +496,7 @@ const List<Country> countries = [
     maxLength: 12,
   ),
   Country(
-    name: "Dominican Republic 2",
+    name: "Dominican Republic 29",
     flag: "🇩🇴",
     code: "DO",
     dialCode: "1829",
@@ -504,7 +504,7 @@ const List<Country> countries = [
     maxLength: 12,
   ),
   Country(
-    name: "Dominican Republic 3",
+    name: "Dominican Republic 09",
     flag: "🇩🇴",
     code: "DO",
     dialCode: "1809",
