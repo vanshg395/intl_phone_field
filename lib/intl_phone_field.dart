@@ -230,6 +230,10 @@ class IntlPhoneField extends StatefulWidget {
   /// & pick dialog
   final PickerDialogStyle? pickerDialogStyle;
 
+  /// A list of strings that helps the autofill service identify
+  /// the type of this text input.
+  final Iterable<String>? autofillHints;
+
   /// The margin of the country selector button.
   ///
   /// The amount of space to surround the country selector button.
@@ -281,6 +285,7 @@ class IntlPhoneField extends StatefulWidget {
     this.showCursor = true,
     this.pickerDialogStyle,
     this.flagsButtonMargin = EdgeInsets.zero,
+    this.autofillHints = const [AutofillHints.telephoneNumber],
   }) : super(key: key);
 
   @override
@@ -424,6 +429,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       autofocus: widget.autofocus,
       textInputAction: widget.textInputAction,
       autovalidateMode: widget.autovalidateMode,
+      autofillHints: widget.autofillHints,
     );
   }
 
