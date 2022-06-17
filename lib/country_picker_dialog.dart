@@ -8,9 +8,11 @@ class PickerDialogStyle {
   final TextStyle? countryCodeStyle;
 
   final TextStyle? countryNameStyle;
+  
+  final TextStyle? inputTextStyle;
 
   final Widget? listTileDivider;
-
+  
   final EdgeInsets? listTilePadding;
 
   final EdgeInsets? padding;
@@ -27,6 +29,7 @@ class PickerDialogStyle {
     this.backgroundColor,
     this.countryCodeStyle,
     this.countryNameStyle,
+    this.inputTextStyle,
     this.listTileDivider,
     this.listTilePadding,
     this.padding,
@@ -91,6 +94,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
             Padding(
               padding: widget.style?.searchFieldPadding ?? EdgeInsets.all(0),
               child: TextField(
+                style: widget.style?.inputTextStyle,
                 cursorColor: widget.style?.searchFieldCursorColor,
                 decoration: widget.style?.searchFieldInputDecoration ??
                     InputDecoration(
