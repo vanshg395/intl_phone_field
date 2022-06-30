@@ -151,8 +151,11 @@ class IntlPhoneField extends StatefulWidget {
   /// If null, defaults to the `subtitle1` text style from the current [Theme].
   final TextStyle? style;
 
-  /// Disable view Min/Max Length check
-  final bool disableLengthCheck;
+  /// Disable view Min Length check
+  final bool disableMinLengthCheck;
+
+  /// Disable view Max Length check
+  final bool disableMaxLengthCheck;
 
   /// Won't work if [enabled] is set to `false`.
   final bool showDropdownIcon;
@@ -200,6 +203,11 @@ class IntlPhoneField extends StatefulWidget {
   ///
   /// Default value is `Invalid Mobile Number`.
   final String? invalidNumberMessage;
+
+  /// Message to be displayed if mobile number is empty, and disableMinLengthCheck is false
+  ///
+  /// Default value is `Mobile Number Required`.
+  final String? numberRequiredMessage;
 
   /// The color of the cursor.
   final Color? cursorColor;
@@ -272,9 +280,11 @@ class IntlPhoneField extends StatefulWidget {
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
     this.showCountryFlag = true,
     this.cursorColor,
-    this.disableLengthCheck = false,
+    this.disableMinLengthCheck = false,
+    this.disableMaxLengthCheck = false,
     this.flagsButtonPadding = EdgeInsets.zero,
     this.invalidNumberMessage = 'Invalid Mobile Number',
+    this.numberRequiredMessage = 'Mobile Number Required',
     this.cursorHeight,
     this.cursorRadius = Radius.zero,
     this.cursorWidth = 2.0,
@@ -407,16 +417,35 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         widget.onChanged?.call(phoneNumber);
       },
       validator: (value) {
-        if (!widget.disableLengthCheck && value != null) {
-          return value.length >= _selectedCountry.minLength &&
-                  value.length <= _selectedCountry.maxLength
-              ? null
-              : widget.invalidNumberMessage;
+        if (!widget.disableMinLengthCheck &&
+            !widget.disableMaxLengthCheck &&
+            value != null) {
+          if (value.isEmpty) {
+            return widget.numberRequiredMessage;
+          } else if (value.length < _selectedCountry.minLength ||
+              value.length > _selectedCountry.maxLength) {
+            return widget.invalidNumberMessage;
+          }
+        } else if (widget.disableMinLengthCheck &&
+            !widget.disableMaxLengthCheck &&
+            value != null) {
+          if (value.length > _selectedCountry.maxLength) {
+            return widget.invalidNumberMessage;
+          }
+        } else if (widget.disableMaxLengthCheck &&
+            !widget.disableMinLengthCheck &&
+            value != null) {
+          if (value.isEmpty) {
+            return widget.numberRequiredMessage;
+          }
+          if (value.length < _selectedCountry.minLength) {
+            return widget.invalidNumberMessage;
+          }
         }
-
         return validatorMessage;
       },
-      maxLength: widget.disableLengthCheck ? null : _selectedCountry.maxLength,
+      maxLength:
+          widget.disableMaxLengthCheck ? null : _selectedCountry.maxLength,
       keyboardType: widget.keyboardType,
       inputFormatters: widget.inputFormatters,
       enabled: widget.enabled,
