@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "anggaraputrapratama",
+      "name": "Anggara Putra Pratama",
+      "avatar_url": "https://avatars.githubusercontent.com/u/75307272?v=4",
+      "profile": "http://linkedin.com/in/anggaraputrapratama",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "intl_phone_field",
+  "projectOwner": "vanshg395",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
