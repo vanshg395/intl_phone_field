@@ -1,3 +1,6 @@
+// see: https://en.wikipedia.org/wiki/List_of_country_calling_codes
+// for list of country/calling codes
+
 const List<Country> countries = [
   Country(
     name: "Afghanistan",
@@ -302,6 +305,15 @@ const List<Country> countries = [
     dialCode: "237",
     minLength: 9,
     maxLength: 9,
+  ),
+  Country(
+    name: "Campione d'Italia",
+    flag: "🇮🇹",
+    code: "IT",
+    dialCode: "41",
+    regionCode: "91",
+    minLength: 13,
+    maxLength: 13,
   ),
   Country(
     name: "Canada",
@@ -716,6 +728,7 @@ const List<Country> countries = [
     flag: "🇬🇬",
     code: "GG",
     dialCode: "44",
+    regionCode: "1481",
     minLength: 6,
     maxLength: 6,
   ),
@@ -844,6 +857,7 @@ const List<Country> countries = [
     flag: "🇮🇲",
     code: "IM",
     dialCode: "44",
+    regionCode: "1624",
     minLength: 6,
     maxLength: 6,
   ),
@@ -884,6 +898,7 @@ const List<Country> countries = [
     flag: "🇯🇪",
     code: "JE",
     dialCode: "44",
+    regionCode: "1534",
     minLength: 6,
     maxLength: 6,
   ),
@@ -1974,6 +1989,7 @@ class Country {
   final String flag;
   final String code;
   final String dialCode;
+  final String regionCode;
   final int minLength;
   final int maxLength;
 
@@ -1984,5 +2000,17 @@ class Country {
     required this.dialCode,
     required this.minLength,
     required this.maxLength,
+    this.regionCode = "",
   });
+
+  String get fullCountryCode {
+    return this.dialCode + this.regionCode;
+  }
+
+  String get displayCC {
+    if (this.regionCode != "") {
+      return "${this.dialCode} ${this.regionCode}";
+    }
+    return this.dialCode;
+  }
 }
