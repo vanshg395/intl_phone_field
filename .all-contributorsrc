@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "kno3a87",
+      "name": "KNO3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23455702?v=4",
+      "profile": "https://twitter.com/Kunodayo_oboete",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "intl_phone_field",
+  "projectOwner": "vanshg395",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
