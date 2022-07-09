@@ -65,9 +65,11 @@ Comment on Issue or Pull Request, asking @all-contributors to add a contributor:
 
 **\<contributions>**: See the [Emoji Key (Contribution Types Reference)](https://allcontributors.org/docs/en/emoji-key) for a list of valid contribution types.
 
-## CONTRIBUTORS
-
+## Maintainers
 - [Vansh Goel](https://github.com/vanshg395/)
+- [Alex N'Guessan](https://github.com/marcaureln/)
+
+## Contributors
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -86,7 +88,6 @@ Comment on Issue or Pull Request, asking @all-contributors to add a contributor:
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-- [Alex N'Guessan](https://github.com/marcaureln/)
 
 ## LICENSE
 
