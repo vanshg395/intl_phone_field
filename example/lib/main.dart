@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
                 ),
                 IntlPhoneField(
                   decoration: InputDecoration(
-                    labelText: 'Phone Number',
+                    labelText: 'Mobile Number',
                     border: OutlineInputBorder(
                       borderSide: BorderSide(),
                     ),
@@ -62,7 +62,7 @@ class _MyAppState extends State<MyApp> {
                     print(phone.completeNumber);
                   },
                   onCountryChanged: (country) {
-                    print('Country changed to: ' + country.name);
+                    debugPrint('Country changed to: ' + country.name);
                   },
                 ),
                 SizedBox(

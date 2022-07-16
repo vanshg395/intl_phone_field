@@ -63,6 +63,8 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
   late List<Country> _filteredCountries;
   late Country _selectedCountry;
 
+  TextEditingController _countryController = TextEditingController();
+
   @override
   void initState() {
     _selectedCountry = widget.selectedCountry;
@@ -91,10 +93,37 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
             Padding(
               padding: widget.style?.searchFieldPadding ?? EdgeInsets.all(0),
               child: TextField(
+                controller: _countryController,
                 cursorColor: widget.style?.searchFieldCursorColor,
                 decoration: widget.style?.searchFieldInputDecoration ??
                     InputDecoration(
-                      suffixIcon: Icon(Icons.search),
+                      suffixIcon: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Container(
+                            child: IconButton(
+                              icon: const Icon(
+                                Icons.clear_outlined,
+                                color: Colors.redAccent,
+                              ),
+                              onPressed: () {
+                                setState(
+                                  () {
+                                    if (_countryController.text == '') {
+                                      Navigator.of(context).pop();
+                                    } else {
+                                      _countryController.clear();
+                                    }
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                          //
+                          Icon(Icons.search)
+                        ],
+                      ),
                       labelText: widget.searchText,
                     ),
                 onChanged: (value) {
