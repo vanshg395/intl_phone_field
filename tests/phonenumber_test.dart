@@ -19,7 +19,7 @@ void main() {
       String expected = "+447891234567";
 
       expect(actual, expected);
-      expect(phoneNumber.isValidNumber(), true);
+      expect(phoneNumber.isValidNumber, true);
     });
 
     test('create a Guernsey number', () {
@@ -29,7 +29,7 @@ void main() {
       String expected = "+441481960194";
 
       expect(actual, expected);
-      expect(phoneNumber.isValidNumber(), true);
+      expect(phoneNumber.isValidNumber, true);
     });
 
     test('look up UK as a country code', () {
@@ -52,7 +52,7 @@ void main() {
       expect(phoneNumber.countryISOCode, "");
       expect(phoneNumber.countryCode, "");
       expect(phoneNumber.number, "");
-      expect(() => phoneNumber.isValidNumber(),
+      expect(() => phoneNumber.isValidNumber,
           throwsA(TypeMatcher<NumberTooShortException>()));
     });
 
@@ -62,13 +62,13 @@ void main() {
       expect(phoneNumber.countryISOCode, "HK");
       expect(phoneNumber.countryCode, "852");
       expect(phoneNumber.number, "12345678");
-      expect(phoneNumber.isValidNumber(), true);
+      expect(phoneNumber.isValidNumber, true);
     });
 
     test('Number is too short number +8521234567', () {
       PhoneNumber ph =
           PhoneNumber.fromCompleteNumber(completeNumber: "+8521234567");
-      expect(() => ph.isValidNumber(),
+      expect(() => ph.isValidNumber,
           throwsA(TypeMatcher<NumberTooShortException>()));
     });
 
@@ -76,7 +76,7 @@ void main() {
       PhoneNumber ph =
           PhoneNumber.fromCompleteNumber(completeNumber: "+852123456789");
 
-      expect(() => ph.isValidNumber(),
+      expect(() => ph.isValidNumber,
           throwsA(TypeMatcher<NumberTooLongException>()));
     });
 
@@ -86,7 +86,7 @@ void main() {
       expect(phoneNumber.countryISOCode, "GB");
       expect(phoneNumber.countryCode, "44");
       expect(phoneNumber.number, "7891234567");
-      expect(phoneNumber.isValidNumber(), true);
+      expect(phoneNumber.isValidNumber, true);
     });
 
     test('create Guernsey PhoneNumber from +441481960194', () {
@@ -95,7 +95,7 @@ void main() {
       expect(phoneNumber.countryISOCode, "GG");
       expect(phoneNumber.countryCode, "441481");
       expect(phoneNumber.number, "960194");
-      expect(phoneNumber.isValidNumber(), true);
+      expect(phoneNumber.isValidNumber, true);
     });
 
     test('create alpha character in  PhoneNumber from +44abcdef', () {
