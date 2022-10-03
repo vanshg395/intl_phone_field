@@ -58,6 +58,7 @@ class _MyAppState extends State<MyApp> {
                       borderSide: BorderSide(),
                     ),
                   ),
+                  languageCode: "en",
                   onChanged: (phone) {
                     print(phone.completeNumber);
                   },
