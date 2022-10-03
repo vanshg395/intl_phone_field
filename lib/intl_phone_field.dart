@@ -462,10 +462,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                   SizedBox(width: 4),
                 ],
                 if (widget.showCountryFlag) ...[
-                  Image.asset(
-                    'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
-                    package: 'intl_phone_field',
-                    width: 32,
+                  Text(
+                    _selectedCountry.flag,
+                    style: TextStyle(fontSize: 18),
                   ),
                   SizedBox(width: 8),
                 ],

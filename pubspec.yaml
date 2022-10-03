@@ -16,5 +16,5 @@ dev_dependencies:
   test: ^1.17.12
 
 flutter:
-  assets:
-    - assets/flags/
+  # assets:
+  #   - assets/flags/
