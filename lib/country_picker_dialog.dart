@@ -68,7 +68,12 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
   @override
   void initState() {
     _selectedCountry = widget.selectedCountry;
-    _filteredCountries = widget.filteredCountries;
+    _filteredCountries = widget.filteredCountries.toList()
+      ..sort(
+        (a, b) => a
+            .localizedName(widget.languageCode)
+            .compareTo(b.localizedName(widget.languageCode)),
+      );
 
     super.initState();
   }
