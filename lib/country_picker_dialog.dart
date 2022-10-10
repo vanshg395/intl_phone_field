@@ -100,7 +100,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                 onChanged: (value) {
                   _filteredCountries = isNumeric(value)
                       ? widget.countryList
-                          .where((country) => country.dialCode.contains(value))
+                          .where((country) => country.dialCode.contains(value.trim()))
                           .toList()
                       : widget.countryList
                           .where((country) => country.name
