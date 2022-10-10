@@ -105,7 +105,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                       : widget.countryList
                           .where((country) => country.name
                               .toLowerCase()
-                              .contains(value.toLowerCase()))
+                              .contains(value.trim().toLowerCase()))
                           .toList();
                   if (this.mounted) setState(() {});
                 },
