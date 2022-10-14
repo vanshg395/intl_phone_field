@@ -1931,8 +1931,8 @@ const List<Country> countries = [
     flag: "🇻🇳",
     code: "VN",
     dialCode: "84",
-    minLength: 11,
-    maxLength: 11,
+    minLength: 10,
+    maxLength: 10,
   ),
   Country(
     name: "Virgin Islands, British",
