@@ -1403,8 +1403,8 @@ const List<Country> countries = [
     flag: "🇵🇪",
     code: "PE",
     dialCode: "51",
-    minLength: 11,
-    maxLength: 11,
+    minLength: 9,
+    maxLength: 9,
   ),
   Country(
     name: "Philippines",
