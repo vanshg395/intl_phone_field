@@ -392,7 +392,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       decoration: widget.decoration.copyWith(
         prefixIcon: _buildFlagsButton(),
         counterText: widget.enabled == true
-            ? "${(widget.controller?.text.length)! > 10 ? "10" : (widget.controller?.text.length)}:${_selectedCountry.maxLength - 2}"
+            ? "${(widget.controller?.text.replaceAll("-", "").length)! > 10 ? "10" : widget.controller?.text.replaceAll("-", "").length}" +
+                "/${_selectedCountry.maxLength - 2}"
             : null,
       ),
       style: widget.style,
