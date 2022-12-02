@@ -65,7 +65,7 @@ class PhoneNumber {
 
   static Country getCountry(String phoneNumber) {
     phoneNumber = phoneNumber.replaceAll("-", "");
-    log("CurrentLength ${phoneNumber}");
+    log("CurrentLength ${phoneNumber.length}");
     if (phoneNumber == "") {
       throw NumberTooShortException();
     }
