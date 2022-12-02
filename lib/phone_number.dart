@@ -60,6 +60,7 @@ class PhoneNumber {
   }
 
   static Country getCountry(String phoneNumber) {
+    phoneNumber = phoneNumber.replaceAll("-", "");
     if(phoneNumber == ""){
       throw NumberTooShortException();
     }
