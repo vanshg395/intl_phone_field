@@ -21,7 +21,7 @@ const List<Country> countries = [
   Country(
     name: "Albania",
     flag: "🇦🇱",
-    code: "AL",
+    code: "AL",ƒ
     dialCode: "355",
     minLength: 9,
     maxLength: 9,
@@ -890,8 +890,8 @@ const List<Country> countries = [
     flag: "🇯🇵",
     code: "JP",
     dialCode: "81",
-    minLength: 10,
-    maxLength: 10,
+    minLength: 12,
+    maxLength: 12,
   ),
   Country(
     name: "Jersey",
@@ -1891,8 +1891,8 @@ const List<Country> countries = [
     flag: "🇺🇸",
     code: "US",
     dialCode: "1",
-    minLength: 10,
-    maxLength: 10,
+    minLength: 12,
+    maxLength: 12,
   ),
   Country(
     name: "Uruguay",
@@ -1931,8 +1931,8 @@ const List<Country> countries = [
     flag: "🇻🇳",
     code: "VN",
     dialCode: "84",
-    minLength: 11,
-    maxLength: 11,
+    minLength: 12,
+    maxLength: 12,
   ),
   Country(
     name: "Virgin Islands, British",
