@@ -48,7 +48,7 @@ class PhoneNumber {
     if (number.length < country.minLength) {
       throw NumberTooShortException();
     }
-    if (country.code == "US" && number.length == 11) {
+    if (country.code == "US" && number.length == 12) {
       return true;
     }
     if (number.length > country.maxLength) {
