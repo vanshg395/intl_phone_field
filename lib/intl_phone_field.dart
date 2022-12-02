@@ -103,6 +103,7 @@ class IntlPhoneField extends StatefulWidget {
   ///    the next/previous field when using [TextInputAction.next] and
   ///    [TextInputAction.previous] for [textInputAction].
   final void Function(String)? onSubmitted;
+  final bool? showCounter;
 
   /// If false the widget is "disabled": it ignores taps, the [TextFormField]'s
   /// [decoration] is rendered in grey,
@@ -245,6 +246,7 @@ class IntlPhoneField extends StatefulWidget {
     this.textAlignVertical,
     this.onTap,
     this.readOnly = false,
+    this.showCounter = true,
     this.initialValue,
     this.keyboardType = TextInputType.phone,
     this.controller,
@@ -389,13 +391,11 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       cursorWidth: widget.cursorWidth,
       showCursor: widget.showCursor,
       onFieldSubmitted: widget.onSubmitted,
-      buildCounter: (context,
-          {required currentLength, required isFocused, required maxLength}) {
-        return Text("${currentLength}" + "/${maxLength}");
-      },
+      
       decoration: widget.decoration.copyWith(
         prefixIcon: _buildFlagsButton(),
         counterText: "",
+       
       ),
       style: widget.style,
       onSaved: (value) {
