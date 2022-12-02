@@ -389,12 +389,13 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       cursorWidth: widget.cursorWidth,
       showCursor: widget.showCursor,
       onFieldSubmitted: widget.onSubmitted,
+      buildCounter: (context,
+          {required currentLength, required isFocused, required maxLength}) {
+        return Text("${currentLength}" + "/${maxLength}");
+      },
       decoration: widget.decoration.copyWith(
         prefixIcon: _buildFlagsButton(),
-        counterText: widget.enabled == true
-            ? "${(widget.controller?.text.replaceAll("-", "").length)! > 10 ? "10" : widget.controller?.text.replaceAll("-", "").length}" +
-                "/${_selectedCountry.maxLength - 2}"
-            : null,
+        counterText: "",
       ),
       style: widget.style,
       onSaved: (value) {
