@@ -21,7 +21,7 @@ const List<Country> countries = [
   Country(
     name: "Albania",
     flag: "🇦🇱",
-    code: "AL",ƒ
+    code: "AL",
     dialCode: "355",
     minLength: 9,
     maxLength: 9,
