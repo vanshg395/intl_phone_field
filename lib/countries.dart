@@ -320,8 +320,8 @@ const List<Country> countries = [
     flag: "🇨🇦",
     code: "CA",
     dialCode: "1",
-    minLength: 10,
-    maxLength: 10,
+    minLength: 12,
+    maxLength: 12,
   ),
   Country(
     name: "Cape Verde",
