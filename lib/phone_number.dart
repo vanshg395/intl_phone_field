@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'countries.dart';
 
 class NumberTooLongException implements Exception {}
@@ -45,6 +47,7 @@ class PhoneNumber {
 
   bool isValidNumber() {
     Country country = getCountry(completeNumber);
+    log(country.code);
     if (number.length < country.minLength) {
       throw NumberTooShortException();
     }
