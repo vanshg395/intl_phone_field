@@ -13,6 +13,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   GlobalKey<FormState> _formKey = GlobalKey();
 
+  FocusNode focusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -52,6 +54,7 @@ class _MyAppState extends State<MyApp> {
                   height: 10,
                 ),
                 IntlPhoneField(
+                  focusNode: focusNode,
                   decoration: InputDecoration(
                     labelText: 'Phone Number',
                     border: OutlineInputBorder(
