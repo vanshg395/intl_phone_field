@@ -6,7 +6,7 @@ bool isNumeric(String s) =>
 extension CountryExtensions on List<Country> {
   List<Country> stringSearch(String search) {
     return where(
-      (country) => isNumeric(search)
+      (country) => isNumeric(search) || search == "+"
           ? country.dialCode.contains(search.replaceAll("+", ""))
           : country.name.toLowerCase().contains(search.toLowerCase()) ||
               country.nameTranslations.values
