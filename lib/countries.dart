@@ -368,8 +368,8 @@ const List<Country> countries = [
     flag: "🇨🇳",
     code: "CN",
     dialCode: "86",
-    minLength: 12,
-    maxLength: 12,
+    minLength: 11,
+    maxLength: 11,
   ),
   Country(
     name: "Christmas Island",
