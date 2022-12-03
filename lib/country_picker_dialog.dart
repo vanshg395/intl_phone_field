@@ -105,7 +105,12 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                       labelText: widget.searchText,
                     ),
                 onChanged: (value) {
-                  _filteredCountries = widget.countryList.stringSearch(value);
+                  _filteredCountries = widget.countryList.stringSearch(value)
+                    ..sort(
+                      (a, b) => a
+                          .localizedName(widget.languageCode)
+                          .compareTo(b.localizedName(widget.languageCode)),
+                    );
                   if (this.mounted) setState(() {});
                 },
               ),
