@@ -134,8 +134,8 @@ class IntlPhoneField extends StatefulWidget {
   /// ```
   final String? initialCountryCode;
 
-  /// List of 2 Letter ISO Codes of countries to show. Defaults to showing the inbuilt list of all countries.
-  final List<String>? countries;
+  /// List of Country to display see countries.dart for format
+  final List<Country>? countries;
 
   /// The decoration to show around the text field.
   ///
@@ -301,11 +301,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   @override
   void initState() {
     super.initState();
-    _countryList = widget.countries == null
-        ? countries
-        : countries
-            .where((country) => widget.countries!.contains(country.code))
-            .toList();
+    _countryList = widget.countries ?? countries;
     filteredCountries = _countryList;
     number = widget.initialValue ?? '';
     if (widget.initialCountryCode == null && number.startsWith('+')) {
