@@ -240,10 +240,14 @@ class IntlPhoneField extends StatefulWidget {
   /// If unset, defaults to [EdgeInsets.zero].
   final EdgeInsets flagsButtonMargin;
 
+  //enable the autofill hint for phone number
+  final bool disableAutoFillHints;
+
   IntlPhoneField({
     Key? key,
     this.initialCountryCode,
     this.languageCode = 'en',
+    this.disableAutoFillHints = false,
     this.obscureText = false,
     this.textAlign = TextAlign.left,
     this.textAlignVertical,
@@ -377,6 +381,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   Widget build(BuildContext context) {
     return TextFormField(
       initialValue: (widget.controller == null) ? number : null,
+      autofillHints: widget.disableAutoFillHints ? null : [AutofillHints.telephoneNumberNational],
       readOnly: widget.readOnly,
       obscureText: widget.obscureText,
       textAlign: widget.textAlign,
