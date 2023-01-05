@@ -1732,7 +1732,7 @@ const List<Country> countries = [
     code: "CH",
     dialCode: "41",
     minLength: 9,
-    maxLength: 9,
+    maxLength: 12,
   ),
   Country(
     name: "Syrian Arab Republic",
