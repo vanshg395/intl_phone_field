@@ -1,0 +1,69 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "vanshg395",
+      "name": "Vansh Goel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/34906419?v=4",
+      "profile": "http://vansh.codes",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "kno3a87",
+      "name": "KNO3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23455702?v=4",
+      "profile": "https://twitter.com/Kunodayo_oboete",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "lingster",
+      "name": "Ling Li",
+      "avatar_url": "https://avatars.githubusercontent.com/u/850493?v=4",
+      "profile": "http://www.techarge.co.uk",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "anggaraputrapratama",
+      "name": "Anggara Putra Pratama",
+      "avatar_url": "https://avatars.githubusercontent.com/u/75307272?v=4",
+      "profile": "http://linkedin.com/in/anggaraputrapratama",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jgeewax",
+      "name": "JJ Geewax",
+      "avatar_url": "https://avatars.githubusercontent.com/u/112928?v=4",
+      "profile": "http://geewax.org",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "KevalPrajapati",
+      "name": "Keval Prajapati",
+      "avatar_url": "https://avatars.githubusercontent.com/u/63007835?v=4",
+      "profile": "https://github.com/KevalPrajapati",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "intl_phone_field",
+  "projectOwner": "vanshg395",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
