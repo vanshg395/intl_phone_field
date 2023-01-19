@@ -144,6 +144,9 @@ class IntlPhoneField extends StatefulWidget {
   /// extra padding introduced by the decoration to save space for the labels).
   final InputDecoration decoration;
 
+  /// List of 2 Letter ISO Codes of countries to exclude.
+  final List<String>? excludedCountries;
+
   /// The style to use for the text being edited.
   ///
   /// This text style is also used as the base style for the [decoration].
@@ -256,6 +259,7 @@ class IntlPhoneField extends StatefulWidget {
     this.validator,
     this.onChanged,
     this.countries,
+    this.excludedCountries,
     this.onCountryChanged,
     this.onSaved,
     this.showDropdownIcon = true,
@@ -299,10 +303,13 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   void initState() {
     super.initState();
     _countryList = widget.countries == null
-        ? countries
+        ? List.from(countries)
         : countries
             .where((country) => widget.countries!.contains(country.code))
             .toList();
+    if (widget.excludedCountries != null) {
+      _countryList..removeWhere((country) => widget.excludedCountries!.contains(country.code));
+    }
     filteredCountries = _countryList;
     number = widget.initialValue ?? '';
     if (widget.initialCountryCode == null && number.startsWith('+')) {
