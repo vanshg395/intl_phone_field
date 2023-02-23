@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
+import 'package:intl_phone_field/helpers.dart';
 
 import './countries.dart';
 import './phone_number.dart';
@@ -151,8 +152,13 @@ class IntlPhoneField extends StatefulWidget {
   /// If null, defaults to the `subtitle1` text style from the current [Theme].
   final TextStyle? style;
 
-  /// Disable view Min/Max Length check
+  final StrutStyle? strutStyle;
+
+  /// Disable Min/Max Length check
   final bool disableLengthCheck;
+
+  /// Show Min/Max Length check
+  final bool showLengthCheck;
 
   /// Won't work if [enabled] is set to `false`.
   final bool showDropdownIcon;
@@ -177,7 +183,7 @@ class IntlPhoneField extends StatefulWidget {
   /// Icon of the drop down button.
   ///
   /// Default is [Icon(Icons.arrow_drop_down)]
-  final Icon dropdownIcon;
+  final Widget dropdownIcon;
 
   /// Whether this text field should focus itself if nothing else is already focused.
   final bool autofocus;
@@ -195,6 +201,9 @@ class IntlPhoneField extends StatefulWidget {
   ///
   /// Default value is `true`.
   final bool showCountryFlag;
+
+  /// Decorations and properties related to the country flag's image
+  final CountryFlagDecoration countryFlagDecoration;
 
   /// Message to be displayed on autoValidate error
   ///
@@ -251,6 +260,7 @@ class IntlPhoneField extends StatefulWidget {
     this.focusNode,
     this.decoration = const InputDecoration(),
     this.style,
+    this.strutStyle,
     this.dropdownTextStyle,
     this.onSubmitted,
     this.validator,
@@ -263,16 +273,17 @@ class IntlPhoneField extends StatefulWidget {
     this.inputFormatters,
     this.enabled = true,
     this.keyboardAppearance,
-    @Deprecated('Use searchFieldInputDecoration of PickerDialogStyle instead')
-        this.searchText = 'Search country',
+    @Deprecated('Use searchFieldInputDecoration of PickerDialogStyle instead') this.searchText = 'Search country',
     this.dropdownIconPosition = IconPosition.leading,
     this.dropdownIcon = const Icon(Icons.arrow_drop_down),
     this.autofocus = false,
     this.textInputAction,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
     this.showCountryFlag = true,
+    this.countryFlagDecoration = const CountryFlagDecoration(),
     this.cursorColor,
     this.disableLengthCheck = false,
+    this.showLengthCheck = true,
     this.flagsButtonPadding = EdgeInsets.zero,
     this.invalidNumberMessage = 'Invalid Mobile Number',
     this.cursorHeight,
@@ -300,26 +311,25 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     super.initState();
     _countryList = widget.countries == null
         ? countries
-        : countries
-            .where((country) => widget.countries!.contains(country.code))
-            .toList();
+        : countries.where((country) => widget.countries!.contains(country.code)).toList();
     filteredCountries = _countryList;
     number = widget.initialValue ?? '';
     if (widget.initialCountryCode == null && number.startsWith('+')) {
       number = number.substring(1);
       // parse initial value
-      _selectedCountry = countries.firstWhere((country) => number.startsWith(country.fullCountryCode), orElse: () => _countryList.first);
+      _selectedCountry = countries.firstWhere((country) => number.startsWith(country.fullCountryCode),
+          orElse: () => _countryList.first);
 
       // remove country code from the initial number value
       number = number.replaceFirst(RegExp("^${_selectedCountry.fullCountryCode}"), "");
     } else {
-      _selectedCountry =
-          _countryList.firstWhere((item) => item.code == (widget.initialCountryCode ?? 'US'), orElse: () => _countryList.first);
+      _selectedCountry = _countryList.firstWhere((item) => item.code == (widget.initialCountryCode ?? 'US'),
+          orElse: () => _countryList.first);
 
       // remove country code from the initial number value
-      if(number.startsWith('+')){
+      if (number.startsWith('+')) {
         number = number.replaceFirst(RegExp("^\\+${_selectedCountry.fullCountryCode}"), "");
-      }else{
+      } else {
         number = number.replaceFirst(RegExp("^${_selectedCountry.fullCountryCode}"), "");
       }
     }
@@ -368,6 +378,16 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
   @override
   Widget build(BuildContext context) {
+    List<TextInputFormatter>? inputFormatters;
+
+    if (widget.inputFormatters == null) {
+      if (!widget.disableLengthCheck)
+        inputFormatters = [new LengthLimitingTextInputFormatter(_selectedCountry.maxLength)];
+    } else {
+      if (!widget.disableLengthCheck) inputFormatters = widget.inputFormatters!;
+      inputFormatters!.add(new LengthLimitingTextInputFormatter(_selectedCountry.maxLength));
+    }
+
     return TextFormField(
       initialValue: (widget.controller == null) ? number : null,
       readOnly: widget.readOnly,
@@ -388,6 +408,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         counterText: !widget.enabled ? '' : null,
       ),
       style: widget.style,
+      strutStyle: widget.strutStyle,
       onSaved: (value) {
         widget.onSaved?.call(
           PhoneNumber(
@@ -412,17 +433,16 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       },
       validator: (value) {
         if (!widget.disableLengthCheck && value != null) {
-          return value.length >= _selectedCountry.minLength &&
-                  value.length <= _selectedCountry.maxLength
+          return value.length >= _selectedCountry.minLength && value.length <= _selectedCountry.maxLength
               ? null
               : widget.invalidNumberMessage;
         }
 
         return validatorMessage;
       },
-      maxLength: widget.disableLengthCheck ? null : _selectedCountry.maxLength,
+      maxLength: widget.disableLengthCheck || !widget.showLengthCheck ? null : _selectedCountry.maxLength,
       keyboardType: widget.keyboardType,
-      inputFormatters: widget.inputFormatters,
+      inputFormatters: inputFormatters,
       enabled: widget.enabled,
       keyboardAppearance: widget.keyboardAppearance,
       autofocus: widget.autofocus,
@@ -432,6 +452,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   }
 
   Container _buildFlagsButton() {
+    final canShowDropdownIcon = widget.enabled && widget.showDropdownIcon;
+
     return Container(
       margin: widget.flagsButtonMargin,
       child: DecoratedBox(
@@ -443,20 +465,30 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                if (widget.enabled &&
-                    widget.showDropdownIcon &&
-                    widget.dropdownIconPosition == IconPosition.leading) ...[
+                if (canShowDropdownIcon && widget.dropdownIconPosition == IconPosition.leading) ...[
                   widget.dropdownIcon,
                   SizedBox(width: 4),
-                ],
-                if (widget.showCountryFlag) ...[
-                  Image.asset(
-                    'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
-                    package: 'intl_phone_field',
-                    width: 32,
-                  ),
+                ] else
                   SizedBox(width: 8),
+                if (widget.showCountryFlag) ...[
+                  ClipRRect(
+                    borderRadius: widget.countryFlagDecoration.borderRadius,
+                    clipBehavior: widget.countryFlagDecoration.clipBehavior,
+                    clipper: widget.countryFlagDecoration.clipper,
+                    child: Image.asset(
+                      'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
+                      package: 'intl_phone_field',
+                      width: widget.countryFlagDecoration.width,
+                      height: widget.countryFlagDecoration.height,
+                    ),
+                  ),
+                  if (!(canShowDropdownIcon && widget.dropdownIconPosition == IconPosition.middle)) SizedBox(width: 8),
+                ],
+                if (canShowDropdownIcon && widget.dropdownIconPosition == IconPosition.middle) ...[
+                  widget.dropdownIcon,
+                  SizedBox(width: 4),
                 ],
                 FittedBox(
                   child: Text(
@@ -464,13 +496,11 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                     style: widget.dropdownTextStyle,
                   ),
                 ),
-                if (widget.enabled &&
-                    widget.showDropdownIcon &&
-                    widget.dropdownIconPosition == IconPosition.trailing) ...[
+                if (canShowDropdownIcon && widget.dropdownIconPosition == IconPosition.trailing) ...[
                   SizedBox(width: 4),
                   widget.dropdownIcon,
-                ],
-                SizedBox(width: 8),
+                ] else
+                  SizedBox(width: 8),
               ],
             ),
           ),
@@ -479,9 +509,4 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       ),
     );
   }
-}
-
-enum IconPosition {
-  leading,
-  trailing,
 }
