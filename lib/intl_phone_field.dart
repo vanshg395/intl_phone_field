@@ -162,6 +162,9 @@ class IntlPhoneField extends StatefulWidget {
   /// The style use for the country dial code.
   final TextStyle? dropdownTextStyle;
 
+  /// The style use for the country dial code.
+  final Size? dropdownFlagSize;
+
   /// {@macro flutter.widgets.editableText.inputFormatters}
   final List<TextInputFormatter>? inputFormatters;
 
@@ -267,6 +270,7 @@ class IntlPhoneField extends StatefulWidget {
         this.searchText = 'Search country',
     this.dropdownIconPosition = IconPosition.leading,
     this.dropdownIcon = const Icon(Icons.arrow_drop_down),
+    this.dropdownFlagSize,
     this.autofocus = false,
     this.textInputAction,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
@@ -308,19 +312,25 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     if (widget.initialCountryCode == null && number.startsWith('+')) {
       number = number.substring(1);
       // parse initial value
-      _selectedCountry = countries.firstWhere((country) => number.startsWith(country.fullCountryCode), orElse: () => _countryList.first);
+      _selectedCountry = countries.firstWhere(
+          (country) => number.startsWith(country.fullCountryCode),
+          orElse: () => _countryList.first);
 
       // remove country code from the initial number value
-      number = number.replaceFirst(RegExp("^${_selectedCountry.fullCountryCode}"), "");
+      number = number.replaceFirst(
+          RegExp("^${_selectedCountry.fullCountryCode}"), "");
     } else {
-      _selectedCountry =
-          _countryList.firstWhere((item) => item.code == (widget.initialCountryCode ?? 'US'), orElse: () => _countryList.first);
+      _selectedCountry = _countryList.firstWhere(
+          (item) => item.code == (widget.initialCountryCode ?? 'US'),
+          orElse: () => _countryList.first);
 
       // remove country code from the initial number value
-      if(number.startsWith('+')){
-        number = number.replaceFirst(RegExp("^\\+${_selectedCountry.fullCountryCode}"), "");
-      }else{
-        number = number.replaceFirst(RegExp("^${_selectedCountry.fullCountryCode}"), "");
+      if (number.startsWith('+')) {
+        number = number.replaceFirst(
+            RegExp("^\\+${_selectedCountry.fullCountryCode}"), "");
+      } else {
+        number = number.replaceFirst(
+            RegExp("^${_selectedCountry.fullCountryCode}"), "");
       }
     }
 
@@ -392,7 +402,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         widget.onSaved?.call(
           PhoneNumber(
             countryISOCode: _selectedCountry.code,
-            countryCode: '+${_selectedCountry.dialCode}${_selectedCountry.regionCode}',
+            countryCode:
+                '+${_selectedCountry.dialCode}${_selectedCountry.regionCode}',
             number: value!,
           ),
         );
@@ -454,7 +465,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                   Image.asset(
                     'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
                     package: 'intl_phone_field',
-                    width: 32,
+                    width: widget.dropdownFlagSize?.width ?? 32,
+                    height: widget.dropdownFlagSize?.height ?? 28,
                   ),
                   SizedBox(width: 8),
                 ],
@@ -470,6 +482,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                   SizedBox(width: 4),
                   widget.dropdownIcon,
                 ],
+                widget.decoration.prefixIcon ?? SizedBox(),
                 SizedBox(width: 8),
               ],
             ),
