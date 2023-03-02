@@ -474,7 +474,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
               ],
             ),
           ),
-          onTap: widget.enabled ? _changeCountry : null,
+          onTap: null,
         ),
       ),
     );
