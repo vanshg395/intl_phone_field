@@ -21,7 +21,11 @@ class PickerDialogStyle {
 
   final ScrollbarThemeData? scrollbarThemeData;
 
+  final double? elevation;
+
   final ShapeBorder? shape;
+
+  final List<BoxShadow>? boxShadow;
 
   final Color? searchFieldCursorColor;
 
@@ -40,7 +44,9 @@ class PickerDialogStyle {
     this.padding,
     this.insetPadding,
     this.scrollbarThemeData,
+    this.elevation,
     this.shape,
+    this.boxShadow,
     this.searchFieldCursorColor,
     this.searchFieldInputDecoration,
     this.searchFieldPadding,
@@ -55,7 +61,10 @@ class PickerDialogStyle {
     EdgeInsets? listTilePadding,
     EdgeInsets? padding,
     EdgeInsets? insetPadding,
+    ScrollbarThemeData? scrollbarThemeData,
+    double? elevation,
     ShapeBorder? shape,
+    List<BoxShadow>? boxShadow,
     Color? searchFieldCursorColor,
     InputDecoration? searchFieldInputDecoration,
     EdgeInsets? searchFieldPadding,
@@ -69,7 +78,10 @@ class PickerDialogStyle {
       listTilePadding: listTilePadding ?? this.listTilePadding,
       padding: padding ?? this.padding,
       insetPadding: insetPadding ?? this.insetPadding,
+      scrollbarThemeData: scrollbarThemeData ?? this.scrollbarThemeData,
+      elevation: elevation ?? this.elevation,
       shape: shape ?? this.shape,
+      boxShadow: boxShadow ?? this.boxShadow,
       searchFieldCursorColor:
           searchFieldCursorColor ?? this.searchFieldCursorColor,
       searchFieldInputDecoration:
@@ -121,6 +133,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
     final defaultHorizontalPadding = 40.0;
     final defaultVerticalPadding = 24.0;
     return Dialog(
+      elevation: 20.0,
       insetPadding: widget.style?.insetPadding ??
           EdgeInsets.symmetric(
             vertical: defaultVerticalPadding,
@@ -131,6 +144,9 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
       shape: widget.style?.shape,
       backgroundColor: widget.style?.backgroundColor,
       child: Container(
+        decoration: BoxDecoration(
+          boxShadow: widget.style?.boxShadow,
+        ),
         padding: widget.style?.padding ?? EdgeInsets.all(10),
         child: Column(
           children: <Widget>[
