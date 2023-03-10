@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/helpers.dart';
 
@@ -15,6 +17,12 @@ class PickerDialogStyle {
 
   final EdgeInsets? padding;
 
+  final EdgeInsets? insetPadding;
+
+  final ScrollbarThemeData? scrollbarThemeData;
+
+  final ShapeBorder? shape;
+
   final Color? searchFieldCursorColor;
 
   final InputDecoration? searchFieldInputDecoration;
@@ -30,11 +38,46 @@ class PickerDialogStyle {
     this.listTileDivider,
     this.listTilePadding,
     this.padding,
+    this.insetPadding,
+    this.scrollbarThemeData,
+    this.shape,
     this.searchFieldCursorColor,
     this.searchFieldInputDecoration,
     this.searchFieldPadding,
     this.width,
   });
+
+  PickerDialogStyle copyWith({
+    Color? backgroundColor,
+    TextStyle? countryCodeStyle,
+    TextStyle? countryNameStyle,
+    Widget? listTileDivider,
+    EdgeInsets? listTilePadding,
+    EdgeInsets? padding,
+    EdgeInsets? insetPadding,
+    ShapeBorder? shape,
+    Color? searchFieldCursorColor,
+    InputDecoration? searchFieldInputDecoration,
+    EdgeInsets? searchFieldPadding,
+    double? width,
+  }) {
+    return PickerDialogStyle(
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      countryCodeStyle: countryCodeStyle ?? this.countryCodeStyle,
+      countryNameStyle: countryNameStyle ?? this.countryNameStyle,
+      listTileDivider: listTileDivider ?? this.listTileDivider,
+      listTilePadding: listTilePadding ?? this.listTilePadding,
+      padding: padding ?? this.padding,
+      insetPadding: insetPadding ?? this.insetPadding,
+      shape: shape ?? this.shape,
+      searchFieldCursorColor:
+          searchFieldCursorColor ?? this.searchFieldCursorColor,
+      searchFieldInputDecoration:
+          searchFieldInputDecoration ?? this.searchFieldInputDecoration,
+      searchFieldPadding: searchFieldPadding ?? this.searchFieldPadding,
+      width: width ?? this.width,
+    );
+  }
 }
 
 class CountryPickerDialog extends StatefulWidget {
@@ -78,11 +121,14 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
     final defaultHorizontalPadding = 40.0;
     final defaultVerticalPadding = 24.0;
     return Dialog(
-      insetPadding: EdgeInsets.symmetric(
-          vertical: defaultVerticalPadding,
-          horizontal: mediaWidth > (width + defaultHorizontalPadding * 2)
-              ? (mediaWidth - width) / 2
-              : defaultHorizontalPadding),
+      insetPadding: widget.style?.insetPadding ??
+          EdgeInsets.symmetric(
+            vertical: defaultVerticalPadding,
+            horizontal: mediaWidth > (width + defaultHorizontalPadding * 2)
+                ? (mediaWidth - width) / 2
+                : defaultHorizontalPadding,
+          ),
+      shape: widget.style?.shape,
       backgroundColor: widget.style?.backgroundColor,
       child: Container(
         padding: widget.style?.padding ?? EdgeInsets.all(10),
@@ -113,36 +159,88 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
             ),
             SizedBox(height: 20),
             Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: _filteredCountries.length,
-                itemBuilder: (ctx, index) => Column(
-                  children: <Widget>[
-                    ListTile(
-                      leading: Image.asset(
-                        'assets/flags/${_filteredCountries[index].code.toLowerCase()}.png',
-                        package: 'intl_phone_field',
-                        width: 32,
+              child: ScrollbarTheme(
+                data: widget.style?.scrollbarThemeData ??
+                    ScrollbarThemeData(
+                      interactive: true,
+                      radius: Radius.circular(24.0),
+                      thickness: MaterialStateProperty.resolveWith((_) => 4.0),
+                      minThumbLength: 32.0,
+                      thumbVisibility:
+                          MaterialStateProperty.resolveWith((_) => true),
+                      thumbColor: MaterialStateProperty.resolveWith(
+                          (states) => Color(0xFFB4B4B4)),
+                      trackVisibility:
+                          MaterialStateProperty.resolveWith((_) => true),
+                      trackColor: MaterialStateProperty.resolveWith(
+                          (states) => Color(0xFFEFF0F2)),
+                      trackBorderColor: MaterialStateProperty.resolveWith(
+                        (states) => Color(0xFFEFF0F2),
                       ),
-                      contentPadding: widget.style?.listTilePadding,
-                      title: Text(
-                        _filteredCountries[index].name,
-                        style: widget.style?.countryNameStyle ??
-                            TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                      trailing: Text(
-                        '+${_filteredCountries[index].dialCode}',
-                        style: widget.style?.countryCodeStyle ??
-                            TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                      onTap: () {
-                        _selectedCountry = _filteredCountries[index];
-                        widget.onCountryChanged(_selectedCountry);
-                        Navigator.of(context).pop();
-                      },
                     ),
-                    widget.style?.listTileDivider ?? Divider(thickness: 1),
-                  ],
+                child: Scrollbar(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: _filteredCountries.length,
+                    itemBuilder: (ctx, index) => Column(
+                      children: <Widget>[
+                        InkWell(
+                          onTap: () {
+                            _selectedCountry = _filteredCountries[index];
+                            widget.onCountryChanged(_selectedCountry);
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            margin: EdgeInsets.symmetric(vertical: 14.0),
+                            padding: EdgeInsets.fromLTRB(0.0, 4.0, 8.0, 4.0),
+                            child: Row(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(2.0),
+                                  child: Image.asset(
+                                    'assets/flags/${_filteredCountries[index].code.toLowerCase()}.png',
+                                    package: 'intl_phone_field',
+                                    width: 20.0,
+                                    height: 14.0,
+                                  ),
+                                ),
+                                SizedBox(width: 8.0),
+                                Flexible(
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Flexible(
+                                        child: Text(
+                                          _filteredCountries[index].name,
+                                          style:
+                                              widget.style?.countryNameStyle ??
+                                                  TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                    overflow: TextOverflow.fade,
+                                                  ),
+                                        ),
+                                      ),
+                                      Text(
+                                        ' (${_filteredCountries[index].dialCode})',
+                                        style: widget.style?.countryCodeStyle ??
+                                            TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+
+                        // widget.style?.listTileDivider ?? Divider(thickness: 1),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),

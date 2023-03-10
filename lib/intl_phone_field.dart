@@ -358,6 +358,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     await showDialog(
       context: context,
       useRootNavigator: false,
+      barrierColor: Colors.transparent,
       builder: (context) => StatefulBuilder(
         builder: (ctx, setState) => CountryPickerDialog(
           style: widget.pickerDialogStyle,
@@ -463,11 +464,14 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                   SizedBox(width: 4),
                 ],
                 if (widget.showCountryFlag) ...[
-                  Image.asset(
-                    'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
-                    package: 'intl_phone_field',
-                    width: widget.dropdownFlagSize?.width ?? 32,
-                    height: widget.dropdownFlagSize?.height ?? 28,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(2.0),
+                    child: Image.asset(
+                      'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
+                      package: 'intl_phone_field',
+                      width: widget.dropdownFlagSize?.width ?? 32,
+                      height: widget.dropdownFlagSize?.height ?? 28,
+                    ),
                   ),
                   SizedBox(width: 8),
                 ],
