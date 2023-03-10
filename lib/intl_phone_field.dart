@@ -469,8 +469,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                     child: Image.asset(
                       'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
                       package: 'intl_phone_field',
-                      width: widget.dropdownFlagSize?.width ?? 32,
-                      height: widget.dropdownFlagSize?.height ?? 28,
+                      width: widget.dropdownFlagSize?.width ?? 20.0,
+                      height: widget.dropdownFlagSize?.height ?? 16.0,
+                      fit: BoxFit.fill,
                     ),
                   ),
                   SizedBox(width: 8),

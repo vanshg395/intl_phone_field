@@ -218,6 +218,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                                     package: 'intl_phone_field',
                                     width: 20.0,
                                     height: 14.0,
+                                    fit: BoxFit.fill,
                                   ),
                                 ),
                                 SizedBox(width: 8.0),
