@@ -67,10 +67,10 @@ class _MyAppState extends State<MyApp> {
                       right: 18.0,
                     ),
                     shape: RoundedRectangleBorder(
-                      // side: BorderSide(),
+                      side: BorderSide(),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
-                    elevation: 0.0,
+                    elevation: 20.0,
                   ),
                   onChanged: (phone) {
                     print(phone.completeNumber);

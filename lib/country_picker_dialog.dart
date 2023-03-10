@@ -133,7 +133,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
     final defaultHorizontalPadding = 40.0;
     final defaultVerticalPadding = 24.0;
     return Dialog(
-      elevation: widget.style?.elevation,
+      elevation: widget.style?.elevation ?? 20.0,
       insetPadding: widget.style?.insetPadding ??
           EdgeInsets.symmetric(
             vertical: defaultVerticalPadding,
