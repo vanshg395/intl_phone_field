@@ -153,7 +153,8 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
               child: TextField(
                 cursorColor: widget.style?.searchFieldCursorColor,
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r"^[\d +]+$"))
+                  FilteringTextInputFormatter.allow(RegExp(r"^[\d a-z +]+$")),
+                  // FilteringTextInputFormatter.allow(RegExp(r"^[a-b]+$"))
                 ],
                 decoration: widget.style?.searchFieldInputDecoration ??
                     InputDecoration(
