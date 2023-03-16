@@ -358,7 +358,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     await showDialog(
       context: context,
       useRootNavigator: false,
-      barrierColor: Colors.black45,
+      barrierColor: Colors.transparent,
       builder: (context) => StatefulBuilder(
         builder: (ctx, setState) => CountryPickerDialog(
           style: widget.pickerDialogStyle,

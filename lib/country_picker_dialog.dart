@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/helpers.dart';
@@ -144,9 +145,6 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
       shape: widget.style?.shape,
       backgroundColor: widget.style?.backgroundColor,
       child: Container(
-        decoration: BoxDecoration(
-          boxShadow: widget.style?.boxShadow,
-        ),
         padding: widget.style?.padding ?? EdgeInsets.all(36),
         child: Column(
           children: <Widget>[
@@ -154,6 +152,9 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
               padding: widget.style?.searchFieldPadding ?? EdgeInsets.all(0),
               child: TextField(
                 cursorColor: widget.style?.searchFieldCursorColor,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r"^[\d +]+$"))
+                ],
                 decoration: widget.style?.searchFieldInputDecoration ??
                     InputDecoration(
                       suffixIcon: Icon(Icons.search),
@@ -173,7 +174,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                 },
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 12),
             Expanded(
               child: ScrollbarTheme(
                 data: widget.style?.scrollbarThemeData ??
@@ -207,7 +208,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                             Navigator.of(context).pop();
                           },
                           child: Container(
-                            margin: EdgeInsets.symmetric(vertical: 14.0),
+                            margin: EdgeInsets.symmetric(vertical: 16.0),
                             padding: EdgeInsets.fromLTRB(0.0, 4.0, 8.0, 4.0),
                             child: Row(
                               children: [

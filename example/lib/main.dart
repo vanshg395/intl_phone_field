@@ -70,6 +70,10 @@ class _MyAppState extends State<MyApp> {
                       side: BorderSide(),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black54, offset: Offset(5.0, 10.0)),
+                    ],
                     elevation: 20.0,
                   ),
                   onChanged: (phone) {
