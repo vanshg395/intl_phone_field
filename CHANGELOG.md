@@ -1,3 +1,7 @@
+## [3.1.1] - Release
+
+- Add `autoFillHints` property to [IntlPhoneField].
+- add `style` in dialog search field
 ## [3.1.0] - Release
 
 - **Breaking** `validator` function parameter type is [PhoneNumber] now instead of [String].
