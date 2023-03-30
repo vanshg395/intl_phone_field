@@ -196,6 +196,11 @@ class IntlPhoneField extends StatefulWidget {
   /// Default value is `true`.
   final bool showCountryFlag;
 
+  /// Whether to show or hide country code.
+  ///
+  /// Default value is `true`.
+  final bool showCountryCode;
+
   /// Message to be displayed on autoValidate error
   ///
   /// Default value is `Invalid Mobile Number`.
@@ -271,6 +276,7 @@ class IntlPhoneField extends StatefulWidget {
     this.textInputAction,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
     this.showCountryFlag = true,
+    this.showCountryCode = true,
     this.cursorColor,
     this.disableLengthCheck = false,
     this.flagsButtonPadding = EdgeInsets.zero,
@@ -300,26 +306,25 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     super.initState();
     _countryList = widget.countries == null
         ? countries
-        : countries
-            .where((country) => widget.countries!.contains(country.code))
-            .toList();
+        : countries.where((country) => widget.countries!.contains(country.code)).toList();
     filteredCountries = _countryList;
     number = widget.initialValue ?? '';
     if (widget.initialCountryCode == null && number.startsWith('+')) {
       number = number.substring(1);
       // parse initial value
-      _selectedCountry = countries.firstWhere((country) => number.startsWith(country.fullCountryCode), orElse: () => _countryList.first);
+      _selectedCountry = countries.firstWhere((country) => number.startsWith(country.fullCountryCode),
+          orElse: () => _countryList.first);
 
       // remove country code from the initial number value
       number = number.replaceFirst(RegExp("^${_selectedCountry.fullCountryCode}"), "");
     } else {
-      _selectedCountry =
-          _countryList.firstWhere((item) => item.code == (widget.initialCountryCode ?? 'US'), orElse: () => _countryList.first);
+      _selectedCountry = _countryList.firstWhere((item) => item.code == (widget.initialCountryCode ?? 'US'),
+          orElse: () => _countryList.first);
 
       // remove country code from the initial number value
-      if(number.startsWith('+')){
+      if (number.startsWith('+')) {
         number = number.replaceFirst(RegExp("^\\+${_selectedCountry.fullCountryCode}"), "");
-      }else{
+      } else {
         number = number.replaceFirst(RegExp("^${_selectedCountry.fullCountryCode}"), "");
       }
     }
@@ -412,8 +417,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       },
       validator: (value) {
         if (!widget.disableLengthCheck && value != null) {
-          return value.length >= _selectedCountry.minLength &&
-                  value.length <= _selectedCountry.maxLength
+          return value.length >= _selectedCountry.minLength && value.length <= _selectedCountry.maxLength
               ? null
               : widget.invalidNumberMessage;
         }
@@ -458,12 +462,13 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                   ),
                   SizedBox(width: 8),
                 ],
-                FittedBox(
-                  child: Text(
-                    '+${_selectedCountry.dialCode}',
-                    style: widget.dropdownTextStyle,
+                if (widget.showCountryCode)
+                  FittedBox(
+                    child: Text(
+                      '+${_selectedCountry.dialCode}',
+                      style: widget.dropdownTextStyle,
+                    ),
                   ),
-                ),
                 if (widget.enabled &&
                     widget.showDropdownIcon &&
                     widget.dropdownIconPosition == IconPosition.trailing) ...[
