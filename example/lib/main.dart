@@ -66,6 +66,7 @@ class _MyAppState extends State<MyApp> {
                       left: 18.0,
                       right: 18.0,
                     ),
+                    shadowColor: Colors.red,
                     shape: RoundedRectangleBorder(
                       side: BorderSide(),
                       borderRadius: BorderRadius.circular(16.0),

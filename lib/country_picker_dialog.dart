@@ -8,6 +8,8 @@ import 'package:intl_phone_field/helpers.dart';
 class PickerDialogStyle {
   final Color? backgroundColor;
 
+  final Color? shadowColor;
+
   final TextStyle? countryCodeStyle;
 
   final TextStyle? countryNameStyle;
@@ -38,6 +40,7 @@ class PickerDialogStyle {
 
   PickerDialogStyle({
     this.backgroundColor,
+    this.shadowColor,
     this.countryCodeStyle,
     this.countryNameStyle,
     this.listTileDivider,
@@ -56,6 +59,7 @@ class PickerDialogStyle {
 
   PickerDialogStyle copyWith({
     Color? backgroundColor,
+    Color? shadowColor,
     TextStyle? countryCodeStyle,
     TextStyle? countryNameStyle,
     Widget? listTileDivider,
@@ -73,6 +77,7 @@ class PickerDialogStyle {
   }) {
     return PickerDialogStyle(
       backgroundColor: backgroundColor ?? this.backgroundColor,
+      shadowColor: shadowColor ?? this.shadowColor,
       countryCodeStyle: countryCodeStyle ?? this.countryCodeStyle,
       countryNameStyle: countryNameStyle ?? this.countryNameStyle,
       listTileDivider: listTileDivider ?? this.listTileDivider,
@@ -143,7 +148,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                 : defaultHorizontalPadding,
           ),
       shape: widget.style?.shape,
-      shadowColor: Colors.black54,
+      shadowColor: widget.style?.shadowColor,
       backgroundColor: widget.style?.backgroundColor,
       child: Container(
         padding: widget.style?.padding ?? EdgeInsets.all(36),
@@ -158,8 +163,10 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
               child: TextField(
                 cursorColor: widget.style?.searchFieldCursorColor,
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r"^[\d a-z +]+$")),
-                  // FilteringTextInputFormatter.allow(RegExp(r"^[a-b]+$"))
+                  FilteringTextInputFormatter.allow(RegExp(r"^[+ \d a-z]+$")),
+                  // FilteringTextInputFormatter.allow(
+                  //     RegExp(r"^\+[1-9]{1}[0-9]{3,14}$")),
+                  // // FilteringTextInputFormatter.allow(RegExp(r"^[a-b]+$"))
                 ],
                 decoration: widget.style?.searchFieldInputDecoration ??
                     InputDecoration(
@@ -167,15 +174,21 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                       labelText: widget.searchText,
                     ),
                 onChanged: (value) {
-                  _filteredCountries = isNumeric(value)
-                      ? widget.countryList
-                          .where((country) => country.dialCode.contains(value))
-                          .toList()
-                      : widget.countryList
-                          .where((country) => country.name
-                              .toLowerCase()
-                              .contains(value.toLowerCase()))
-                          .toList();
+                  final input = sanitizeInput(value);
+                  if (input.isEmpty) {
+                    _filteredCountries = widget.countryList;
+                  } else {
+                    _filteredCountries = isNumeric(input)
+                        ? widget.countryList
+                            .where(
+                                (country) => country.dialCode.contains(input))
+                            .toList()
+                        : widget.countryList
+                            .where((country) => country.name
+                                .toLowerCase()
+                                .contains(input.toLowerCase()))
+                            .toList();
+                  }
                   if (this.mounted) setState(() {});
                 },
               ),
