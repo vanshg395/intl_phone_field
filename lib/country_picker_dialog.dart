@@ -143,9 +143,14 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                 : defaultHorizontalPadding,
           ),
       shape: widget.style?.shape,
+      surfaceTintColor: Colors.red,
       backgroundColor: widget.style?.backgroundColor,
       child: Container(
         padding: widget.style?.padding ?? EdgeInsets.all(36),
+        decoration: BoxDecoration(
+          color: widget.style?.backgroundColor,
+          borderRadius: BorderRadius.circular(16.0),
+        ),
         child: Column(
           children: <Widget>[
             Padding(
