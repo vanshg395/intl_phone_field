@@ -173,6 +173,12 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                       suffixIcon: Icon(Icons.search),
                       labelText: widget.searchText,
                     ),
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontSize: 14.0,
+                      height: 1.14,
+                      decoration: TextDecoration.none,
+                      decorationThickness: 0.0,
+                    ),
                 onChanged: (value) {
                   final input = sanitizeInput(value);
                   if (input.isEmpty) {
