@@ -165,6 +165,9 @@ class IntlPhoneField extends StatefulWidget {
   /// {@macro flutter.widgets.editableText.inputFormatters}
   final List<TextInputFormatter>? inputFormatters;
 
+  /// autofillHints passed to the phone input.
+  final Iterable<String>? autofillHints;
+
   /// The text that describes the search input field.
   ///
   /// When the input field is empty and unfocused, the label is displayed on top of the input field (i.e., at the same location on the screen where text may be entered in the input field).
@@ -261,6 +264,7 @@ class IntlPhoneField extends StatefulWidget {
     this.showDropdownIcon = true,
     this.dropdownDecoration = const BoxDecoration(),
     this.inputFormatters,
+    this.autofillHints,
     this.enabled = true,
     this.keyboardAppearance,
     @Deprecated('Use searchFieldInputDecoration of PickerDialogStyle instead')
@@ -300,9 +304,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     super.initState();
     _countryList = widget.countries == null
         ? countries
-        : countries
-            .where((country) => widget.countries!.contains(country.code))
-            .toList();
+        : countries.where((country) => widget.countries!.contains(country.code)).toList();
     filteredCountries = _countryList;
     number = widget.initialValue ?? '';
     if (widget.initialCountryCode == null && number.startsWith('+')) {
@@ -387,6 +389,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         prefixIcon: _buildFlagsButton(),
         counterText: !widget.enabled ? '' : null,
       ),
+      autofillHints: widget.autofillHints,
       style: widget.style,
       onSaved: (value) {
         widget.onSaved?.call(
