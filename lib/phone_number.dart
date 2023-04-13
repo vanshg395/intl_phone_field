@@ -1,8 +1,10 @@
 import 'countries.dart';
 
-class NumberTooLongException implements Exception{}
-class NumberTooShortException implements Exception{}
-class InvalidCharactersException implements Exception{}
+class NumberTooLongException implements Exception {}
+
+class NumberTooShortException implements Exception {}
+
+class InvalidCharactersException implements Exception {}
 
 class PhoneNumber {
   String countryISOCode;
@@ -15,44 +17,42 @@ class PhoneNumber {
     required this.number,
   });
 
-  factory PhoneNumber.fromCompleteNumber({required String completeNumber}){
-    if(completeNumber == "") {
-      return PhoneNumber(countryISOCode: "",
-          countryCode: "",
-          number: "");
+  factory PhoneNumber.fromCompleteNumber({required String completeNumber}) {
+    if (completeNumber == "") {
+      return PhoneNumber(countryISOCode: "", countryCode: "", number: "");
     }
 
-    try{
+    try {
       Country country = getCountry(completeNumber);
       String number;
       if (completeNumber.startsWith('+')) {
-        number = completeNumber.substring(1+country.dialCode.length+country.regionCode.length);
+        number = completeNumber
+            .substring(1 + country.dialCode.length + country.regionCode.length);
       } else {
-        number = completeNumber.substring(country.dialCode.length+country.regionCode.length);
+        number = completeNumber
+            .substring(country.dialCode.length + country.regionCode.length);
       }
-      return PhoneNumber(countryISOCode: country.code,
+      return PhoneNumber(
+          countryISOCode: country.code,
           countryCode: country.dialCode + country.regionCode,
           number: number);
-    } on InvalidCharactersException{
+    } on InvalidCharactersException {
       rethrow;
-    } on Exception catch(e){
-      return PhoneNumber(countryISOCode: "",
-          countryCode: "",
-          number: "");
+    } on Exception catch (e) {
+      return PhoneNumber(countryISOCode: "", countryCode: "", number: "");
     }
-
   }
 
-  bool isValidNumber(){
-      Country country = getCountry(completeNumber);
-      if( number.length < country.minLength){
-        throw NumberTooShortException();
-      }
+  bool isValidNumber() {
+    Country country = getCountry(completeNumber);
+    if (number.length < country.minLength) {
+      throw NumberTooShortException();
+    }
 
-      if( number.length > country.maxLength){
-        throw NumberTooLongException();
-      }
-      return true;
+    if (number.length > country.maxLength) {
+      throw NumberTooLongException();
+    }
+    return true;
   }
 
   String get completeNumber {
@@ -60,21 +60,20 @@ class PhoneNumber {
   }
 
   static Country getCountry(String phoneNumber) {
-    if(phoneNumber == ""){
+    if (phoneNumber == "") {
       throw NumberTooShortException();
     }
 
     final _validPhoneNumber = RegExp(r'^[+0-9]*[0-9]*$');
 
-    if(!_validPhoneNumber.hasMatch(phoneNumber)){
+    if (!_validPhoneNumber.hasMatch(phoneNumber)) {
       throw InvalidCharactersException();
     }
 
     if (phoneNumber.startsWith('+')) {
-      return countries.firstWhere((country) =>
-          phoneNumber
-              .substring(1)
-              .startsWith(country.dialCode + country.regionCode));
+      return countries.firstWhere((country) => phoneNumber
+          .substring(1)
+          .startsWith(country.dialCode + country.regionCode));
     }
     return countries.firstWhere((country) =>
         phoneNumber.startsWith(country.dialCode + country.regionCode));
