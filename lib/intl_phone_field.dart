@@ -180,7 +180,7 @@ class IntlPhoneField extends StatefulWidget {
   /// Icon of the drop down button.
   ///
   /// Default is [Icon(Icons.arrow_drop_down)]
-  final Icon dropdownIcon;
+  final List<Icon> dropdownIcon;
 
   /// Whether this text field should focus itself if nothing else is already focused.
   final bool autofocus;
@@ -269,7 +269,10 @@ class IntlPhoneField extends StatefulWidget {
     @Deprecated('Use searchFieldInputDecoration of PickerDialogStyle instead')
         this.searchText = 'Search country',
     this.dropdownIconPosition = IconPosition.leading,
-    this.dropdownIcon = const Icon(Icons.arrow_drop_down),
+    this.dropdownIcon = const [
+      Icon(Icons.arrow_drop_down_rounded),
+      Icon(Icons.arrow_drop_up_rounded)
+    ],
     this.dropdownFlagSize,
     this.autofocus = false,
     this.textInputAction,
@@ -295,6 +298,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   late List<Country> _countryList;
   late Country _selectedCountry;
   late List<Country> filteredCountries;
+  late bool dialogOpened = false;
   late String number;
 
   String? validatorMessage;
@@ -355,6 +359,10 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
   Future<void> _changeCountry() async {
     filteredCountries = _countryList;
+    if (this.mounted)
+      setState(() {
+        dialogOpened = true;
+      });
     await showDialog(
       context: context,
       useRootNavigator: false,
@@ -374,7 +382,10 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         ),
       ),
     );
-    if (this.mounted) setState(() {});
+    if (this.mounted)
+      setState(() {
+        dialogOpened = true;
+      });
   }
 
   @override
@@ -460,7 +471,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                 if (widget.enabled &&
                     widget.showDropdownIcon &&
                     widget.dropdownIconPosition == IconPosition.leading) ...[
-                  widget.dropdownIcon,
+                  dialogOpened
+                      ? widget.dropdownIcon.last
+                      : widget.dropdownIcon.first,
                   SizedBox(width: 4),
                 ],
                 if (widget.showCountryFlag) ...[
@@ -486,7 +499,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                     widget.showDropdownIcon &&
                     widget.dropdownIconPosition == IconPosition.trailing) ...[
                   SizedBox(width: 4),
-                  widget.dropdownIcon,
+                  dialogOpened
+                      ? widget.dropdownIcon.last
+                      : widget.dropdownIcon.first,
                 ],
                 widget.decoration.prefixIcon ?? SizedBox(),
                 SizedBox(width: 8),
