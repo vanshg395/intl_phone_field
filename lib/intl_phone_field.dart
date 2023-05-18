@@ -384,7 +384,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     );
     if (this.mounted)
       setState(() {
-        dialogOpened = true;
+        dialogOpened = false;
       });
   }
 
