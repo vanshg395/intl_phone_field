@@ -1,12 +1,13 @@
-name: "Publish Package on PUB"
+name: "Publish Package on pub.dev"
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - master
 
 jobs:
   build:
-    name: Build & Release
+    name: Publish Package on pub.dev
     runs-on: macos-latest
     steps:
       - name: Pull Code
