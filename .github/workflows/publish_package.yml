@@ -13,15 +13,5 @@ jobs:
       - name: Pull Code
         uses: actions/checkout@v1
 
-      - name: Setup Java
-        uses: actions/setup-java@v1
-        with:
-          java-version: "15.x"
-
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v1
-        with:
-          flutter-version: "2.5.1"
-
-      - name: Dart and Flutter Package Publisher
-        uses: k-paxian/dart-package-publisher@v1.6
+      - publish:
+        uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
