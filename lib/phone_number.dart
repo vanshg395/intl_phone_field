@@ -35,6 +35,7 @@ class PhoneNumber {
           number: number);
     } on InvalidCharactersException{
       rethrow;
+    // ignore: unused_catch_clause
     } on Exception catch(e){
       return PhoneNumber(countryISOCode: "",
           countryCode: "",

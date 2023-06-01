@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/helpers.dart';
@@ -44,10 +45,12 @@ class CountryPickerDialog extends StatefulWidget {
   final String searchText;
   final List<Country> filteredCountries;
   final PickerDialogStyle? style;
+  final String languageCode;
 
   CountryPickerDialog({
     Key? key,
     required this.searchText,
+    required this.languageCode,
     required this.countryList,
     required this.onCountryChanged,
     required this.selectedCountry,
@@ -66,7 +69,12 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
   @override
   void initState() {
     _selectedCountry = widget.selectedCountry;
-    _filteredCountries = widget.filteredCountries;
+    _filteredCountries = widget.filteredCountries.toList()
+      ..sort(
+        (a, b) => a
+            .localizedName(widget.languageCode)
+            .compareTo(b.localizedName(widget.languageCode)),
+      );
 
     super.initState();
   }
@@ -98,15 +106,12 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                       labelText: widget.searchText,
                     ),
                 onChanged: (value) {
-                  _filteredCountries = isNumeric(value)
-                      ? widget.countryList
-                          .where((country) => country.dialCode.contains(value))
-                          .toList()
-                      : widget.countryList
-                          .where((country) => country.name
-                              .toLowerCase()
-                              .contains(value.toLowerCase()))
-                          .toList();
+                  _filteredCountries = widget.countryList.stringSearch(value)
+                    ..sort(
+                      (a, b) => a
+                          .localizedName(widget.languageCode)
+                          .compareTo(b.localizedName(widget.languageCode)),
+                    );
                   if (this.mounted) setState(() {});
                 },
               ),
@@ -119,14 +124,21 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                 itemBuilder: (ctx, index) => Column(
                   children: <Widget>[
                     ListTile(
-                      leading: Image.asset(
-                        'assets/flags/${_filteredCountries[index].code.toLowerCase()}.png',
-                        package: 'intl_phone_field',
-                        width: 32,
+                      leading: 
+                      kIsWeb 
+                      ? Image.asset(
+                              'assets/flags/${_filteredCountries[index].code.toLowerCase()}.png',
+                              package: 'intl_phone_field',
+                              width: 32,
+                            )
+                      : Text(
+                        _filteredCountries[index].flag,
+                        style: TextStyle(fontSize: 18),
                       ),
                       contentPadding: widget.style?.listTilePadding,
                       title: Text(
-                        _filteredCountries[index].name,
+                        _filteredCountries[index]
+                            .localizedName(widget.languageCode),
                         style: widget.style?.countryNameStyle ??
                             TextStyle(fontWeight: FontWeight.w700),
                       ),
