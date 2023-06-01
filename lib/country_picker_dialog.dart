@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/helpers.dart';
@@ -123,7 +124,14 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                 itemBuilder: (ctx, index) => Column(
                   children: <Widget>[
                     ListTile(
-                      leading: Text(
+                      leading: 
+                      kIsWeb 
+                      ? Image.asset(
+                              'assets/flags/${_filteredCountries[index].code.toLowerCase()}.png',
+                              package: 'intl_phone_field',
+                              width: 32,
+                            )
+                      : Text(
                         _filteredCountries[index].flag,
                         style: TextStyle(fontSize: 18),
                       ),
