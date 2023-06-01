@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     name: Publish Package on pub.dev
-    runs-on: macos-latest
+    runs-on: linux
     steps:
       - name: Pull Code
         uses: actions/checkout@v1
