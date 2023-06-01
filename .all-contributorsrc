@@ -58,6 +58,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "2000calories",
+      "name": "hans.huang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25191098?v=4",
+      "profile": "https://github.com/2000calories",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -65,5 +74,7 @@
   "projectOwner": "vanshg395",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitType": "docs",
+  "commitConvention": "angular"
 }
