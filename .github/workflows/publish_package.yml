@@ -6,12 +6,5 @@ on:
       - master
 
 jobs:
-  build:
-    name: Publish Package on pub.dev
-    runs-on: ubuntu-latest
-    steps:
-      - name: Pull Code
-        uses: actions/checkout@v1
-
-      - name: Dart and Flutter Package Publisher
-        uses: k-paxian/dart-package-publisher@v1.6
+  publish:
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
