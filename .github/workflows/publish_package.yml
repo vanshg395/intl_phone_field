@@ -14,4 +14,4 @@ jobs:
         uses: actions/checkout@v1
 
       - publish:
-        uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
+          uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
