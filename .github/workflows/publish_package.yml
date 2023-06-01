@@ -1,13 +1,14 @@
-name: "Publish Package on PUB"
+name: "Publish Package on pub.dev"
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - master
 
 jobs:
   build:
-    name: Build & Release
-    runs-on: macos-latest
+    name: Publish Package on pub.dev
+    runs-on: linux
     steps:
       - name: Pull Code
         uses: actions/checkout@v1
