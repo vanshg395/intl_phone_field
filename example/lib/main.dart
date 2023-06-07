@@ -62,8 +62,8 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   languageCode: "en",
-                  onChanged: (phone) {
-                    print(phone.completeNumber);
+                  onChanged: (phone, validates) {
+                    print('${phone.completeNumber} (validates: $validates)');
                   },
                   onCountryChanged: (country) {
                     print('Country changed to: ' + country.name);

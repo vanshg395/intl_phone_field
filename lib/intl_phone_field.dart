@@ -33,7 +33,7 @@ class IntlPhoneField extends StatefulWidget {
   ///    runs and can validate and change ("format") the input value.
   ///  * [onEditingComplete], [onSubmitted], [onSelectionChanged]:
   ///    which are more specialized input change notifications.
-  final ValueChanged<PhoneNumber>? onChanged;
+  final Function(PhoneNumber phoneNumber, bool validates)? onChanged;
 
   final ValueChanged<Country>? onCountryChanged;
 
@@ -272,7 +272,7 @@ class IntlPhoneField extends StatefulWidget {
     this.enabled = true,
     this.keyboardAppearance,
     @Deprecated('Use searchFieldInputDecoration of PickerDialogStyle instead')
-        this.searchText = 'Search country',
+    this.searchText = 'Search country',
     this.dropdownIconPosition = IconPosition.leading,
     this.dropdownIcon = const Icon(Icons.arrow_drop_down),
     this.autofocus = false,
@@ -303,12 +303,18 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
   String? validatorMessage;
 
+  late TextEditingController controller;
+
   @override
   void initState() {
     super.initState();
+
     _countryList = widget.countries ?? countries;
     filteredCountries = _countryList;
     number = widget.initialValue ?? '';
+
+    controller = widget.controller ?? TextEditingController(text: number);
+
     if (widget.initialCountryCode == null && number.startsWith('+')) {
       number = number.substring(1);
       // parse initial value
@@ -353,6 +359,12 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     }
   }
 
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   Future<void> _changeCountry() async {
     filteredCountries = _countryList;
     await showDialog(
@@ -366,8 +378,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           searchText: widget.searchText,
           countryList: _countryList,
           selectedCountry: _selectedCountry,
-          onCountryChanged: (Country country) {
+          onCountryChanged: (Country country) async {
             _selectedCountry = country;
+            await _userInputUpdated(controller.text);
             widget.onCountryChanged?.call(country);
             setState(() {});
           },
@@ -377,18 +390,37 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     if (this.mounted) setState(() {});
   }
 
+  // Called when text field or country picker is updated
+  Future _userInputUpdated(String value) async {
+    final phoneNumber = PhoneNumber(
+      countryISOCode: _selectedCountry.code,
+      countryCode: '+${_selectedCountry.fullCountryCode}',
+      number: value,
+    );
+
+    if (widget.autovalidateMode != AutovalidateMode.disabled) {
+      validatorMessage = await widget.validator?.call(phoneNumber);
+    }
+    final isValidLength = value.length >= _selectedCountry.minLength &&
+        value.length <= _selectedCountry.maxLength;
+
+    widget.onChanged
+        ?.call(phoneNumber, validatorMessage == null && isValidLength);
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      initialValue: (widget.controller == null) ? number : null,
-      autofillHints: widget.disableAutoFillHints ? null : [AutofillHints.telephoneNumberNational],
+      autofillHints: widget.disableAutoFillHints
+          ? null
+          : [AutofillHints.telephoneNumberNational],
       readOnly: widget.readOnly,
       obscureText: widget.obscureText,
       textAlign: widget.textAlign,
       textAlignVertical: widget.textAlignVertical,
       cursorColor: widget.cursorColor,
       onTap: widget.onTap,
-      controller: widget.controller,
+      controller: controller,
       focusNode: widget.focusNode,
       cursorHeight: widget.cursorHeight,
       cursorRadius: widget.cursorRadius,
@@ -411,17 +443,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         );
       },
       onChanged: (value) async {
-        final phoneNumber = PhoneNumber(
-          countryISOCode: _selectedCountry.code,
-          countryCode: '+${_selectedCountry.fullCountryCode}',
-          number: value,
-        );
-
-        if (widget.autovalidateMode != AutovalidateMode.disabled) {
-          validatorMessage = await widget.validator?.call(phoneNumber);
-        }
-
-        widget.onChanged?.call(phoneNumber);
+        await _userInputUpdated(value);
       },
       validator: (value) {
         if (value == null || !isNumeric(value)) return validatorMessage;
@@ -458,7 +480,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(width: 4,),
+                SizedBox(width: 4),
                 if (widget.enabled &&
                     widget.showDropdownIcon &&
                     widget.dropdownIconPosition == IconPosition.leading) ...[
@@ -466,17 +488,16 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                   SizedBox(width: 4),
                 ],
                 if (widget.showCountryFlag) ...[
-                  kIsWeb ?
-                  Image.asset(
-                              'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
-                              package: 'intl_phone_field',
-                              width: 32,
-                            )
-                            :
-                  Text(
-                    _selectedCountry.flag,
-                    style: TextStyle(fontSize: 18),
-                  ),
+                  kIsWeb
+                      ? Image.asset(
+                          'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
+                          package: 'intl_phone_field',
+                          width: 32,
+                        )
+                      : Text(
+                          _selectedCountry.flag,
+                          style: TextStyle(fontSize: 18),
+                        ),
                   SizedBox(width: 8),
                 ],
                 FittedBox(
