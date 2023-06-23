@@ -2510,8 +2510,8 @@ const List<Country> countries = [
     flag: "🇬🇭",
     code: "GH",
     dialCode: "233",
-    minLength: 10,
-    maxLength: 10,
+    minLength: 9,
+    maxLength: 9,
   ),
   Country(
     name: "Gibraltar",
