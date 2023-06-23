@@ -23,8 +23,7 @@ class TestWidget extends StatelessWidget {
 }
 
 void main() {
-  testWidgets('Test intl_phone_field setup with completeNumber',
-      (WidgetTester tester) async {
+  testWidgets('Test intl_phone_field setup with completeNumber', (WidgetTester tester) async {
     await tester.pumpWidget(TestWidget(
       phoneNumber: '+447891234467',
     ));
@@ -36,31 +35,29 @@ void main() {
     expect(numberFinder, findsOneWidget);
   });
 
-  testWidgets('Test intl_phone_field setup with Guernsey number: +441481960194',
-          (WidgetTester tester) async {
-        await tester.pumpWidget(TestWidget(
-          phoneNumber: '+441481960194',
-          countryCode: 'GG',
-        ));
+  testWidgets('Test intl_phone_field setup with Guernsey number: +441481960194', (WidgetTester tester) async {
+    await tester.pumpWidget(TestWidget(
+      phoneNumber: '+441481960194',
+      countryCode: 'GG',
+    ));
 
-        final countryCodeFinder = find.text('+44 1481');
-        final numberFinder = find.text('960194');
+    final countryCodeFinder = find.text('+44 1481');
+    final numberFinder = find.text('960194');
 
-        expect(countryCodeFinder, findsOneWidget);
-        expect(numberFinder, findsOneWidget);
-      });
+    expect(countryCodeFinder, findsOneWidget);
+    expect(numberFinder, findsOneWidget);
+  });
 
-  testWidgets('Test intl_phone_field setup with UK number: +447891244567',
-          (WidgetTester tester) async {
-        await tester.pumpWidget(TestWidget(
-          phoneNumber: '+447891244567',
-          countryCode: 'GB',
-        ));
+  testWidgets('Test intl_phone_field setup with UK number: +447891244567', (WidgetTester tester) async {
+    await tester.pumpWidget(TestWidget(
+      phoneNumber: '+447891244567',
+      countryCode: 'GB',
+    ));
 
-        final countryCodeFinder = find.text('+44');
-        final numberFinder = find.text('7891244567');
+    final countryCodeFinder = find.text('+44');
+    final numberFinder = find.text('7891244567');
 
-        expect(countryCodeFinder, findsOneWidget);
-        expect(numberFinder, findsOneWidget);
-      });
+    expect(countryCodeFinder, findsOneWidget);
+    expect(numberFinder, findsOneWidget);
+  });
 }
