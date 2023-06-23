@@ -13,7 +13,7 @@ class TestWidget extends StatelessWidget {
     return MaterialApp(
         title: 'Test Intl Phone Field',
         home: Scaffold(
-          appBar: AppBar(title: Text("")),
+          appBar: AppBar(title: const Text("")),
           body: IntlPhoneField(
             initialValue: phoneNumber,
             initialCountryCode: countryCode,
@@ -24,7 +24,7 @@ class TestWidget extends StatelessWidget {
 
 void main() {
   testWidgets('Test intl_phone_field setup with completeNumber', (WidgetTester tester) async {
-    await tester.pumpWidget(TestWidget(
+    await tester.pumpWidget(const TestWidget(
       phoneNumber: '+447891234467',
     ));
 
@@ -36,7 +36,7 @@ void main() {
   });
 
   testWidgets('Test intl_phone_field setup with Guernsey number: +441481960194', (WidgetTester tester) async {
-    await tester.pumpWidget(TestWidget(
+    await tester.pumpWidget(const TestWidget(
       phoneNumber: '+441481960194',
       countryCode: 'GG',
     ));
@@ -49,7 +49,7 @@ void main() {
   });
 
   testWidgets('Test intl_phone_field setup with UK number: +447891244567', (WidgetTester tester) async {
-    await tester.pumpWidget(TestWidget(
+    await tester.pumpWidget(const TestWidget(
       phoneNumber: '+447891244567',
       countryCode: 'GB',
     ));

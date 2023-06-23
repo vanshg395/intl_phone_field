@@ -7558,14 +7558,14 @@ class Country {
   });
 
   String get fullCountryCode {
-    return this.dialCode + this.regionCode;
+    return dialCode + regionCode;
   }
 
   String get displayCC {
-    if (this.regionCode != "") {
-      return "${this.dialCode} ${this.regionCode}";
+    if (regionCode != "") {
+      return "$dialCode $regionCode";
     }
-    return this.dialCode;
+    return dialCode;
   }
 
   String localizedName(String languageCode) {

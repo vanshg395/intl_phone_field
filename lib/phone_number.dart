@@ -61,9 +61,9 @@ class PhoneNumber {
       throw NumberTooShortException();
     }
 
-    final _validPhoneNumber = RegExp(r'^[+0-9]*[0-9]*$');
+    final validPhoneNumber = RegExp(r'^[+0-9]*[0-9]*$');
 
-    if (!_validPhoneNumber.hasMatch(phoneNumber)) {
+    if (!validPhoneNumber.hasMatch(phoneNumber)) {
       throw InvalidCharactersException();
     }
 
@@ -74,5 +74,6 @@ class PhoneNumber {
     return countries.firstWhere((country) => phoneNumber.startsWith(country.dialCode + country.regionCode));
   }
 
+  @override
   String toString() => 'PhoneNumber(countryISOCode: $countryISOCode, countryCode: $countryCode, number: $number)';
 }
