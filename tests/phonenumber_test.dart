@@ -7,8 +7,8 @@
 
 //import 'package:flutter_test/flutter_test.dart';
 import 'package:intl_phone_field/countries.dart';
-import 'package:test/test.dart';
 import 'package:intl_phone_field/phone_number.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('PhoneNumber', () {
@@ -53,7 +53,7 @@ void main() {
       expect(phoneNumber.countryCode, "");
       expect(phoneNumber.number, "");
       expect(() => phoneNumber.isValidNumber(),
-          throwsA(TypeMatcher<NumberTooShortException>()));
+          throwsA(const TypeMatcher<NumberTooShortException>()));
     });
 
     test('create HK  number +85212345678', () {
@@ -69,7 +69,7 @@ void main() {
       PhoneNumber ph =
           PhoneNumber.fromCompleteNumber(completeNumber: "+8521234567");
       expect(() => ph.isValidNumber(),
-          throwsA(TypeMatcher<NumberTooShortException>()));
+          throwsA(const TypeMatcher<NumberTooShortException>()));
     });
 
     test('cannot create from too long number +852123456789', () {
@@ -77,7 +77,7 @@ void main() {
           PhoneNumber.fromCompleteNumber(completeNumber: "+852123456789");
 
       expect(() => ph.isValidNumber(),
-          throwsA(TypeMatcher<NumberTooLongException>()));
+          throwsA(const TypeMatcher<NumberTooLongException>()));
     });
 
     test('create UK PhoneNumber from +447891234567', () {
@@ -100,12 +100,12 @@ void main() {
 
     test('create alpha character in  PhoneNumber from +44abcdef', () {
       expect(() => PhoneNumber.fromCompleteNumber(completeNumber: "+44abcdef"),
-          throwsA(TypeMatcher<InvalidCharactersException>()));
+          throwsA(const TypeMatcher<InvalidCharactersException>()));
     });
 
     test('create alpha character in  PhoneNumber from +44abcdef1', () {
       expect(() => PhoneNumber.fromCompleteNumber(completeNumber: "+44abcdef1"),
-          throwsA(TypeMatcher<InvalidCharactersException>()));
+          throwsA(const TypeMatcher<InvalidCharactersException>()));
     });
   });
 }

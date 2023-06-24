@@ -47,7 +47,7 @@ class CountryPickerDialog extends StatefulWidget {
   final PickerDialogStyle? style;
   final String languageCode;
 
-  CountryPickerDialog({
+  const CountryPickerDialog({
     Key? key,
     required this.searchText,
     required this.languageCode,
@@ -59,10 +59,10 @@ class CountryPickerDialog extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CountryPickerDialogState createState() => _CountryPickerDialogState();
+  CountryPickerDialogState createState() => CountryPickerDialogState();
 }
 
-class _CountryPickerDialogState extends State<CountryPickerDialog> {
+class CountryPickerDialogState extends State<CountryPickerDialog> {
   late List<Country> _filteredCountries;
   late Country _selectedCountry;
 
@@ -83,8 +83,8 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
   Widget build(BuildContext context) {
     final mediaWidth = MediaQuery.of(context).size.width;
     final width = widget.style?.width ?? mediaWidth;
-    final defaultHorizontalPadding = 40.0;
-    final defaultVerticalPadding = 24.0;
+    const defaultHorizontalPadding = 40.0;
+    const defaultVerticalPadding = 24.0;
     return Dialog(
       insetPadding: EdgeInsets.symmetric(
           vertical: defaultVerticalPadding,
@@ -93,16 +93,17 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
               : defaultHorizontalPadding),
       backgroundColor: widget.style?.backgroundColor,
       child: Container(
-        padding: widget.style?.padding ?? EdgeInsets.all(10),
+        padding: widget.style?.padding ?? const EdgeInsets.all(10),
         child: Column(
           children: <Widget>[
             Padding(
-              padding: widget.style?.searchFieldPadding ?? EdgeInsets.all(0),
+              padding:
+                  widget.style?.searchFieldPadding ?? const EdgeInsets.all(0),
               child: TextField(
                 cursorColor: widget.style?.searchFieldCursorColor,
                 decoration: widget.style?.searchFieldInputDecoration ??
                     InputDecoration(
-                      suffixIcon: Icon(Icons.search),
+                      suffixIcon: const Icon(Icons.search),
                       labelText: widget.searchText,
                     ),
                 onChanged: (value) {
@@ -112,11 +113,11 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                           .localizedName(widget.languageCode)
                           .compareTo(b.localizedName(widget.languageCode)),
                     );
-                  if (this.mounted) setState(() {});
+                  if (mounted) setState(() {});
                 },
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
@@ -124,28 +125,27 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                 itemBuilder: (ctx, index) => Column(
                   children: <Widget>[
                     ListTile(
-                      leading: 
-                      kIsWeb 
-                      ? Image.asset(
+                      leading: kIsWeb
+                          ? Image.asset(
                               'assets/flags/${_filteredCountries[index].code.toLowerCase()}.png',
                               package: 'intl_phone_field',
                               width: 32,
                             )
-                      : Text(
-                        _filteredCountries[index].flag,
-                        style: TextStyle(fontSize: 18),
-                      ),
+                          : Text(
+                              _filteredCountries[index].flag,
+                              style: const TextStyle(fontSize: 18),
+                            ),
                       contentPadding: widget.style?.listTilePadding,
                       title: Text(
                         _filteredCountries[index]
                             .localizedName(widget.languageCode),
                         style: widget.style?.countryNameStyle ??
-                            TextStyle(fontWeight: FontWeight.w700),
+                            const TextStyle(fontWeight: FontWeight.w700),
                       ),
                       trailing: Text(
                         '+${_filteredCountries[index].dialCode}',
                         style: widget.style?.countryCodeStyle ??
-                            TextStyle(fontWeight: FontWeight.w700),
+                            const TextStyle(fontWeight: FontWeight.w700),
                       ),
                       onTap: () {
                         _selectedCountry = _filteredCountries[index];
@@ -153,7 +153,8 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                         Navigator.of(context).pop();
                       },
                     ),
-                    widget.style?.listTileDivider ?? Divider(thickness: 1),
+                    widget.style?.listTileDivider ??
+                        const Divider(thickness: 1),
                   ],
                 ),
               ),
