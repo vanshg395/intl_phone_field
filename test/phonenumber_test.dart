@@ -13,8 +13,7 @@ import 'package:intl_phone_field/phone_number.dart';
 void main() {
   group('PhoneNumber', () {
     test('create a phone number', () {
-      PhoneNumber phoneNumber = PhoneNumber(
-          countryISOCode: "UK", countryCode: "+44", number: "7891234567");
+      PhoneNumber phoneNumber = PhoneNumber(countryISOCode: "UK", countryCode: "+44", number: "7891234567");
       String actual = phoneNumber.completeNumber;
       String expected = "+447891234567";
 
@@ -23,8 +22,7 @@ void main() {
     });
 
     test('create a Guernsey number', () {
-      PhoneNumber phoneNumber = PhoneNumber(
-          countryISOCode: "GG", countryCode: "+441481", number: "960194");
+      PhoneNumber phoneNumber = PhoneNumber(countryISOCode: "GG", countryCode: "+441481", number: "960194");
       String actual = phoneNumber.completeNumber;
       String expected = "+441481960194";
 
@@ -47,18 +45,15 @@ void main() {
     });
 
     test('create with empty complete number', () {
-      PhoneNumber phoneNumber =
-          PhoneNumber.fromCompleteNumber(completeNumber: "");
+      PhoneNumber phoneNumber = PhoneNumber.fromCompleteNumber(completeNumber: "");
       expect(phoneNumber.countryISOCode, "");
       expect(phoneNumber.countryCode, "");
       expect(phoneNumber.number, "");
-      expect(() => phoneNumber.isValidNumber(),
-          throwsA(TypeMatcher<NumberTooShortException>()));
+      expect(() => phoneNumber.isValidNumber(), throwsA(const TypeMatcher<NumberTooShortException>()));
     });
 
     test('create HK  number +85212345678', () {
-      PhoneNumber phoneNumber =
-          PhoneNumber.fromCompleteNumber(completeNumber: "+85212345678");
+      PhoneNumber phoneNumber = PhoneNumber.fromCompleteNumber(completeNumber: "+85212345678");
       expect(phoneNumber.countryISOCode, "HK");
       expect(phoneNumber.countryCode, "852");
       expect(phoneNumber.number, "12345678");
@@ -66,23 +61,18 @@ void main() {
     });
 
     test('Number is too short number +8521234567', () {
-      PhoneNumber ph =
-          PhoneNumber.fromCompleteNumber(completeNumber: "+8521234567");
-      expect(() => ph.isValidNumber(),
-          throwsA(TypeMatcher<NumberTooShortException>()));
+      PhoneNumber ph = PhoneNumber.fromCompleteNumber(completeNumber: "+8521234567");
+      expect(() => ph.isValidNumber(), throwsA(const TypeMatcher<NumberTooShortException>()));
     });
 
     test('cannot create from too long number +852123456789', () {
-      PhoneNumber ph =
-          PhoneNumber.fromCompleteNumber(completeNumber: "+852123456789");
+      PhoneNumber ph = PhoneNumber.fromCompleteNumber(completeNumber: "+852123456789");
 
-      expect(() => ph.isValidNumber(),
-          throwsA(TypeMatcher<NumberTooLongException>()));
+      expect(() => ph.isValidNumber(), throwsA(const TypeMatcher<NumberTooLongException>()));
     });
 
     test('create UK PhoneNumber from +447891234567', () {
-      PhoneNumber phoneNumber =
-          PhoneNumber.fromCompleteNumber(completeNumber: "+447891234567");
+      PhoneNumber phoneNumber = PhoneNumber.fromCompleteNumber(completeNumber: "+447891234567");
       expect(phoneNumber.countryISOCode, "GB");
       expect(phoneNumber.countryCode, "44");
       expect(phoneNumber.number, "7891234567");
@@ -90,8 +80,7 @@ void main() {
     });
 
     test('create Guernsey PhoneNumber from +441481960194', () {
-      PhoneNumber phoneNumber =
-          PhoneNumber.fromCompleteNumber(completeNumber: "+441481960194");
+      PhoneNumber phoneNumber = PhoneNumber.fromCompleteNumber(completeNumber: "+441481960194");
       expect(phoneNumber.countryISOCode, "GG");
       expect(phoneNumber.countryCode, "441481");
       expect(phoneNumber.number, "960194");
@@ -100,12 +89,12 @@ void main() {
 
     test('create alpha character in  PhoneNumber from +44abcdef', () {
       expect(() => PhoneNumber.fromCompleteNumber(completeNumber: "+44abcdef"),
-          throwsA(TypeMatcher<InvalidCharactersException>()));
+          throwsA(const TypeMatcher<InvalidCharactersException>()));
     });
 
     test('create alpha character in  PhoneNumber from +44abcdef1', () {
       expect(() => PhoneNumber.fromCompleteNumber(completeNumber: "+44abcdef1"),
-          throwsA(TypeMatcher<InvalidCharactersException>()));
+          throwsA(const TypeMatcher<InvalidCharactersException>()));
     });
   });
 }
