@@ -3315,7 +3315,7 @@ const List<Country> countries = [
     },
     flag: "🇮🇹",
     code: "IT",
-    dialCode: "41",
+    dialCode: "39",
     minLength: 13,
     maxLength: 13,
   ),
