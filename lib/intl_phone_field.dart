@@ -328,22 +328,20 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       }
     }
 
-    if (widget.autovalidateMode == AutovalidateMode.always) {
-      final initialPhoneNumber = PhoneNumber(
-        countryISOCode: _selectedCountry.code,
-        countryCode: '+${_selectedCountry.dialCode}',
-        number: widget.initialValue ?? '',
-      );
+    final initialPhoneNumber = PhoneNumber(
+      countryISOCode: _selectedCountry.code,
+      countryCode: '+${_selectedCountry.dialCode}',
+      number: widget.initialValue ?? '',
+    );
 
-      final value = widget.validator?.call(initialPhoneNumber);
+    final value = widget.validator?.call(initialPhoneNumber);
 
-      if (value is String) {
-        validatorMessage = value;
-      } else {
-        (value as Future).then((msg) {
-          validatorMessage = msg;
-        });
-      }
+    if (value is String) {
+      validatorMessage = value;
+    } else {
+      (value as Future).then((msg) {
+        validatorMessage = msg;
+      });
     }
   }
 
