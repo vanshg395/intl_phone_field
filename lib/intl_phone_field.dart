@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/helpers.dart';
+import 'package:intl_country_data/intl_country_data.dart';
 
 import './countries.dart';
 import './phone_number.dart';
@@ -271,8 +272,7 @@ class IntlPhoneField extends StatefulWidget {
     this.inputFormatters,
     this.enabled = true,
     this.keyboardAppearance,
-    @Deprecated('Use searchFieldInputDecoration of PickerDialogStyle instead')
-    this.searchText = 'Search country',
+    @Deprecated('Use searchFieldInputDecoration of PickerDialogStyle instead') this.searchText = 'Search country',
     this.dropdownIconPosition = IconPosition.leading,
     this.dropdownIcon = const Icon(Icons.arrow_drop_down),
     this.autofocus = false,
@@ -282,7 +282,7 @@ class IntlPhoneField extends StatefulWidget {
     this.cursorColor,
     this.disableLengthCheck = false,
     this.flagsButtonPadding = EdgeInsets.zero,
-    this.invalidNumberMessage = 'Invalid Mobile Number',
+    this.invalidNumberMessage = 'Please enter a valid number',
     this.cursorHeight,
     this.cursorRadius = Radius.zero,
     this.cursorWidth = 2.0,
@@ -309,7 +309,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   void initState() {
     super.initState();
 
-    _countryList = widget.countries ?? countries;
+    final allCountries = IntlCountryData.all().map((d) => Country.fromIntlCountryData(d)).toList();
+
+    _countryList = widget.countries ?? allCountries;
     filteredCountries = _countryList;
     number = widget.initialValue ?? '';
 
@@ -318,7 +320,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     if (widget.initialCountryCode == null && number.startsWith('+')) {
       number = number.substring(1);
       // parse initial value
-      _selectedCountry = countries.firstWhere((country) => number.startsWith(country.fullCountryCode),
+      _selectedCountry = allCountries.firstWhere((country) => number.startsWith(country.fullCountryCode),
           orElse: () => _countryList.first);
 
       // remove country code from the initial number value
@@ -396,19 +398,15 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     if (widget.autovalidateMode != AutovalidateMode.disabled) {
       validatorMessage = await widget.validator?.call(phoneNumber);
     }
-    final isValidLength = value.length >= _selectedCountry.minLength &&
-        value.length <= _selectedCountry.maxLength;
+    final isValidLength = value.length >= _selectedCountry.minLength && value.length <= _selectedCountry.maxLength;
 
-    widget.onChanged
-        ?.call(phoneNumber, validatorMessage == null && isValidLength);
+    widget.onChanged?.call(phoneNumber, validatorMessage == null && isValidLength);
   }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      autofillHints: widget.disableAutoFillHints
-          ? null
-          : [AutofillHints.telephoneNumberNational],
+      autofillHints: widget.disableAutoFillHints ? null : [AutofillHints.telephoneNumberNational],
       readOnly: widget.readOnly,
       obscureText: widget.obscureText,
       textAlign: widget.textAlign,

@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  intl_country_data: ^1.0.0
 
 dev_dependencies:
   flutter_lints: ^2.0.1

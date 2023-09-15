@@ -1,10 +1,14 @@
 import 'countries.dart';
 
+import 'package:intl_country_data/intl_country_data.dart';
+
 class NumberTooLongException implements Exception {}
 
 class NumberTooShortException implements Exception {}
 
 class InvalidCharactersException implements Exception {}
+
+class PhoneNumbedNotRecognizedException implements Exception {}
 
 class PhoneNumber {
   String countryISOCode;
@@ -60,18 +64,21 @@ class PhoneNumber {
     if (phoneNumber == "") {
       throw NumberTooShortException();
     }
+    if (phoneNumber.length >= 2 && phoneNumber.substring(0, 2) == '00') {
+      phoneNumber = '+${phoneNumber.substring(2)}';
+    }
 
-    final validPhoneNumber = RegExp(r'^[+0-9]*[0-9]*$');
+    final validPhoneNumber = RegExp(r'^[+]{1}[0-9]*$');
 
     if (!validPhoneNumber.hasMatch(phoneNumber)) {
       throw InvalidCharactersException();
     }
 
-    if (phoneNumber.startsWith('+')) {
-      return countries
-          .firstWhere((country) => phoneNumber.substring(1).startsWith(country.dialCode + country.regionCode));
+    final matches = IntlCountryData.fromTelephoneNumber(phoneNumber);
+    if (matches.isEmpty) {
+      throw PhoneNumbedNotRecognizedException();
     }
-    return countries.firstWhere((country) => phoneNumber.startsWith(country.dialCode + country.regionCode));
+    return Country.fromIntlCountryData(matches.first);
   }
 
   @override
