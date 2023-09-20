@@ -113,6 +113,8 @@ class IntlPhoneField extends StatefulWidget {
   /// If non-null this property overrides the [decoration]'s
   /// [Decoration.enabled] property.
   final bool enabled;
+  
+  final bool dropDownEnabled;
 
   /// The appearance of the keyboard.
   ///
@@ -270,6 +272,7 @@ class IntlPhoneField extends StatefulWidget {
     this.dropdownDecoration = const BoxDecoration(),
     this.inputFormatters,
     this.enabled = true,
+    this.dropDownEnabled = true,
     this.keyboardAppearance,
     @Deprecated('Use searchFieldInputDecoration of PickerDialogStyle instead') this.searchText = 'Search country',
     this.dropdownIconPosition = IconPosition.leading,
@@ -444,7 +447,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         decoration: widget.dropdownDecoration,
         child: InkWell(
           borderRadius: widget.dropdownDecoration.borderRadius as BorderRadius?,
-          onTap: widget.enabled ? _changeCountry : null,
+          onTap: widget.enabled && widget.dropDownEnabled ? _changeCountry : null,
           child: Padding(
             padding: widget.flagsButtonPadding,
             child: Row(
