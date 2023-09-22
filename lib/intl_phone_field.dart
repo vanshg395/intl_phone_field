@@ -240,6 +240,13 @@ class IntlPhoneField extends StatefulWidget {
   /// If unset, defaults to [EdgeInsets.zero].
   final EdgeInsets flagsButtonMargin;
 
+
+  /// Determines if the dialog will use the root navigator or not when displaying
+  /// countries dialog
+  ///
+  /// If unset, defaults to false
+  bool useRootNavigatorWithCountriesDialog;
+
   //enable the autofill hint for phone number
   final bool disableAutoFillHints;
 
@@ -288,6 +295,7 @@ class IntlPhoneField extends StatefulWidget {
     this.showCursor = true,
     this.pickerDialogStyle,
     this.flagsButtonMargin = EdgeInsets.zero,
+    this.useRootNavigatorWithCountriesDialog = false
   }) : super(key: key);
 
   @override
@@ -351,7 +359,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     filteredCountries = _countryList;
     await showDialog(
       context: context,
-      useRootNavigator: false,
+      useRootNavigator: useRootNavigatorWithCountriesDialog,
       builder: (context) => StatefulBuilder(
         builder: (ctx, setState) => CountryPickerDialog(
           languageCode: widget.languageCode.toLowerCase(),
