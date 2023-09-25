@@ -336,7 +336,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
     final value = widget.validator?.call(initialPhoneNumber);
 
-    if (value is String) {
+    if (value == null) {
+      validatorMessage = null;
+    } else if (value is String) {
       validatorMessage = value;
     } else {
       (value as Future).then((msg) {
