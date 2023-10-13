@@ -291,7 +291,7 @@ class IntlPhoneField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
+  State<IntlPhoneField> createState() => _IntlPhoneFieldState();
 }
 
 class _IntlPhoneFieldState extends State<IntlPhoneField> {
