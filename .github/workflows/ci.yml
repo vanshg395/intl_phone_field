@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  pull_request:
+    branches: '*'
+  push:
+    branches: [master]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Format code
+        run: dart format --line-length 120 --set-exit-if-changed .
+      - name: Analyze code
+        run: flutter analyze
+      # Skip tests for now
+      # - name: Run tests
+      #   run: flutter test

@@ -1,9 +1,8 @@
 # International Phone Field Package
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![pub package](https://img.shields.io/pub/v/intl_phone_field.svg)](https://pub.dev/packages/intl_phone_field)
+[![CI](https://github.com/vanshg395/intl_phone_field/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/vanshg395/intl_phone_field/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A customised Flutter TextFormField to input international phone number along with country code.
 
@@ -27,7 +26,17 @@ Or, add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  intl_phone_field: ^3.1.0
+  intl_phone_field: ^<latest_version>
+```
+
+Sometimes you may want to use the latest version of the package, instead of a published version. To do that, use the `git` syntax:
+
+```yaml
+dependencies:
+  intl_phone_field:
+    git:
+      url: git://github.com/vanshg395/intl_phone_field.git
+      ref: master
 ```
 
 ## How to Use
@@ -66,10 +75,12 @@ Comment on Issue or Pull Request, asking @all-contributors to add a contributor:
 **\<contributions>**: See the [Emoji Key (Contribution Types Reference)](https://allcontributors.org/docs/en/emoji-key) for a list of valid contribution types.
 
 ## Maintainers
+
 - [Vansh Goel](https://github.com/vanshg395/)
 - [Alex N'Guessan](https://github.com/marcaureln/)
 
 ## Contributors
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -87,6 +98,8 @@ Comment on Issue or Pull Request, asking @all-contributors to add a contributor:
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/2000calories"><img src="https://avatars.githubusercontent.com/u/25191098?v=4?s=100" width="100px;" alt="hans.huang"/><br /><sub><b>hans.huang</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=2000calories" title="Code">💻</a> <a href="https://github.com/vanshg395/intl_phone_field/commits?author=2000calories" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/The-Redhat"><img src="https://avatars.githubusercontent.com/u/33162310?v=4?s=100" width="100px;" alt="Gregor Weber"/><br /><sub><b>Gregor Weber</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=The-Redhat" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://beacons.ai/hanyi00i"><img src="https://avatars.githubusercontent.com/u/92980326?v=4?s=100" width="100px;" alt="Ooi Han Yi"/><br /><sub><b>Ooi Han Yi</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=hanyi00i" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://www.jimmyff.co.uk"><img src="https://avatars.githubusercontent.com/u/298850?v=4?s=100" width="100px;" alt="Jimmy Forrester-Fellowes"/><br /><sub><b>Jimmy Forrester-Fellowes</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=jimmyff" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
@@ -98,4 +111,4 @@ Comment on Issue or Pull Request, asking @all-contributors to add a contributor:
 
 ## LICENSE
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+This project is licensed under the MIT license. See [LICENSE](LICENSE) for more information.

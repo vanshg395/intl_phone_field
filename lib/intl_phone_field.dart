@@ -11,6 +11,9 @@ import './countries.dart';
 import './phone_number.dart';
 
 class IntlPhoneField extends StatefulWidget {
+  /// The TextFormField key.
+  final GlobalKey<FormFieldState>? formFieldKey;
+
   /// Whether to hide the text being edited (e.g., for passwords).
   final bool obscureText;
 
@@ -243,59 +246,60 @@ class IntlPhoneField extends StatefulWidget {
   //enable the autofill hint for phone number
   final bool disableAutoFillHints;
 
-  /// If null default magnification configuration will be used
+  /// If null, default magnification configuration will be used.
   final TextMagnifierConfiguration? magnifierConfiguration;
 
-  const IntlPhoneField(
-      {Key? key,
-      this.initialCountryCode,
-      this.languageCode = 'en',
-      this.disableAutoFillHints = false,
-      this.obscureText = false,
-      this.textAlign = TextAlign.left,
-      this.textAlignVertical,
-      this.onTap,
-      this.readOnly = false,
-      this.initialValue,
-      this.keyboardType = TextInputType.phone,
-      this.controller,
-      this.focusNode,
-      this.decoration = const InputDecoration(),
-      this.style,
-      this.dropdownTextStyle,
-      this.onSubmitted,
-      this.validator,
-      this.onChanged,
-      this.countries,
-      this.onCountryChanged,
-      this.onSaved,
-      this.showDropdownIcon = true,
-      this.dropdownDecoration = const BoxDecoration(),
-      this.inputFormatters,
-      this.enabled = true,
-      this.keyboardAppearance,
-      @Deprecated('Use searchFieldInputDecoration of PickerDialogStyle instead') this.searchText = 'Search country',
-      this.dropdownIconPosition = IconPosition.leading,
-      this.dropdownIcon = const Icon(Icons.arrow_drop_down),
-      this.autofocus = false,
-      this.textInputAction,
-      this.autovalidateMode = AutovalidateMode.onUserInteraction,
-      this.showCountryFlag = true,
-      this.cursorColor,
-      this.disableLengthCheck = false,
-      this.flagsButtonPadding = EdgeInsets.zero,
-      this.invalidNumberMessage = 'Invalid Mobile Number',
-      this.cursorHeight,
-      this.cursorRadius = Radius.zero,
-      this.cursorWidth = 2.0,
-      this.showCursor = true,
-      this.pickerDialogStyle,
-      this.flagsButtonMargin = EdgeInsets.zero,
-      this.magnifierConfiguration})
-      : super(key: key);
+  const IntlPhoneField({
+    Key? key,
+    this.formFieldKey,
+    this.initialCountryCode,
+    this.languageCode = 'en',
+    this.disableAutoFillHints = false,
+    this.obscureText = false,
+    this.textAlign = TextAlign.left,
+    this.textAlignVertical,
+    this.onTap,
+    this.readOnly = false,
+    this.initialValue,
+    this.keyboardType = TextInputType.phone,
+    this.controller,
+    this.focusNode,
+    this.decoration = const InputDecoration(),
+    this.style,
+    this.dropdownTextStyle,
+    this.onSubmitted,
+    this.validator,
+    this.onChanged,
+    this.countries,
+    this.onCountryChanged,
+    this.onSaved,
+    this.showDropdownIcon = true,
+    this.dropdownDecoration = const BoxDecoration(),
+    this.inputFormatters,
+    this.enabled = true,
+    this.keyboardAppearance,
+    @Deprecated('Use searchFieldInputDecoration of PickerDialogStyle instead') this.searchText = 'Search country',
+    this.dropdownIconPosition = IconPosition.leading,
+    this.dropdownIcon = const Icon(Icons.arrow_drop_down),
+    this.autofocus = false,
+    this.textInputAction,
+    this.autovalidateMode = AutovalidateMode.onUserInteraction,
+    this.showCountryFlag = true,
+    this.cursorColor,
+    this.disableLengthCheck = false,
+    this.flagsButtonPadding = EdgeInsets.zero,
+    this.invalidNumberMessage = 'Invalid Mobile Number',
+    this.cursorHeight,
+    this.cursorRadius = Radius.zero,
+    this.cursorWidth = 2.0,
+    this.showCursor = true,
+    this.pickerDialogStyle,
+    this.flagsButtonMargin = EdgeInsets.zero,
+    this.magnifierConfiguration,
+  }) : super(key: key);
 
   @override
-  _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
+  State<IntlPhoneField> createState() => _IntlPhoneFieldState();
 }
 
 class _IntlPhoneFieldState extends State<IntlPhoneField> {
@@ -378,6 +382,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      key: widget.formFieldKey,
       initialValue: (widget.controller == null) ? number : null,
       autofillHints: widget.disableAutoFillHints ? null : [AutofillHints.telephoneNumberNational],
       readOnly: widget.readOnly,

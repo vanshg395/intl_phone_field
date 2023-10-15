@@ -86,6 +86,24 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "hanyi00i",
+      "name": "Ooi Han Yi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/92980326?v=4",
+      "profile": "http://beacons.ai/hanyi00i",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jimmyff",
+      "name": "Jimmy Forrester-Fellowes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/298850?v=4",
+      "profile": "https://www.jimmyff.co.uk",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
