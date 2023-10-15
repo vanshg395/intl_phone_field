@@ -243,7 +243,7 @@ class IntlPhoneField extends StatefulWidget {
   /// If unset, defaults to [EdgeInsets.zero].
   final EdgeInsets flagsButtonMargin;
 
-  //enable the autofill hint for phone number
+  /// Enable the autofill hint for phone number.
   final bool disableAutoFillHints;
 
   /// If null, default magnification configuration will be used.
