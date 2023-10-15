@@ -11,8 +11,8 @@ import './countries.dart';
 import './phone_number.dart';
 
 class IntlPhoneField extends StatefulWidget {
-  /// The form key
-  final GlobalKey<FormFieldState> formFieldKey;
+  /// The TextFormField key.
+  final GlobalKey<FormFieldState>? formFieldKey;
 
   /// Whether to hide the text being edited (e.g., for passwords).
   final bool obscureText;
