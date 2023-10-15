@@ -1,3 +1,9 @@
+## [3.3.0] - Release
+
+- Add `magnifierConfiguration` to customize the magnifier.
+- Add `formFieldKey` for the phone input text field key.
+- Update phone number length of several countries.
+
 ## [3.2.0] - Release
 
 - Add `autofillHints` and disable posibility.
