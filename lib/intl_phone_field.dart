@@ -15,6 +15,9 @@ class IntlPhoneField extends StatefulWidget {
   /// Whether to hide the text being edited (e.g., for passwords).
   final bool obscureText;
 
+  /// TextFormField key.
+  final GlobalKey<FormFieldState>? formFieldKey;
+
   /// How the text should be aligned horizontally.
   final TextAlign textAlign;
 
@@ -246,6 +249,7 @@ class IntlPhoneField extends StatefulWidget {
 
   const IntlPhoneField({
     Key? key,
+    this.formFieldKey,
     this.initialCountryCode,
     this.languageCode = 'en',
     this.disableAutoFillHints = false,
@@ -406,6 +410,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      key: widget.formFieldKey,
       autofillHints: widget.disableAutoFillHints ? null : [AutofillHints.telephoneNumberNational],
       readOnly: widget.readOnly,
       obscureText: widget.obscureText,

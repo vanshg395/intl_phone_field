@@ -59,7 +59,7 @@ class CountryPickerDialog extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CountryPickerDialogState createState() => _CountryPickerDialogState();
+  State<CountryPickerDialog> createState() => _CountryPickerDialogState();
 }
 
 class _CountryPickerDialogState extends State<CountryPickerDialog> {
