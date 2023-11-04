@@ -4029,8 +4029,8 @@ const List<Country> countries = [
     flag: "🇲🇬",
     code: "MG",
     dialCode: "261",
-    minLength: 10,
-    maxLength: 10,
+    minLength: 9,
+    maxLength: 9,
   ),
   Country(
     name: "Malawi",
