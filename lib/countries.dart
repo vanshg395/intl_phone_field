@@ -3599,6 +3599,15 @@ const List<Country> countries = [
     maxLength: 11,
   ),
   Country(
+    name: "Kosovo",
+    nameTranslations: {"de": "Kosovo", "en": "Kosovo"},
+    flag: "🇽🇰",
+    code: "XK",
+    dialCode: "383",
+    minLength: 8,
+    maxLength: 8,
+  ),
+  Country(
     name: "Kuwait",
     nameTranslations: {
       "sk": "Kuvajt",
