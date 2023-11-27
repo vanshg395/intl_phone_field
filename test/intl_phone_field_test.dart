@@ -3,10 +3,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 class TestWidget extends StatelessWidget {
-  const TestWidget({Key? key, required this.phoneNumber, this.countryCode}) : super(key: key);
+  const TestWidget({Key? key, required this.phoneNumber, this.countryCode, this.onNumberValide}) : super(key: key);
 
   final String phoneNumber;
   final String? countryCode;
+  final void Function(bool)? onNumberValide;
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +16,10 @@ class TestWidget extends StatelessWidget {
         home: Scaffold(
           appBar: AppBar(title: const Text("")),
           body: IntlPhoneField(
+            autovalidateMode: AutovalidateMode.always,
             initialValue: phoneNumber,
             initialCountryCode: countryCode,
+            onNumberValide: onNumberValide,
           ),
         ));
   }
@@ -59,5 +62,17 @@ void main() {
 
     expect(countryCodeFinder, findsOneWidget);
     expect(numberFinder, findsOneWidget);
+  });
+
+  testWidgets('Test intl_phone_field on Number Valide', (WidgetTester tester) async {
+    bool? isValideNumber;
+    await tester.pumpWidget(TestWidget(
+      phoneNumber: '65235858',
+      countryCode: 'BJ',
+      onNumberValide: (valide) {
+        isValideNumber = valide;
+      },
+    ));
+    expect(isValideNumber, true);
   });
 }
