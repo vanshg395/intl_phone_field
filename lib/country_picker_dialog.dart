@@ -44,11 +44,13 @@ class CountryPickerDialog extends StatefulWidget {
   final ValueChanged<Country> onCountryChanged;
   final String searchText;
   final List<Country> filteredCountries;
+  final List<String> favorite;
   final PickerDialogStyle? style;
   final String languageCode;
 
   const CountryPickerDialog({
     Key? key,
+    this.favorite = const [],
     required this.searchText,
     required this.languageCode,
     required this.countryList,
@@ -65,10 +67,16 @@ class CountryPickerDialog extends StatefulWidget {
 class _CountryPickerDialogState extends State<CountryPickerDialog> {
   late List<Country> _filteredCountries;
   late Country _selectedCountry;
+  late List<Country> _filteredFavoriteCountries;
+  late List<Country> _favoriteCountries;
 
   @override
   void initState() {
     _selectedCountry = widget.selectedCountry;
+    _favoriteCountries = getCountriesByCountriesCode(widget.favorite, widget.filteredCountries);
+
+    _filteredFavoriteCountries = _favoriteCountries;
+
     _filteredCountries = widget.filteredCountries.toList()
       ..sort(
         (a, b) => a.localizedName(widget.languageCode).compareTo(b.localizedName(widget.languageCode)),
@@ -104,55 +112,87 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                       labelText: widget.searchText,
                     ),
                 onChanged: (value) {
-                  _filteredCountries = widget.countryList.stringSearch(value)
-                    ..sort(
-                      (a, b) => a.localizedName(widget.languageCode).compareTo(b.localizedName(widget.languageCode)),
-                    );
+                  search(value);
                   if (mounted) setState(() {});
                 },
               ),
             ),
             const SizedBox(height: 20),
             Expanded(
-              child: ListView.builder(
+              child: CustomScrollView(
                 shrinkWrap: true,
-                itemCount: _filteredCountries.length,
-                itemBuilder: (ctx, index) => Column(
-                  children: <Widget>[
-                    ListTile(
-                      leading: kIsWeb
-                          ? Image.asset(
-                              'assets/flags/${_filteredCountries[index].code.toLowerCase()}.png',
-                              package: 'intl_phone_field',
-                              width: 32,
-                            )
-                          : Text(
-                              _filteredCountries[index].flag,
-                              style: const TextStyle(fontSize: 18),
-                            ),
-                      contentPadding: widget.style?.listTilePadding,
-                      title: Text(
-                        _filteredCountries[index].localizedName(widget.languageCode),
-                        style: widget.style?.countryNameStyle ?? const TextStyle(fontWeight: FontWeight.w700),
+                slivers: [
+                  if (_filteredFavoriteCountries.isNotEmpty) ...[
+                    SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (BuildContext context, int index) {
+                          final Country item = _filteredFavoriteCountries[index];
+                          return _buildCountryPickerItem(item);
+                        },
+                        childCount: _filteredFavoriteCountries.length,
                       ),
-                      trailing: Text(
-                        '+${_filteredCountries[index].dialCode}',
-                        style: widget.style?.countryCodeStyle ?? const TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                      onTap: () {
-                        _selectedCountry = _filteredCountries[index];
-                        widget.onCountryChanged(_selectedCountry);
-                        Navigator.of(context).pop();
-                      },
                     ),
-                    widget.style?.listTileDivider ?? const Divider(thickness: 1),
                   ],
-                ),
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                        final Country item = _filteredCountries[index];
+                        return _buildCountryPickerItem(item);
+                      },
+                      childCount: _filteredCountries.length,
+                    ),
+                  )
+                ],
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  void search(String value) {
+    _filteredCountries = widget.countryList
+        .stringSearch(value)
+        .where((item) => widget.favorite.any((code) => item.code != code))
+        .toList()
+      ..sort(
+        (a, b) => a.localizedName(widget.languageCode).compareTo(b.localizedName(widget.languageCode)),
+      );
+    _filteredFavoriteCountries = _favoriteCountries.stringSearch(value);
+  }
+
+  Widget _buildCountryPickerItem(Country item) {
+    return Column(
+      children: <Widget>[
+        ListTile(
+          leading: kIsWeb
+              ? Image.asset(
+                  'assets/flags/${item.code.toLowerCase()}.png',
+                  package: 'intl_phone_field',
+                  width: 32,
+                )
+              : Text(
+                  item.flag,
+                  style: const TextStyle(fontSize: 18),
+                ),
+          contentPadding: widget.style?.listTilePadding,
+          title: Text(
+            item.localizedName(widget.languageCode),
+            style: widget.style?.countryNameStyle ?? const TextStyle(fontWeight: FontWeight.w700),
+          ),
+          trailing: Text(
+            '+${item.dialCode}',
+            style: widget.style?.countryCodeStyle ?? const TextStyle(fontWeight: FontWeight.w700),
+          ),
+          onTap: () {
+            _selectedCountry = item;
+            widget.onCountryChanged(_selectedCountry);
+            Navigator.of(context).pop();
+          },
+        ),
+        widget.style?.listTileDivider ?? const Divider(thickness: 1),
+      ],
     );
   }
 }

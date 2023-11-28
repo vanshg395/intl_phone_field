@@ -13,6 +13,11 @@ String removeDiacritics(String str) {
   return str;
 }
 
+List<Country> getCountriesByCountriesCode(List<String> countriesCode, List<Country> countries) {
+  // Filter the countries based on the provided country codes
+  return countries.where((country) => countriesCode.contains(country.code)).toList();
+}
+
 extension CountryExtensions on List<Country> {
   List<Country> stringSearch(String search) {
     search = removeDiacritics(search.toLowerCase());

@@ -249,6 +249,9 @@ class IntlPhoneField extends StatefulWidget {
   /// If null, default magnification configuration will be used.
   final TextMagnifierConfiguration? magnifierConfiguration;
 
+  /// added favorite countries to the top of the list
+  final List<String> favourite;
+
   const IntlPhoneField({
     Key? key,
     this.formFieldKey,
@@ -294,6 +297,7 @@ class IntlPhoneField extends StatefulWidget {
     this.cursorWidth = 2.0,
     this.showCursor = true,
     this.pickerDialogStyle,
+    this.favourite = const [],
     this.flagsButtonMargin = EdgeInsets.zero,
     this.magnifierConfiguration,
   }) : super(key: key);
@@ -314,7 +318,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   void initState() {
     super.initState();
     _countryList = widget.countries ?? countries;
-    filteredCountries = _countryList;
+
+    filteredCountries = _countryList.where((item) => widget.favourite.any((code) => item.code != code)).toList();
+
     number = widget.initialValue ?? '';
     if (widget.initialCountryCode == null && number.startsWith('+')) {
       number = number.substring(1);
@@ -357,11 +363,13 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
   Future<void> _changeCountry() async {
     filteredCountries = _countryList;
+
     await showDialog(
       context: context,
       useRootNavigator: false,
       builder: (context) => StatefulBuilder(
         builder: (ctx, setState) => CountryPickerDialog(
+          favorite: widget.favourite,
           languageCode: widget.languageCode.toLowerCase(),
           style: widget.pickerDialogStyle,
           filteredCountries: filteredCountries,
