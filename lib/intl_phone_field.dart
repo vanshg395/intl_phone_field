@@ -13,6 +13,7 @@ import './phone_number.dart';
 class IntlPhoneField extends StatefulWidget {
   /// The TextFormField key.
   final GlobalKey<FormFieldState>? formFieldKey;
+  final ValueKey? flagButtonKey;
 
   /// Whether to hide the text being edited (e.g., for passwords).
   final bool obscureText;
@@ -255,6 +256,7 @@ class IntlPhoneField extends StatefulWidget {
   const IntlPhoneField({
     Key? key,
     this.formFieldKey,
+    this.flagButtonKey,
     this.initialCountryCode,
     this.languageCode = 'en',
     this.disableAutoFillHints = false,
@@ -457,6 +459,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
   Container _buildFlagsButton() {
     return Container(
+      key: widget.flagButtonKey,
       margin: widget.flagsButtonMargin,
       child: DecoratedBox(
         decoration: widget.dropdownDecoration,
