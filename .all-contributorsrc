@@ -104,7 +104,16 @@
       "contributions": [
         "code"
       ]
-    }
+    },
+    {
+      "login": "tmsbrndz",
+      "name": "Tamas Brindza",
+      "avatar_url": "https://avatars.githubusercontent.com/u/31684353?v=4",
+      "profile": "https://github.com/tmsbrndz",
+      "contributions": [
+        "code"
+      ]
+    },
   ],
   "contributorsPerLine": 7,
   "projectName": "intl_phone_field",
