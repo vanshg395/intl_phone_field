@@ -46,10 +46,10 @@ class PhoneNumber {
     } catch (e) {
       return false;
     }
-    if (number.length < country.minLength) {
-      return false;
-    }else{
+    if (number.length == country.minLength) {
       return true;
+    }else{
+      return false;
     }
   }
 
