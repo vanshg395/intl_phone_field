@@ -46,7 +46,7 @@ class PhoneNumber {
     } catch (e) {
       return false;
     }
-    if (number.length == country.minLength) {
+    if (number.length == country.minLength || number.length == country.maxLength) {
       return true;
     }else{
       return false;
