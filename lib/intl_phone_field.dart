@@ -347,6 +347,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
       if (value is String) {
         validatorMessage = value;
+      } else if (value == null) {
+        validatorMessage = null;
       } else {
         (value as Future).then((msg) {
           validatorMessage = msg;
