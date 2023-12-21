@@ -104,6 +104,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "KyawLwinSoe27",
+      "name": "Kyaw Lwin Soe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/51574554?v=4",
+      "profile": "https://kyawlwinsoe.netlify.app/",
+      "contributions": [
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
