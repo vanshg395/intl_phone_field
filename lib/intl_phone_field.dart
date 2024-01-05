@@ -1,6 +1,7 @@
 library intl_phone_field;
 
 import 'dart:async';
+import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -471,7 +472,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                   const SizedBox(width: 4),
                 ],
                 if (widget.showCountryFlag) ...[
-                  kIsWeb
+                  (kIsWeb || Platform.isLinux || Platform.isWindows)
                       ? Image.asset(
                           'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
                           package: 'intl_phone_field',
