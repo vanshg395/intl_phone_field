@@ -8,6 +8,17 @@ A customised Flutter TextFormField to input international phone number along wit
 
 This widget can be used to make customised text field to take phone number input for any country along with an option to choose country code from a dropdown.
 
+## ⚠️ The package is deprecated and this repository is no longer maintained ⚠️
+
+As of June 2021, I, @marcaureln, have been maintaining this Flutter package initially created by @vanshg395. Regrettably, Vansh has been unresponsive, and I am unable to release new versions (the last release is 6 months old as of writing).
+
+Considering this, I recommend users to explore alternatives on [pub.dev](https://pub.dev/) or, if interested, fork this repository for continued support. Life can be hectic, and I wish Vansh is doing well.
+
+Thank you for your understanding and continued support.
+
+<details>
+  <summary>Old Readme</summary>
+
 ## Screenshots
 
 <img src="https://github.com/vanshg395/intl_phone_field/blob/master/1.png?raw=true" height="500px"> <img src="https://github.com/vanshg395/intl_phone_field/blob/master/2.png?raw=true" height="500px"> <img src="https://github.com/vanshg395/intl_phone_field/blob/master/3.png?raw=true" height="500px">
@@ -112,3 +123,5 @@ Comment on Issue or Pull Request, asking @all-contributors to add a contributor:
 ## LICENSE
 
 This project is licensed under the MIT license. See [LICENSE](LICENSE) for more information.
+
+</details>
