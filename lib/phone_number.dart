@@ -1,10 +1,9 @@
 import 'countries.dart';
 
-class NumberTooLongException implements Exception {}
-
 class NumberTooShortException implements Exception {}
 
 class InvalidCharactersException implements Exception {}
+
 
 class PhoneNumber {
   String countryISOCode;
@@ -41,15 +40,17 @@ class PhoneNumber {
   }
 
   bool isValidNumber() {
-    Country country = getCountry(completeNumber);
-    if (number.length < country.minLength) {
-      throw NumberTooShortException();
+    Country country;
+    try {
+      country = getCountry(completeNumber);
+    } catch (e) {
+      return false;
     }
-
-    if (number.length > country.maxLength) {
-      throw NumberTooLongException();
+    if (number.length == country.minLength || number.length == country.maxLength) {
+      return true;
+    }else{
+      return false;
     }
-    return true;
   }
 
   String get completeNumber {
