@@ -5,6 +5,7 @@ const List<Country> countries = [
   Country(
     name: "Afghanistan",
     nameTranslations: {
+      "hu": "Afganisztán",
       "sk": "Afganistan",
       "se": "Afghanistan",
       "pl": "Afganistan",
@@ -36,6 +37,7 @@ const List<Country> countries = [
   Country(
     name: "Åland Islands",
     nameTranslations: {
+      "hu": "Åland-szigetek",
       "sk": "Alandy",
       "se": "Ålánda",
       "pl": "Wyspy Alandzkie",
@@ -67,6 +69,7 @@ const List<Country> countries = [
   Country(
     name: "Albania",
     nameTranslations: {
+      "hu": "Albánia",
       "sk": "Albánsko",
       "se": "Albánia",
       "pl": "Albania",
@@ -98,6 +101,7 @@ const List<Country> countries = [
   Country(
     name: "Algeria",
     nameTranslations: {
+      "hu": "Algéria",
       "sk": "Alžírsko",
       "se": "Algeria",
       "pl": "Algieria",
@@ -129,6 +133,7 @@ const List<Country> countries = [
   Country(
     name: "American Samoa",
     nameTranslations: {
+      "hu": "Amerikai Szamoa",
       "sk": "Americká Samoa",
       "se": "Amerihká Samoa",
       "pl": "Samoa Amerykańskie",
@@ -160,6 +165,7 @@ const List<Country> countries = [
   Country(
     name: "Andorra",
     nameTranslations: {
+      "hu": "Andorra",
       "sk": "Andorra",
       "se": "Andorra",
       "pl": "Andora",
@@ -191,6 +197,7 @@ const List<Country> countries = [
   Country(
     name: "Angola",
     nameTranslations: {
+      "hu": "Angola",
       "sk": "Angola",
       "se": "Angola",
       "pl": "Angola",
@@ -222,6 +229,7 @@ const List<Country> countries = [
   Country(
     name: "Anguilla",
     nameTranslations: {
+      "hu": "Anguilla",
       "sk": "Anguilla",
       "se": "Anguilla",
       "pl": "Anguilla",
@@ -253,6 +261,7 @@ const List<Country> countries = [
   Country(
     name: "Antarctica",
     nameTranslations: {
+      "hu": "Antarktisz",
       "sk": "Antarktída",
       "se": "Antárktis",
       "pl": "Antarktyda",
@@ -284,6 +293,7 @@ const List<Country> countries = [
   Country(
     name: "Antigua and Barbuda",
     nameTranslations: {
+      "hu": "Antigua és Barbuda",
       "sk": "Antigua a Barbuda",
       "se": "Antigua ja Barbuda",
       "pl": "Antigua i Barbuda",
@@ -315,6 +325,7 @@ const List<Country> countries = [
   Country(
     name: "Argentina",
     nameTranslations: {
+      "hu": "Argentína",
       "sk": "Argentína",
       "se": "Argentina",
       "pl": "Argentyna",
@@ -346,6 +357,7 @@ const List<Country> countries = [
   Country(
     name: "Armenia",
     nameTranslations: {
+      "hu": "Örményország",
       "sk": "Arménsko",
       "se": "Armenia",
       "pl": "Armenia",
@@ -377,6 +389,7 @@ const List<Country> countries = [
   Country(
     name: "Aruba",
     nameTranslations: {
+      "hu": "Aruba",
       "sk": "Aruba",
       "se": "Aruba",
       "pl": "Aruba",
@@ -408,6 +421,7 @@ const List<Country> countries = [
   Country(
     name: "Australia",
     nameTranslations: {
+      "hu": "Ausztrália",
       "sk": "Austrália",
       "se": "Austrália",
       "pl": "Australia",
@@ -439,6 +453,7 @@ const List<Country> countries = [
   Country(
     name: "Austria",
     nameTranslations: {
+      "hu": "Ausztria",
       "sk": "Rakúsko",
       "se": "Nuortariika",
       "pl": "Austria",
@@ -470,6 +485,7 @@ const List<Country> countries = [
   Country(
     name: "Azerbaijan",
     nameTranslations: {
+      "hu": "Azerbajdzsán",
       "sk": "Azerbajdžan",
       "se": "Aserbaižan",
       "pl": "Azerbejdżan",
@@ -501,6 +517,7 @@ const List<Country> countries = [
   Country(
     name: "Bahamas",
     nameTranslations: {
+      "hu": "Bahama-szigetek",
       "sk": "Bahamy",
       "se": "Bahamas",
       "pl": "Bahamy",
@@ -532,6 +549,7 @@ const List<Country> countries = [
   Country(
     name: "Bahrain",
     nameTranslations: {
+      "hu": "Bahrain",
       "sk": "Bahrajn",
       "se": "Bahrain",
       "pl": "Bahrajn",
@@ -563,6 +581,7 @@ const List<Country> countries = [
   Country(
     name: "Bangladesh",
     nameTranslations: {
+      "hu": "Banglades",
       "sk": "Bangladéš",
       "se": "Bangladesh",
       "pl": "Bangladesz",
@@ -594,6 +613,7 @@ const List<Country> countries = [
   Country(
     name: "Barbados",
     nameTranslations: {
+      "hu": "Barbados",
       "sk": "Barbados",
       "se": "Barbados",
       "pl": "Barbados",
@@ -625,6 +645,7 @@ const List<Country> countries = [
   Country(
     name: "Belarus",
     nameTranslations: {
+      "hu": "Fehéroroszország",
       "sk": "Bielorusko",
       "se": "Vilges-Ruošša",
       "pl": "Białoruś",
@@ -656,6 +677,7 @@ const List<Country> countries = [
   Country(
     name: "Belgium",
     nameTranslations: {
+      "hu": "Belgium",
       "sk": "Belgicko",
       "se": "Belgia",
       "pl": "Belgia",
@@ -687,6 +709,7 @@ const List<Country> countries = [
   Country(
     name: "Belize",
     nameTranslations: {
+      "hu": "Belize",
       "sk": "Belize",
       "se": "Belize",
       "pl": "Belize",
@@ -718,6 +741,7 @@ const List<Country> countries = [
   Country(
     name: "Benin",
     nameTranslations: {
+      "hu": "Benin",
       "sk": "Benin",
       "se": "Benin",
       "pl": "Benin",
@@ -749,6 +773,7 @@ const List<Country> countries = [
   Country(
     name: "Bermuda",
     nameTranslations: {
+      "hu": "Bermuda",
       "sk": "Bermudy",
       "se": "Bermuda",
       "pl": "Bermudy",
@@ -780,6 +805,7 @@ const List<Country> countries = [
   Country(
     name: "Bhutan",
     nameTranslations: {
+      "hu": "Bhután",
       "sk": "Bhután",
       "se": "Bhutan",
       "pl": "Bhutan",
@@ -811,6 +837,7 @@ const List<Country> countries = [
   Country(
     name: "Bolivia, Plurinational State of bolivia",
     nameTranslations: {
+      "hu": "Bolívia",
       "sk": "Bolívia",
       "se": "Bolivia",
       "pl": "Boliwia",
@@ -842,6 +869,7 @@ const List<Country> countries = [
   Country(
     name: "Bosnia and Herzegovina",
     nameTranslations: {
+      "hu": "Bosznia és Hercegovina",
       "sk": "Bosna a Hercegovina",
       "se": "Bosnia-Hercegovina",
       "pl": "Bośnia i Hercegowina",
@@ -873,6 +901,7 @@ const List<Country> countries = [
   Country(
     name: "Botswana",
     nameTranslations: {
+      "hu": "Botswana",
       "sk": "Botswana",
       "se": "Botswana",
       "pl": "Botswana",
@@ -904,6 +933,7 @@ const List<Country> countries = [
   Country(
     name: "Bouvet Island",
     nameTranslations: {
+      "hu": "Bouvet-sziget",
       "sk": "Bouvetov ostrov",
       "se": "Bouvet-sullot",
       "pl": "Wyspa Bouveta",
@@ -935,6 +965,7 @@ const List<Country> countries = [
   Country(
     name: "Brazil",
     nameTranslations: {
+      "hu": "Brazília",
       "sk": "Brazília",
       "se": "Brasil",
       "pl": "Brazylia",
@@ -966,6 +997,7 @@ const List<Country> countries = [
   Country(
     name: "British Indian Ocean Territory",
     nameTranslations: {
+      "hu": "Brit Indiai-óceáni Terület",
       "sk": "Britské indickooceánske územie",
       "se": "British Indian Ocean Territory",
       "pl": "Brytyjskie Terytorium Oceanu Indyjskiego",
@@ -997,6 +1029,7 @@ const List<Country> countries = [
   Country(
     name: "Brunei Darussalam",
     nameTranslations: {
+      "hu": "Brunei",
       "sk": "Brunej",
       "se": "Brunei",
       "pl": "Brunei",
@@ -1028,6 +1061,7 @@ const List<Country> countries = [
   Country(
     name: "Bulgaria",
     nameTranslations: {
+      "hu": "Bulgária",
       "sk": "Bulharsko",
       "se": "Bulgária",
       "pl": "Bułgaria",
@@ -1059,6 +1093,7 @@ const List<Country> countries = [
   Country(
     name: "Burkina Faso",
     nameTranslations: {
+      "hu": "Burkina Faso",
       "sk": "Burkina Faso",
       "se": "Burkina Faso",
       "pl": "Burkina Faso",
@@ -1090,6 +1125,7 @@ const List<Country> countries = [
   Country(
     name: "Burundi",
     nameTranslations: {
+      "hu": "Burundi",
       "sk": "Burundi",
       "se": "Burundi",
       "pl": "Burundi",
@@ -1121,6 +1157,7 @@ const List<Country> countries = [
   Country(
     name: "Cambodia",
     nameTranslations: {
+      "hu": "Kambodzsa",
       "sk": "Kambodža",
       "se": "Kambodža",
       "pl": "Kambodża",
@@ -1152,6 +1189,7 @@ const List<Country> countries = [
   Country(
     name: "Cameroon",
     nameTranslations: {
+      "hu": "Kamerun",
       "sk": "Kamerun",
       "se": "Kamerun",
       "pl": "Kamerun",
@@ -1183,6 +1221,7 @@ const List<Country> countries = [
   Country(
     name: "Canada",
     nameTranslations: {
+      "hu": "Kanada",
       "sk": "Kanada",
       "se": "Kanáda",
       "pl": "Kanada",
@@ -1214,6 +1253,7 @@ const List<Country> countries = [
   Country(
     name: "Cayman Islands",
     nameTranslations: {
+      "hu": "Kajmán-szigetek",
       "sk": "Kajmanie ostrovy",
       "se": "Cayman-sullot",
       "pl": "Kajmany",
@@ -1245,6 +1285,7 @@ const List<Country> countries = [
   Country(
     name: "Central African Republic",
     nameTranslations: {
+      "hu": "Közép-afrikai Köztársaság",
       "sk": "Stredoafrická republika",
       "se": "Gaska-Afrihká dásseváldi",
       "pl": "Republika Środkowoafrykańska",
@@ -1276,6 +1317,7 @@ const List<Country> countries = [
   Country(
     name: "Chad",
     nameTranslations: {
+      "hu": "Csád",
       "sk": "Čad",
       "se": "Tčad",
       "pl": "Czad",
@@ -1307,6 +1349,7 @@ const List<Country> countries = [
   Country(
     name: "Chile",
     nameTranslations: {
+      "hu": "Chile",
       "sk": "Čile",
       "se": "Čiile",
       "pl": "Chile",
@@ -1338,6 +1381,7 @@ const List<Country> countries = [
   Country(
     name: "China",
     nameTranslations: {
+      "hu": "Kína",
       "sk": "Čína",
       "se": "Kiinná",
       "pl": "Chiny",
@@ -1369,6 +1413,7 @@ const List<Country> countries = [
   Country(
     name: "Christmas Island",
     nameTranslations: {
+      "hu": "Karácsony-sziget",
       "sk": "Vianočný ostrov",
       "se": "Juovllat-sullot",
       "pl": "Wyspa Bożego Narodzenia",
@@ -1400,6 +1445,7 @@ const List<Country> countries = [
   Country(
     name: "Cocos (Keeling) Islands",
     nameTranslations: {
+      "hu": "Kókusz (Keeling)-szigetek",
       "sk": "Kokosové ostrovy",
       "se": "Cocos-sullot",
       "pl": "Wyspy Kokosowe",
@@ -1431,6 +1477,7 @@ const List<Country> countries = [
   Country(
     name: "Colombia",
     nameTranslations: {
+      "hu": "Kolumbia",
       "sk": "Kolumbia",
       "se": "Kolombia",
       "pl": "Kolumbia",
@@ -1462,6 +1509,7 @@ const List<Country> countries = [
   Country(
     name: "Comoros",
     nameTranslations: {
+      "hu": "Comore-szigetek",
       "sk": "Komory",
       "se": "Komoros",
       "pl": "Komory",
@@ -1493,6 +1541,7 @@ const List<Country> countries = [
   Country(
     name: "Congo",
     nameTranslations: {
+      "hu": "Kongói Köztársaság",
       "sk": "Konžská republika",
       "se": "Kongo-Brazzaville",
       "pl": "Kongo",
@@ -1524,6 +1573,7 @@ const List<Country> countries = [
   Country(
     name: "Congo, The Democratic Republic of the Congo",
     nameTranslations: {
+      "hu": "Kongói Demokratikus Köztársaság",
       "sk": "Konžská demokratická republika",
       "se": "Kongo-Kinshasa",
       "pl": "Demokratyczna Republika Konga",
@@ -1555,6 +1605,7 @@ const List<Country> countries = [
   Country(
     name: "Cook Islands",
     nameTranslations: {
+      "hu": "Cook-szigetek",
       "sk": "Cookove ostrovy",
       "se": "Cook-sullot",
       "pl": "Wyspy Cooka",
@@ -1586,6 +1637,7 @@ const List<Country> countries = [
   Country(
     name: "Costa Rica",
     nameTranslations: {
+      "hu": "Costa Rica",
       "sk": "Kostarika",
       "se": "Costa Rica",
       "pl": "Kostaryka",
@@ -1617,6 +1669,7 @@ const List<Country> countries = [
   Country(
     name: "Côte d'Ivoire",
     nameTranslations: {
+      "hu": "Elefántcsontpart",
       "sk": "Pobrežie Slonoviny",
       "se": "Elfenbenariddu",
       "pl": "Côte d'Ivoire",
@@ -1648,6 +1701,7 @@ const List<Country> countries = [
   Country(
     name: "Croatia",
     nameTranslations: {
+      "hu": "Horvátország",
       "sk": "Chorvátsko",
       "se": "Kroátia",
       "pl": "Chorwacja",
@@ -1679,6 +1733,7 @@ const List<Country> countries = [
   Country(
     name: "Cuba",
     nameTranslations: {
+      "hu": "Kuba",
       "sk": "Kuba",
       "se": "Kuba",
       "pl": "Kuba",
@@ -1710,6 +1765,7 @@ const List<Country> countries = [
   Country(
     name: "Cyprus",
     nameTranslations: {
+      "hu": "Ciprus",
       "sk": "Cyprus",
       "se": "Kypros",
       "pl": "Cypr",
@@ -1741,6 +1797,7 @@ const List<Country> countries = [
   Country(
     name: "Czech Republic",
     nameTranslations: {
+      "hu": "Csehország",
       "sk": "Česko",
       "se": "Čeahkka",
       "pl": "Czechy",
@@ -1772,6 +1829,7 @@ const List<Country> countries = [
   Country(
     name: "Denmark",
     nameTranslations: {
+      "hu": "Dánia",
       "sk": "Dánsko",
       "se": "Dánmárku",
       "pl": "Dania",
@@ -1803,6 +1861,7 @@ const List<Country> countries = [
   Country(
     name: "Djibouti",
     nameTranslations: {
+      "hu": "Dzsibuti",
       "sk": "Džibutsko",
       "se": "Djibouti",
       "pl": "Dżibuti",
@@ -1834,6 +1893,7 @@ const List<Country> countries = [
   Country(
     name: "Dominica",
     nameTranslations: {
+      "hu": "Dominika",
       "sk": "Dominika",
       "se": "Dominica",
       "pl": "Dominika",
@@ -1865,6 +1925,7 @@ const List<Country> countries = [
   Country(
     name: "Dominican Republic",
     nameTranslations: {
+      "hu": "Dominikai Köztársaság",
       "sk": "Dominikánska republika",
       "se": "Dominikána dásseváldi",
       "pl": "Dominikana",
@@ -1896,6 +1957,7 @@ const List<Country> countries = [
   Country(
     name: "Ecuador",
     nameTranslations: {
+      "hu": "Ecuador",
       "sk": "Ekvádor",
       "se": "Ecuador",
       "pl": "Ekwador",
@@ -1927,6 +1989,7 @@ const List<Country> countries = [
   Country(
     name: "Egypt",
     nameTranslations: {
+      "hu": "Egyiptom",
       "sk": "Egypt",
       "se": "Egypt",
       "pl": "Egipt",
@@ -1958,6 +2021,7 @@ const List<Country> countries = [
   Country(
     name: "El Salvador",
     nameTranslations: {
+      "hu": "Salvador",
       "sk": "Salvádor",
       "se": "El Salvador",
       "pl": "Salwador",
@@ -1989,6 +2053,7 @@ const List<Country> countries = [
   Country(
     name: "Equatorial Guinea",
     nameTranslations: {
+      "hu": "Egyenlítői-Guinea",
       "sk": "Rovníková Guinea",
       "se": "Ekvatoriála Guinea",
       "pl": "Gwinea Równikowa",
@@ -2020,6 +2085,7 @@ const List<Country> countries = [
   Country(
     name: "Eritrea",
     nameTranslations: {
+      "hu": "Eritrea",
       "sk": "Eritrea",
       "se": "Eritrea",
       "pl": "Erytrea",
@@ -2051,6 +2117,7 @@ const List<Country> countries = [
   Country(
     name: "Estonia",
     nameTranslations: {
+      "hu": "Észtország",
       "sk": "Estónsko",
       "se": "Estlánda",
       "pl": "Estonia",
@@ -2082,6 +2149,7 @@ const List<Country> countries = [
   Country(
     name: "Ethiopia",
     nameTranslations: {
+      "hu": "Etiópia",
       "sk": "Etiópia",
       "se": "Etiopia",
       "pl": "Etiopia",
@@ -2113,6 +2181,7 @@ const List<Country> countries = [
   Country(
     name: "Falkland Islands (Malvinas)",
     nameTranslations: {
+      "hu": "Falkland-szigetek (Malvinas)",
       "sk": "Falklandy",
       "se": "Falklandsullot",
       "pl": "Falklandy",
@@ -2144,6 +2213,7 @@ const List<Country> countries = [
   Country(
     name: "Faroe Islands",
     nameTranslations: {
+      "hu": "Feröer-szigetek",
       "sk": "Faerské ostrovy",
       "se": "Fearsullot",
       "pl": "Wyspy Owcze",
@@ -2175,6 +2245,7 @@ const List<Country> countries = [
   Country(
     name: "Fiji",
     nameTranslations: {
+      "hu": "Fidzsi-szigetek",
       "sk": "Fidži",
       "se": "Fijisullot",
       "pl": "Fidżi",
@@ -2206,6 +2277,7 @@ const List<Country> countries = [
   Country(
     name: "Finland",
     nameTranslations: {
+      "hu": "Finnország",
       "sk": "Fínsko",
       "se": "Suopma",
       "pl": "Finlandia",
@@ -2237,6 +2309,7 @@ const List<Country> countries = [
   Country(
     name: "France",
     nameTranslations: {
+      "hu": "Franciaország",
       "sk": "Francúzsko",
       "se": "Frankriika",
       "pl": "Francja",
@@ -2268,6 +2341,7 @@ const List<Country> countries = [
   Country(
     name: "French Guiana",
     nameTranslations: {
+      "hu": "Francia Guyana",
       "sk": "Francúzska Guyana",
       "se": "Frankriikka Guayana",
       "pl": "Gujana Francuska",
@@ -2299,6 +2373,7 @@ const List<Country> countries = [
   Country(
     name: "French Polynesia",
     nameTranslations: {
+      "hu": "Francia Polinézia",
       "sk": "Francúzska Polynézia",
       "se": "Frankriikka Polynesia",
       "pl": "Polinezja Francuska",
@@ -2330,6 +2405,7 @@ const List<Country> countries = [
   Country(
     name: "French Southern Territories",
     nameTranslations: {
+      "hu": "Francia déli területek",
       "sk": "Francúzske južné a antarktické územia",
       "se": "French Southern Territories",
       "pl": "Francuskie Terytoria Południowe i Antarktyczne",
@@ -2361,6 +2437,7 @@ const List<Country> countries = [
   Country(
     name: "Gabon",
     nameTranslations: {
+      "hu": "Gabon",
       "sk": "Gabon",
       "se": "Gabon",
       "pl": "Gabon",
@@ -2392,6 +2469,7 @@ const List<Country> countries = [
   Country(
     name: "Gambia",
     nameTranslations: {
+      "hu": "Gambia",
       "sk": "Gambia",
       "se": "Gámbia",
       "pl": "Gambia",
@@ -2423,6 +2501,7 @@ const List<Country> countries = [
   Country(
     name: "Georgia",
     nameTranslations: {
+      "hu": "Grúzia",
       "sk": "Gruzínsko",
       "se": "Georgia",
       "pl": "Gruzja",
@@ -2454,6 +2533,7 @@ const List<Country> countries = [
   Country(
     name: "Germany",
     nameTranslations: {
+      "hu": "Németország",
       "sk": "Nemecko",
       "se": "Duiska",
       "pl": "Niemcy",
@@ -2485,6 +2565,7 @@ const List<Country> countries = [
   Country(
     name: "Ghana",
     nameTranslations: {
+      "hu": "Ghána",
       "sk": "Ghana",
       "se": "Ghana",
       "pl": "Ghana",
@@ -2516,6 +2597,7 @@ const List<Country> countries = [
   Country(
     name: "Gibraltar",
     nameTranslations: {
+      "hu": "Gibraltár",
       "sk": "Gibraltár",
       "se": "Gibraltar",
       "pl": "Gibraltar",
@@ -2547,6 +2629,7 @@ const List<Country> countries = [
   Country(
     name: "Greece",
     nameTranslations: {
+      "hu": "Görögország",
       "sk": "Grécko",
       "se": "Greika",
       "pl": "Grecja",
@@ -2578,6 +2661,7 @@ const List<Country> countries = [
   Country(
     name: "Greenland",
     nameTranslations: {
+      "hu": "Grönland",
       "sk": "Grónsko",
       "se": "Kalaallit Nunaat",
       "pl": "Grenlandia",
@@ -2609,6 +2693,7 @@ const List<Country> countries = [
   Country(
     name: "Grenada",
     nameTranslations: {
+      "hu": "Grenada",
       "sk": "Grenada",
       "se": "Grenada",
       "pl": "Grenada",
@@ -2640,6 +2725,7 @@ const List<Country> countries = [
   Country(
     name: "Guadeloupe",
     nameTranslations: {
+      "hu": "Guadeloupe",
       "sk": "Guadeloupe",
       "se": "Guadeloupe",
       "pl": "Gwadelupa",
@@ -2671,6 +2757,7 @@ const List<Country> countries = [
   Country(
     name: "Guam",
     nameTranslations: {
+      "hu": "Guam",
       "sk": "Guam",
       "se": "Guam",
       "pl": "Guam",
@@ -2702,6 +2789,7 @@ const List<Country> countries = [
   Country(
     name: "Guatemala",
     nameTranslations: {
+      "hu": "Guatemala",
       "sk": "Guatemala",
       "se": "Guatemala",
       "pl": "Gwatemala",
@@ -2733,6 +2821,7 @@ const List<Country> countries = [
   Country(
     name: "Guernsey",
     nameTranslations: {
+      "hu": "Guernsey",
       "sk": "Guernsey",
       "se": "Guernsey",
       "pl": "Guernsey",
@@ -2764,6 +2853,7 @@ const List<Country> countries = [
   Country(
     name: "Guinea",
     nameTranslations: {
+      "hu": "Guinea",
       "sk": "Guinea",
       "se": "Guinea",
       "pl": "Gwinea",
@@ -2795,6 +2885,7 @@ const List<Country> countries = [
   Country(
     name: "Guinea-Bissau",
     nameTranslations: {
+      "hu": "Bissau-Guinea",
       "sk": "Guinea-Bissau",
       "se": "Guinea-Bissau",
       "pl": "Gwinea Bissau",
@@ -2826,6 +2917,7 @@ const List<Country> countries = [
   Country(
     name: "Guyana",
     nameTranslations: {
+      "hu": "Guyana",
       "sk": "Guyana",
       "se": "Guyana",
       "pl": "Gujana",
@@ -2857,6 +2949,7 @@ const List<Country> countries = [
   Country(
     name: "Haiti",
     nameTranslations: {
+      "hu": "Haiti",
       "sk": "Haiti",
       "se": "Haiti",
       "pl": "Haiti",
@@ -2888,6 +2981,7 @@ const List<Country> countries = [
   Country(
     name: "Heard Island and Mcdonald Islands",
     nameTranslations: {
+      "hu": "Heard-sziget és McDonald-szigetek",
       "sk": "Heardov ostrov a Macdonaldove ostrovy",
       "se": "Heard- ja McDonald-sullot",
       "pl": "Wyspy Heard i McDonalda",
@@ -2919,6 +3013,7 @@ const List<Country> countries = [
   Country(
     name: "Holy See (Vatican City State)",
     nameTranslations: {
+      "hu": "Vatikán",
       "sk": "Vatikán",
       "se": "Vatikána",
       "pl": "Watykan",
@@ -2950,6 +3045,7 @@ const List<Country> countries = [
   Country(
     name: "Honduras",
     nameTranslations: {
+      "hu": "Honduras",
       "sk": "Honduras",
       "se": "Honduras",
       "pl": "Honduras",
@@ -2981,6 +3077,7 @@ const List<Country> countries = [
   Country(
     name: "Hong Kong",
     nameTranslations: {
+      "hu": "Hongkong",
       "sk": "Hongkong – OAO Číny",
       "se": "Hongkong",
       "pl": "SRA Hongkong (Chiny)",
@@ -3012,6 +3109,7 @@ const List<Country> countries = [
   Country(
     name: "Hungary",
     nameTranslations: {
+      "hu": "Magyarország",
       "sk": "Maďarsko",
       "se": "Ungár",
       "pl": "Węgry",
@@ -3043,6 +3141,7 @@ const List<Country> countries = [
   Country(
     name: "Iceland",
     nameTranslations: {
+      "hu": "Izland",
       "sk": "Island",
       "se": "Islánda",
       "pl": "Islandia",
@@ -3074,6 +3173,7 @@ const List<Country> countries = [
   Country(
     name: "India",
     nameTranslations: {
+      "hu": "India",
       "sk": "India",
       "se": "India",
       "pl": "Indie",
@@ -3105,6 +3205,7 @@ const List<Country> countries = [
   Country(
     name: "Indonesia",
     nameTranslations: {
+      "hu": "Indonézia",
       "sk": "Indonézia",
       "se": "Indonesia",
       "pl": "Indonezja",
@@ -3136,6 +3237,7 @@ const List<Country> countries = [
   Country(
     name: "Iran, Islamic Republic of Persian Gulf",
     nameTranslations: {
+      "hu": "Irán",
       "sk": "Irán",
       "se": "Iran",
       "pl": "Iran",
@@ -3167,6 +3269,7 @@ const List<Country> countries = [
   Country(
     name: "Iraq",
     nameTranslations: {
+      "hu": "Irak",
       "sk": "Irak",
       "se": "Irak",
       "pl": "Irak",
@@ -3198,6 +3301,7 @@ const List<Country> countries = [
   Country(
     name: "Ireland",
     nameTranslations: {
+      "hu": "Írország",
       "sk": "Írsko",
       "se": "Irlánda",
       "pl": "Irlandia",
@@ -3229,6 +3333,7 @@ const List<Country> countries = [
   Country(
     name: "Isle of Man",
     nameTranslations: {
+      "hu": "Man-sziget",
       "sk": "Ostrov Man",
       "se": "Mann-sullot",
       "pl": "Wyspa Man",
@@ -3260,6 +3365,7 @@ const List<Country> countries = [
   Country(
     name: "Israel",
     nameTranslations: {
+      "hu": "Izrael",
       "sk": "Izrael",
       "se": "Israel",
       "pl": "Izrael",
@@ -3291,6 +3397,7 @@ const List<Country> countries = [
   Country(
     name: "Campione d'Italia",
     nameTranslations: {
+      "hu": "Campione d'Italia",
       "sk": "Taliansko",
       "se": "Itália",
       "pl": "Włochy",
@@ -3322,6 +3429,7 @@ const List<Country> countries = [
   Country(
     name: "Jamaica",
     nameTranslations: {
+      "hu": "Jamaica",
       "sk": "Jamajka",
       "se": "Jamaica",
       "pl": "Jamajka",
@@ -3353,6 +3461,7 @@ const List<Country> countries = [
   Country(
     name: "Japan",
     nameTranslations: {
+      "hu": "Japán",
       "sk": "Japonsko",
       "se": "Japána",
       "pl": "Japonia",
@@ -3384,6 +3493,7 @@ const List<Country> countries = [
   Country(
     name: "Jersey",
     nameTranslations: {
+      "hu": "Jersey",
       "sk": "Jersey",
       "se": "Jersey",
       "pl": "Jersey",
@@ -3415,6 +3525,7 @@ const List<Country> countries = [
   Country(
     name: "Jordan",
     nameTranslations: {
+      "hu": "Jordánia",
       "sk": "Jordánsko",
       "se": "Jordánia",
       "pl": "Jordania",
@@ -3446,6 +3557,7 @@ const List<Country> countries = [
   Country(
     name: "Kazakhstan",
     nameTranslations: {
+      "hu": "Kazahsztán",
       "sk": "Kazachstan",
       "se": "Kasakstan",
       "pl": "Kazachstan",
@@ -3477,6 +3589,7 @@ const List<Country> countries = [
   Country(
     name: "Kenya",
     nameTranslations: {
+      "hu": "Kenya",
       "sk": "Keňa",
       "se": "Kenia",
       "pl": "Kenia",
@@ -3508,6 +3621,7 @@ const List<Country> countries = [
   Country(
     name: "Kiribati",
     nameTranslations: {
+      "hu": "Kiribati",
       "sk": "Kiribati",
       "se": "Kiribati",
       "pl": "Kiribati",
@@ -3539,6 +3653,7 @@ const List<Country> countries = [
   Country(
     name: "Korea, Democratic People's Republic of Korea",
     nameTranslations: {
+      "hu": "Észak-Korea",
       "sk": "Severná Kórea",
       "se": "Davvi-Korea",
       "pl": "Korea Północna",
@@ -3570,6 +3685,7 @@ const List<Country> countries = [
   Country(
     name: "Korea, Republic of South Korea",
     nameTranslations: {
+      "hu": "Dél-Korea",
       "sk": "Južná Kórea",
       "se": "Mátta-Korea",
       "pl": "Korea Południowa",
@@ -3601,6 +3717,7 @@ const List<Country> countries = [
   Country(
     name: "Kuwait",
     nameTranslations: {
+      "hu": "Kuvait",
       "sk": "Kuvajt",
       "se": "Kuwait",
       "pl": "Kuwejt",
@@ -3632,6 +3749,7 @@ const List<Country> countries = [
   Country(
     name: "Kyrgyzstan",
     nameTranslations: {
+      "hu": "Kirgizisztán",
       "sk": "Kirgizsko",
       "se": "Kirgisistan",
       "pl": "Kirgistan",
@@ -3663,6 +3781,7 @@ const List<Country> countries = [
   Country(
     name: "Laos",
     nameTranslations: {
+      "hu": "Laosz",
       "sk": "Laos",
       "se": "Laos",
       "pl": "Laos",
@@ -3694,6 +3813,7 @@ const List<Country> countries = [
   Country(
     name: "Latvia",
     nameTranslations: {
+      "hu": "Lettország",
       "sk": "Lotyšsko",
       "se": "Látvia",
       "pl": "Łotwa",
@@ -3725,6 +3845,7 @@ const List<Country> countries = [
   Country(
     name: "Lebanon",
     nameTranslations: {
+      "hu": "Libanon",
       "sk": "Libanon",
       "se": "Libanon",
       "pl": "Liban",
@@ -3756,6 +3877,7 @@ const List<Country> countries = [
   Country(
     name: "Lesotho",
     nameTranslations: {
+      "hu": "Lesotho",
       "sk": "Lesotho",
       "se": "Lesotho",
       "pl": "Lesotho",
@@ -3787,6 +3909,7 @@ const List<Country> countries = [
   Country(
     name: "Liberia",
     nameTranslations: {
+      "hu": "Libéria",
       "sk": "Libéria",
       "se": "Liberia",
       "pl": "Liberia",
@@ -3818,6 +3941,7 @@ const List<Country> countries = [
   Country(
     name: "Libyan Arab Jamahiriya",
     nameTranslations: {
+      "hu": "Líbia",
       "sk": "Líbya",
       "se": "Libya",
       "pl": "Libia",
@@ -3849,6 +3973,7 @@ const List<Country> countries = [
   Country(
     name: "Liechtenstein",
     nameTranslations: {
+      "hu": "Liechtenstein",
       "sk": "Lichtenštajnsko",
       "se": "Liechtenstein",
       "pl": "Liechtenstein",
@@ -3880,6 +4005,7 @@ const List<Country> countries = [
   Country(
     name: "Lithuania",
     nameTranslations: {
+      "hu": "Litvánia",
       "sk": "Litva",
       "se": "Lietuva",
       "pl": "Litwa",
@@ -3911,6 +4037,7 @@ const List<Country> countries = [
   Country(
     name: "Luxembourg",
     nameTranslations: {
+      "hu": "Luxemburg",
       "sk": "Luxembursko",
       "se": "Luxembourg",
       "pl": "Luksemburg",
@@ -3942,6 +4069,7 @@ const List<Country> countries = [
   Country(
     name: "Macao",
     nameTranslations: {
+      "hu": "Makaó",
       "sk": "Macao – OAO Číny",
       "se": "Makáo",
       "pl": "SRA Makau (Chiny)",
@@ -3973,6 +4101,7 @@ const List<Country> countries = [
   Country(
     name: "Macedonia",
     nameTranslations: {
+      "hu": "Észak-Macedónia",
       "sk": "Severné Macedónsko",
       "se": "North Macedonia",
       "pl": "Macedonia Północna",
@@ -4004,6 +4133,7 @@ const List<Country> countries = [
   Country(
     name: "Madagascar",
     nameTranslations: {
+      "hu": "Madagaszkár",
       "sk": "Madagaskar",
       "se": "Madagaskar",
       "pl": "Madagaskar",
@@ -4035,6 +4165,7 @@ const List<Country> countries = [
   Country(
     name: "Malawi",
     nameTranslations: {
+      "hu": "Malawi",
       "sk": "Malawi",
       "se": "Malawi",
       "pl": "Malawi",
@@ -4066,6 +4197,7 @@ const List<Country> countries = [
   Country(
     name: "Malaysia",
     nameTranslations: {
+      "hu": "Malajzia",
       "sk": "Malajzia",
       "se": "Malesia",
       "pl": "Malezja",
@@ -4097,6 +4229,7 @@ const List<Country> countries = [
   Country(
     name: "Maldives",
     nameTranslations: {
+      "hu": "Maldív-szigetek",
       "sk": "Maldivy",
       "se": "Malediivvat",
       "pl": "Malediwy",
@@ -4128,6 +4261,7 @@ const List<Country> countries = [
   Country(
     name: "Mali",
     nameTranslations: {
+      "hu": "Mali",
       "sk": "Mali",
       "se": "Mali",
       "pl": "Mali",
@@ -4159,6 +4293,7 @@ const List<Country> countries = [
   Country(
     name: "Malta",
     nameTranslations: {
+      "hu": "Málta",
       "sk": "Malta",
       "se": "Málta",
       "pl": "Malta",
@@ -4190,6 +4325,7 @@ const List<Country> countries = [
   Country(
     name: "Marshall Islands",
     nameTranslations: {
+      "hu": "Marshall-szigetek",
       "sk": "Marshallove ostrovy",
       "se": "Marshallsullot",
       "pl": "Wyspy Marshalla",
@@ -4221,6 +4357,7 @@ const List<Country> countries = [
   Country(
     name: "Martinique",
     nameTranslations: {
+      "hu": "Martinique",
       "sk": "Martinik",
       "se": "Martinique",
       "pl": "Martynika",
@@ -4252,6 +4389,7 @@ const List<Country> countries = [
   Country(
     name: "Mauritania",
     nameTranslations: {
+      "hu": "Mauritánia",
       "sk": "Mauritánia",
       "se": "Mauretánia",
       "pl": "Mauretania",
@@ -4283,6 +4421,7 @@ const List<Country> countries = [
   Country(
     name: "Mauritius",
     nameTranslations: {
+      "hu": "Mauritius",
       "sk": "Maurícius",
       "se": "Mauritius",
       "pl": "Mauritius",
@@ -4314,6 +4453,7 @@ const List<Country> countries = [
   Country(
     name: "Mayotte",
     nameTranslations: {
+      "hu": "Mayotte",
       "sk": "Mayotte",
       "se": "Mayotte",
       "pl": "Majotta",
@@ -4345,6 +4485,7 @@ const List<Country> countries = [
   Country(
     name: "Mexico",
     nameTranslations: {
+      "hu": "Mexikó",
       "sk": "Mexiko",
       "se": "Meksiko",
       "pl": "Meksyk",
@@ -4376,6 +4517,7 @@ const List<Country> countries = [
   Country(
     name: "Micronesia, Federated States of Micronesia",
     nameTranslations: {
+      "hu": "Mikronézia",
       "sk": "Mikronézia",
       "se": "Mikronesia",
       "pl": "Mikronezja",
@@ -4407,6 +4549,7 @@ const List<Country> countries = [
   Country(
     name: "Moldova",
     nameTranslations: {
+      "hu": "Moldova",
       "sk": "Moldavsko",
       "se": "Moldávia",
       "pl": "Mołdawia",
@@ -4438,6 +4581,7 @@ const List<Country> countries = [
   Country(
     name: "Monaco",
     nameTranslations: {
+      "hu": "Monaco",
       "sk": "Monako",
       "se": "Monaco",
       "pl": "Monako",
@@ -4469,6 +4613,7 @@ const List<Country> countries = [
   Country(
     name: "Mongolia",
     nameTranslations: {
+      "hu": "Mongólia",
       "sk": "Mongolsko",
       "se": "Mongolia",
       "pl": "Mongolia",
@@ -4500,6 +4645,7 @@ const List<Country> countries = [
   Country(
     name: "Montenegro",
     nameTranslations: {
+      "hu": "Montenegró",
       "sk": "Čierna Hora",
       "se": "Montenegro",
       "pl": "Czarnogóra",
@@ -4531,6 +4677,7 @@ const List<Country> countries = [
   Country(
     name: "Montserrat",
     nameTranslations: {
+      "hu": "Montserrat",
       "sk": "Montserrat",
       "se": "Montserrat",
       "pl": "Montserrat",
@@ -4562,6 +4709,7 @@ const List<Country> countries = [
   Country(
     name: "Morocco",
     nameTranslations: {
+      "hu": "Marokkó",
       "sk": "Maroko",
       "se": "Marokko",
       "pl": "Maroko",
@@ -4593,6 +4741,7 @@ const List<Country> countries = [
   Country(
     name: "Mozambique",
     nameTranslations: {
+      "hu": "Mozambik",
       "sk": "Mozambik",
       "se": "Mosambik",
       "pl": "Mozambik",
@@ -4624,6 +4773,7 @@ const List<Country> countries = [
   Country(
     name: "Myanmar",
     nameTranslations: {
+      "hu": "Mianmar",
       "sk": "Mjanmarsko",
       "se": "Burma",
       "pl": "Mjanma (Birma)",
@@ -4655,6 +4805,7 @@ const List<Country> countries = [
   Country(
     name: "Namibia",
     nameTranslations: {
+      "hu": "Namíbia",
       "sk": "Namíbia",
       "se": "Namibia",
       "pl": "Namibia",
@@ -4686,6 +4837,7 @@ const List<Country> countries = [
   Country(
     name: "Nauru",
     nameTranslations: {
+      "hu": "Nauru",
       "sk": "Nauru",
       "se": "Nauru",
       "pl": "Nauru",
@@ -4717,6 +4869,7 @@ const List<Country> countries = [
   Country(
     name: "Nepal",
     nameTranslations: {
+      "hu": "Nepál",
       "sk": "Nepál",
       "se": "Nepal",
       "pl": "Nepal",
@@ -4748,6 +4901,7 @@ const List<Country> countries = [
   Country(
     name: "Netherlands",
     nameTranslations: {
+      "hu": "Hollandia",
       "sk": "Holandsko",
       "se": "Vuolleeatnamat",
       "pl": "Holandia",
@@ -4779,6 +4933,7 @@ const List<Country> countries = [
   Country(
     name: "New Caledonia",
     nameTranslations: {
+      "hu": "Új-Kaledónia",
       "sk": "Nová Kaledónia",
       "se": "Ođđa-Kaledonia",
       "pl": "Nowa Kaledonia",
@@ -4810,6 +4965,7 @@ const List<Country> countries = [
   Country(
     name: "New Zealand",
     nameTranslations: {
+      "hu": "Új-Zéland",
       "sk": "Nový Zéland",
       "se": "Ođđa-Selánda",
       "pl": "Nowa Zelandia",
@@ -4841,6 +4997,7 @@ const List<Country> countries = [
   Country(
     name: "Nicaragua",
     nameTranslations: {
+      "hu": "Nicaragua",
       "sk": "Nikaragua",
       "se": "Nicaragua",
       "pl": "Nikaragua",
@@ -4872,6 +5029,7 @@ const List<Country> countries = [
   Country(
     name: "Niger",
     nameTranslations: {
+      "hu": "Niger",
       "sk": "Niger",
       "se": "Niger",
       "pl": "Niger",
@@ -4903,6 +5061,7 @@ const List<Country> countries = [
   Country(
     name: "Nigeria",
     nameTranslations: {
+      "hu": "Nigéria",
       "sk": "Nigéria",
       "se": "Nigeria",
       "pl": "Nigeria",
@@ -4934,6 +5093,7 @@ const List<Country> countries = [
   Country(
     name: "Niue",
     nameTranslations: {
+      "hu": "Niue",
       "sk": "Niue",
       "se": "Niue",
       "pl": "Niue",
@@ -4965,6 +5125,7 @@ const List<Country> countries = [
   Country(
     name: "Norfolk Island",
     nameTranslations: {
+      "hu": "Norfolk-sziget",
       "sk": "Norfolk",
       "se": "Norfolksullot",
       "pl": "Norfolk",
@@ -4996,6 +5157,7 @@ const List<Country> countries = [
   Country(
     name: "Northern Mariana Islands",
     nameTranslations: {
+      "hu": "Északi-Mariana-szigetek",
       "sk": "Severné Mariány",
       "se": "Davvi-Mariánat",
       "pl": "Mariany Północne",
@@ -5027,6 +5189,7 @@ const List<Country> countries = [
   Country(
     name: "Norway",
     nameTranslations: {
+      "hu": "Norvégia",
       "sk": "Nórsko",
       "se": "Norga",
       "pl": "Norwegia",
@@ -5058,6 +5221,7 @@ const List<Country> countries = [
   Country(
     name: "Oman",
     nameTranslations: {
+      "hu": "Omán",
       "sk": "Omán",
       "se": "Oman",
       "pl": "Oman",
@@ -5089,6 +5253,7 @@ const List<Country> countries = [
   Country(
     name: "Pakistan",
     nameTranslations: {
+      "hu": "Pakisztán",
       "sk": "Pakistan",
       "se": "Pakistan",
       "pl": "Pakistan",
@@ -5120,6 +5285,7 @@ const List<Country> countries = [
   Country(
     name: "Palau",
     nameTranslations: {
+      "hu": "Palau",
       "sk": "Palau",
       "se": "Palau",
       "pl": "Palau",
@@ -5151,6 +5317,7 @@ const List<Country> countries = [
   Country(
     name: "Palestinian Territory, Occupied",
     nameTranslations: {
+      "hu": "Palesztin Terület",
       "sk": "Palestínske územia",
       "se": "Palestina",
       "pl": "Terytoria Palestyńskie",
@@ -5182,6 +5349,7 @@ const List<Country> countries = [
   Country(
     name: "Panama",
     nameTranslations: {
+      "hu": "Panama",
       "sk": "Panama",
       "se": "Panama",
       "pl": "Panama",
@@ -5213,6 +5381,7 @@ const List<Country> countries = [
   Country(
     name: "Papua New Guinea",
     nameTranslations: {
+      "hu": "Pápua Új-Guinea",
       "sk": "Papua-Nová Guinea",
       "se": "Papua-Ođđa-Guinea",
       "pl": "Papua-Nowa Gwinea",
@@ -5244,6 +5413,7 @@ const List<Country> countries = [
   Country(
     name: "Paraguay",
     nameTranslations: {
+      "hu": "Paraguay",
       "sk": "Paraguaj",
       "se": "Paraguay",
       "pl": "Paragwaj",
@@ -5275,6 +5445,7 @@ const List<Country> countries = [
   Country(
     name: "Peru",
     nameTranslations: {
+      "hu": "Peru",
       "sk": "Peru",
       "se": "Peru",
       "pl": "Peru",
@@ -5306,6 +5477,7 @@ const List<Country> countries = [
   Country(
     name: "Philippines",
     nameTranslations: {
+      "hu": "Fülöp-szigetek",
       "sk": "Filipíny",
       "se": "Filippiinnat",
       "pl": "Filipiny",
@@ -5337,6 +5509,7 @@ const List<Country> countries = [
   Country(
     name: "Pitcairn",
     nameTranslations: {
+      "hu": "Pitcairn-szigetek",
       "sk": "Pitcairnove ostrovy",
       "se": "Pitcairn",
       "pl": "Pitcairn",
@@ -5368,6 +5541,7 @@ const List<Country> countries = [
   Country(
     name: "Poland",
     nameTranslations: {
+      "hu": "Lengyelország",
       "sk": "Poľsko",
       "se": "Polen",
       "pl": "Polska",
@@ -5399,6 +5573,7 @@ const List<Country> countries = [
   Country(
     name: "Portugal",
     nameTranslations: {
+      "hu": "Portugália",
       "sk": "Portugalsko",
       "se": "Portugála",
       "pl": "Portugalia",
@@ -5430,6 +5605,7 @@ const List<Country> countries = [
   Country(
     name: "Puerto Rico",
     nameTranslations: {
+      "hu": "Puerto Rico",
       "sk": "Portoriko",
       "se": "Puerto Rico",
       "pl": "Portoryko",
@@ -5461,6 +5637,7 @@ const List<Country> countries = [
   Country(
     name: "Qatar",
     nameTranslations: {
+      "hu": "Katar",
       "sk": "Katar",
       "se": "Qatar",
       "pl": "Katar",
@@ -5492,6 +5669,7 @@ const List<Country> countries = [
   Country(
     name: "Romania",
     nameTranslations: {
+      "hu": "Románia",
       "sk": "Rumunsko",
       "se": "Románia",
       "pl": "Rumunia",
@@ -5523,6 +5701,7 @@ const List<Country> countries = [
   Country(
     name: "Russia",
     nameTranslations: {
+      "hu": "Oroszország",
       "sk": "Rusko",
       "se": "Ruošša",
       "pl": "Rosja",
@@ -5554,6 +5733,7 @@ const List<Country> countries = [
   Country(
     name: "Rwanda",
     nameTranslations: {
+      "hu": "Ruanda",
       "sk": "Rwanda",
       "se": "Rwanda",
       "pl": "Rwanda",
@@ -5585,6 +5765,7 @@ const List<Country> countries = [
   Country(
     name: "Reunion",
     nameTranslations: {
+      "hu": "Réunion",
       "sk": "Réunion",
       "se": "Réunion",
       "pl": "Reunion",
@@ -5616,6 +5797,7 @@ const List<Country> countries = [
   Country(
     name: "Saint Barthelemy",
     nameTranslations: {
+      "hu": "Saint-Barthélemy",
       "sk": "Svätý Bartolomej",
       "se": "Saint Barthélemy",
       "pl": "Saint-Barthélemy",
@@ -5647,6 +5829,7 @@ const List<Country> countries = [
   Country(
     name: "Saint Helena, Ascension and Tristan Da Cunha",
     nameTranslations: {
+      "hu": "Szent Ilona, Ascension és Tristan da Cunha",
       "sk": "Svätá Helena",
       "se": "Saint Helena",
       "pl": "Wyspa Świętej Heleny",
@@ -5678,6 +5861,7 @@ const List<Country> countries = [
   Country(
     name: "Saint Kitts and Nevis",
     nameTranslations: {
+      "hu": "Saint Kitts és Nevis",
       "sk": "Svätý Krištof a Nevis",
       "se": "Saint Kitts ja Nevis",
       "pl": "Saint Kitts i Nevis",
@@ -5709,6 +5893,7 @@ const List<Country> countries = [
   Country(
     name: "Saint Lucia",
     nameTranslations: {
+      "hu": "Saint Lucia",
       "sk": "Svätá Lucia",
       "se": "Saint Lucia",
       "pl": "Saint Lucia",
@@ -5740,6 +5925,7 @@ const List<Country> countries = [
   Country(
     name: "Saint Martin",
     nameTranslations: {
+      "hu": "Szent Márton-sziget",
       "sk": "Svätý Martin (fr.)",
       "se": "Frankriikka Saint Martin",
       "pl": "Saint-Martin",
@@ -5771,6 +5957,7 @@ const List<Country> countries = [
   Country(
     name: "Saint Pierre and Miquelon",
     nameTranslations: {
+      "hu": "Saint-Pierre és Miquelon",
       "sk": "Saint Pierre a Miquelon",
       "se": "Saint Pierre ja Miquelon",
       "pl": "Saint-Pierre i Miquelon",
@@ -5802,6 +5989,7 @@ const List<Country> countries = [
   Country(
     name: "Saint Vincent and the Grenadines",
     nameTranslations: {
+      "hu": "Saint Vincent és a Grenadine-szigetek",
       "sk": "Svätý Vincent a Grenadíny",
       "se": "Saint Vincent ja Grenadine",
       "pl": "Saint Vincent i Grenadyny",
@@ -5833,6 +6021,7 @@ const List<Country> countries = [
   Country(
     name: "Samoa",
     nameTranslations: {
+      "hu": "Szamoa",
       "sk": "Samoa",
       "se": "Samoa",
       "pl": "Samoa",
@@ -5864,6 +6053,7 @@ const List<Country> countries = [
   Country(
     name: "San Marino",
     nameTranslations: {
+      "hu": "San Marino",
       "sk": "San Maríno",
       "se": "San Marino",
       "pl": "San Marino",
@@ -5895,6 +6085,7 @@ const List<Country> countries = [
   Country(
     name: "Sao Tome and Principe",
     nameTranslations: {
+      "hu": "São Tomé és Príncipe",
       "sk": "Svätý Tomáš a Princov ostrov",
       "se": "São Tomé ja Príncipe",
       "pl": "Wyspy Świętego Tomasza i Książęca",
@@ -5926,6 +6117,7 @@ const List<Country> countries = [
   Country(
     name: "Saudi Arabia",
     nameTranslations: {
+      "hu": "Szaúd-Arábia",
       "sk": "Saudská Arábia",
       "se": "Saudi-Arábia",
       "pl": "Arabia Saudyjska",
@@ -5957,6 +6149,7 @@ const List<Country> countries = [
   Country(
     name: "Senegal",
     nameTranslations: {
+      "hu": "Szenegál",
       "sk": "Senegal",
       "se": "Senegal",
       "pl": "Senegal",
@@ -5988,6 +6181,7 @@ const List<Country> countries = [
   Country(
     name: "Serbia",
     nameTranslations: {
+      "hu": "Szerbia",
       "sk": "Srbsko",
       "se": "Serbia",
       "pl": "Serbia",
@@ -6019,6 +6213,7 @@ const List<Country> countries = [
   Country(
     name: "Seychelles",
     nameTranslations: {
+      "hu": "Seychelle-szigetek",
       "sk": "Seychely",
       "se": "Seychellsullot",
       "pl": "Seszele",
@@ -6050,6 +6245,7 @@ const List<Country> countries = [
   Country(
     name: "Sierra Leone",
     nameTranslations: {
+      "hu": "Sierra Leone",
       "sk": "Sierra Leone",
       "se": "Sierra Leone",
       "pl": "Sierra Leone",
@@ -6081,6 +6277,7 @@ const List<Country> countries = [
   Country(
     name: "Singapore",
     nameTranslations: {
+      "hu": "Szingapúr",
       "sk": "Singapur",
       "se": "Singapore",
       "pl": "Singapur",
@@ -6112,6 +6309,7 @@ const List<Country> countries = [
   Country(
     name: "Slovakia",
     nameTranslations: {
+      "hu": "Szlovákia",
       "sk": "Slovensko",
       "se": "Slovákia",
       "pl": "Słowacja",
@@ -6143,6 +6341,7 @@ const List<Country> countries = [
   Country(
     name: "Slovenia",
     nameTranslations: {
+      "hu": "Szlovénia",
       "sk": "Slovinsko",
       "se": "Slovenia",
       "pl": "Słowenia",
@@ -6174,6 +6373,7 @@ const List<Country> countries = [
   Country(
     name: "Solomon Islands",
     nameTranslations: {
+      "hu": "Salamon-szigetek",
       "sk": "Šalamúnove ostrovy",
       "se": "Salomon-sullot",
       "pl": "Wyspy Salomona",
@@ -6205,6 +6405,7 @@ const List<Country> countries = [
   Country(
     name: "Somalia",
     nameTranslations: {
+      "hu": "Szomália",
       "sk": "Somálsko",
       "se": "Somália",
       "pl": "Somalia",
@@ -6236,6 +6437,7 @@ const List<Country> countries = [
   Country(
     name: "South Africa",
     nameTranslations: {
+      "hu": "Dél-afrikai Köztársaság",
       "sk": "Južná Afrika",
       "se": "Mátta-Afrihká",
       "pl": "Republika Południowej Afryki",
@@ -6267,6 +6469,7 @@ const List<Country> countries = [
   Country(
     name: "South Sudan",
     nameTranslations: {
+      "hu": "Dél-Szudán",
       "sk": "Južný Sudán",
       "se": "Máttasudan",
       "pl": "Sudan Południowy",
@@ -6298,6 +6501,7 @@ const List<Country> countries = [
   Country(
     name: "South Georgia and the South Sandwich Islands",
     nameTranslations: {
+      "hu": "Déli-Georgia és Déli-Sandwich-szigetek",
       "sk": "Južná Georgia a Južné Sandwichove ostrovy",
       "se": "Lulli Georgia ja Lulli Sandwich-sullot",
       "pl": "Georgia Południowa i Sandwich Południowy",
@@ -6329,6 +6533,7 @@ const List<Country> countries = [
   Country(
     name: "Spain",
     nameTranslations: {
+      "hu": "Spanyolország",
       "sk": "Španielsko",
       "se": "Spánia",
       "pl": "Hiszpania",
@@ -6360,6 +6565,7 @@ const List<Country> countries = [
   Country(
     name: "Sri Lanka",
     nameTranslations: {
+      "hu": "Srí Lanka",
       "sk": "Srí Lanka",
       "se": "Sri Lanka",
       "pl": "Sri Lanka",
@@ -6391,6 +6597,7 @@ const List<Country> countries = [
   Country(
     name: "Sudan",
     nameTranslations: {
+      "hu": "Szudán",
       "sk": "Sudán",
       "se": "Davvisudan",
       "pl": "Sudan",
@@ -6422,6 +6629,7 @@ const List<Country> countries = [
   Country(
     name: "Suriname",
     nameTranslations: {
+      "hu": "Suriname",
       "sk": "Surinam",
       "se": "Surinam",
       "pl": "Surinam",
@@ -6453,6 +6661,7 @@ const List<Country> countries = [
   Country(
     name: "Svalbard and Jan Mayen",
     nameTranslations: {
+      "hu": "Svalbard és Jan Mayen",
       "sk": "Svalbard a Jan Mayen",
       "se": "Svalbárda ja Jan Mayen",
       "pl": "Svalbard i Jan Mayen",
@@ -6484,6 +6693,7 @@ const List<Country> countries = [
   Country(
     name: "Eswatini",
     nameTranslations: {
+      "hu": "Szváziföld",
       "sk": "Eswatini",
       "se": "Svazieana",
       "pl": "Eswatini",
@@ -6515,6 +6725,7 @@ const List<Country> countries = [
   Country(
     name: "Sweden",
     nameTranslations: {
+      "hu": "Svédország",
       "sk": "Švédsko",
       "se": "Ruoŧŧa",
       "pl": "Szwecja",
@@ -6546,6 +6757,7 @@ const List<Country> countries = [
   Country(
     name: "Switzerland",
     nameTranslations: {
+      "hu": "Svájc",
       "sk": "Švajčiarsko",
       "se": "Šveica",
       "pl": "Szwajcaria",
@@ -6577,6 +6789,7 @@ const List<Country> countries = [
   Country(
     name: "Syrian Arab Republic",
     nameTranslations: {
+      "hu": "Szíria",
       "sk": "Sýria",
       "se": "Syria",
       "pl": "Syria",
@@ -6608,6 +6821,7 @@ const List<Country> countries = [
   Country(
     name: "Taiwan",
     nameTranslations: {
+      "hu": "Tajvan",
       "sk": "Taiwan",
       "se": "Taiwan",
       "pl": "Tajwan",
@@ -6639,6 +6853,7 @@ const List<Country> countries = [
   Country(
     name: "Tajikistan",
     nameTranslations: {
+      "hu": "Tádzsikisztán",
       "sk": "Tadžikistan",
       "se": "Tažikistan",
       "pl": "Tadżykistan",
@@ -6670,6 +6885,7 @@ const List<Country> countries = [
   Country(
     name: "Tanzania, United Republic of Tanzania",
     nameTranslations: {
+      "hu": "Tanzánia",
       "sk": "Tanzánia",
       "se": "Tanzánia",
       "pl": "Tanzania",
@@ -6701,6 +6917,7 @@ const List<Country> countries = [
   Country(
     name: "Thailand",
     nameTranslations: {
+      "hu": "Thaiföld",
       "sk": "Thajsko",
       "se": "Thaieana",
       "pl": "Tajlandia",
@@ -6732,6 +6949,7 @@ const List<Country> countries = [
   Country(
     name: "Timor-Leste",
     nameTranslations: {
+      "hu": "Kelet-Timor",
       "sk": "Východný Timor",
       "se": "Nuorta-Timor",
       "pl": "Timor Wschodni",
@@ -6763,6 +6981,7 @@ const List<Country> countries = [
   Country(
     name: "Togo",
     nameTranslations: {
+      "hu": "Togo",
       "sk": "Togo",
       "se": "Togo",
       "pl": "Togo",
@@ -6794,6 +7013,7 @@ const List<Country> countries = [
   Country(
     name: "Tokelau",
     nameTranslations: {
+      "hu": "Tokelau-szigetek",
       "sk": "Tokelau",
       "se": "Tokelau",
       "pl": "Tokelau",
@@ -6825,6 +7045,7 @@ const List<Country> countries = [
   Country(
     name: "Tonga",
     nameTranslations: {
+      "hu": "Tonga",
       "sk": "Tonga",
       "se": "Tonga",
       "pl": "Tonga",
@@ -6856,6 +7077,7 @@ const List<Country> countries = [
   Country(
     name: "Trinidad and Tobago",
     nameTranslations: {
+      "hu": "Trinidad és Tobago",
       "sk": "Trinidad a Tobago",
       "se": "Trinidad ja Tobago",
       "pl": "Trynidad i Tobago",
@@ -6887,6 +7109,7 @@ const List<Country> countries = [
   Country(
     name: "Tunisia",
     nameTranslations: {
+      "hu": "Tunézia",
       "sk": "Tunisko",
       "se": "Tunisia",
       "pl": "Tunezja",
@@ -6918,6 +7141,7 @@ const List<Country> countries = [
   Country(
     name: "Turkey",
     nameTranslations: {
+      "hu": "Törökország",
       "sk": "Turecko",
       "se": "Durka",
       "pl": "Turcja",
@@ -6949,6 +7173,7 @@ const List<Country> countries = [
   Country(
     name: "Turkmenistan",
     nameTranslations: {
+      "hu": "Türkmenisztán",
       "sk": "Turkménsko",
       "se": "Turkmenistan",
       "pl": "Turkmenistan",
@@ -6980,6 +7205,7 @@ const List<Country> countries = [
   Country(
     name: "Turks and Caicos Islands",
     nameTranslations: {
+      "hu": "Turks- és Caicos-szigetek",
       "sk": "Turks a Caicos",
       "se": "Turks ja Caicos-sullot",
       "pl": "Turks i Caicos",
@@ -7011,6 +7237,7 @@ const List<Country> countries = [
   Country(
     name: "Tuvalu",
     nameTranslations: {
+      "hu": "Tuvalu",
       "sk": "Tuvalu",
       "se": "Tuvalu",
       "pl": "Tuvalu",
@@ -7042,6 +7269,7 @@ const List<Country> countries = [
   Country(
     name: "Uganda",
     nameTranslations: {
+      "hu": "Uganda",
       "sk": "Uganda",
       "se": "Uganda",
       "pl": "Uganda",
@@ -7073,6 +7301,7 @@ const List<Country> countries = [
   Country(
     name: "Ukraine",
     nameTranslations: {
+      "hu": "Ukrajna",
       "sk": "Ukrajina",
       "se": "Ukraina",
       "pl": "Ukraina",
@@ -7104,6 +7333,7 @@ const List<Country> countries = [
   Country(
     name: "United Arab Emirates",
     nameTranslations: {
+      "hu": "Egyesült Arab Emírségek",
       "sk": "Spojené arabské emiráty",
       "se": "Ovttastuvvan Arábaemiráhtat",
       "pl": "Zjednoczone Emiraty Arabskie",
@@ -7135,6 +7365,7 @@ const List<Country> countries = [
   Country(
     name: "United Kingdom",
     nameTranslations: {
+      "hu": "Egyesült Királyság",
       "sk": "Spojené kráľovstvo",
       "se": "Stuorra-Británnia",
       "pl": "Wielka Brytania",
@@ -7166,6 +7397,7 @@ const List<Country> countries = [
   Country(
     name: "United States",
     nameTranslations: {
+      "hu": "Amerikai Egyesült Államok",
       "sk": "Spojené štáty",
       "se": "Amerihká ovttastuvvan stáhtat",
       "pl": "Stany Zjednoczone",
@@ -7197,6 +7429,7 @@ const List<Country> countries = [
   Country(
     name: "Uruguay",
     nameTranslations: {
+      "hu": "Uruguay",
       "sk": "Uruguaj",
       "se": "Uruguay",
       "pl": "Urugwaj",
@@ -7228,6 +7461,7 @@ const List<Country> countries = [
   Country(
     name: "Uzbekistan",
     nameTranslations: {
+      "hu": "Üzbegisztán",
       "sk": "Uzbekistan",
       "se": "Usbekistan",
       "pl": "Uzbekistan",
@@ -7259,6 +7493,7 @@ const List<Country> countries = [
   Country(
     name: "Vanuatu",
     nameTranslations: {
+      "hu": "Vanuatu",
       "sk": "Vanuatu",
       "se": "Vanuatu",
       "pl": "Vanuatu",
@@ -7290,6 +7525,7 @@ const List<Country> countries = [
   Country(
     name: "Venezuela, Bolivarian Republic of Venezuela",
     nameTranslations: {
+      "hu": "Venezuela",
       "sk": "Venezuela",
       "se": "Venezuela",
       "pl": "Wenezuela",
@@ -7321,6 +7557,7 @@ const List<Country> countries = [
   Country(
     name: "Vietnam",
     nameTranslations: {
+      "hu": "Vietnám",
       "sk": "Vietnam",
       "se": "Vietnam",
       "pl": "Wietnam",
@@ -7352,6 +7589,7 @@ const List<Country> countries = [
   Country(
     name: "Virgin Islands, British",
     nameTranslations: {
+      "hu": "Brit Virgin-szigetek",
       "sk": "Britské Panenské ostrovy",
       "se": "Brittania Virgin-sullot",
       "pl": "Brytyjskie Wyspy Dziewicze",
@@ -7383,6 +7621,7 @@ const List<Country> countries = [
   Country(
     name: "Virgin Islands, U.S.",
     nameTranslations: {
+      "hu": "Amerikai Virgin-szigetek",
       "sk": "Americké Panenské ostrovy",
       "se": "AOS Virgin-sullot",
       "pl": "Wyspy Dziewicze Stanów Zjednoczonych",
@@ -7414,6 +7653,7 @@ const List<Country> countries = [
   Country(
     name: "Wallis and Futuna",
     nameTranslations: {
+      "hu": "Wallis és Futuna",
       "sk": "Wallis a Futuna",
       "se": "Wallis ja Futuna",
       "pl": "Wallis i Futuna",
@@ -7445,6 +7685,7 @@ const List<Country> countries = [
   Country(
     name: "Yemen",
     nameTranslations: {
+      "hu": "Jemen",
       "sk": "Jemen",
       "se": "Jemen",
       "pl": "Jemen",
@@ -7476,6 +7717,7 @@ const List<Country> countries = [
   Country(
     name: "Zambia",
     nameTranslations: {
+      "hu": "Zambia",
       "sk": "Zambia",
       "se": "Zambia",
       "pl": "Zambia",
@@ -7507,6 +7749,7 @@ const List<Country> countries = [
   Country(
       name: "Zimbabwe",
       nameTranslations: {
+        "hu": "Zimbabwe",
         "sk": "Zimbabwe",
         "se": "Zimbabwe",
         "pl": "Zimbabwe",
