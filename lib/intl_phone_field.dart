@@ -249,6 +249,12 @@ class IntlPhoneField extends StatefulWidget {
   /// If null, default magnification configuration will be used.
   final TextMagnifierConfiguration? magnifierConfiguration;
 
+  /// When this widget receives focus and is not completely visible (for example scrolled partially
+  /// off the screen or overlapped by the keyboard)
+  /// then it will attempt to make itself visible by scrolling a surrounding [Scrollable], if one is present.
+  /// This value controls how far from the edges of a [Scrollable] the TextField will be positioned after the scroll.
+  final EdgeInsets scrollPadding;
+
   const IntlPhoneField({
     Key? key,
     this.formFieldKey,
@@ -296,6 +302,7 @@ class IntlPhoneField extends StatefulWidget {
     this.pickerDialogStyle,
     this.flagsButtonMargin = EdgeInsets.zero,
     this.magnifierConfiguration,
+    this.scrollPadding = const EdgeInsets.all(20.0),
   }) : super(key: key);
 
   @override
@@ -444,6 +451,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       autofocus: widget.autofocus,
       textInputAction: widget.textInputAction,
       autovalidateMode: widget.autovalidateMode,
+      scrollPadding: widget.scrollPadding,
     );
   }
 
