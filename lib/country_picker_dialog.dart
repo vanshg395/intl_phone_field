@@ -136,7 +136,8 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                         style: widget.style?.countryNameStyle ?? const TextStyle(fontWeight: FontWeight.w700),
                       ),
                       trailing: Text(
-                        '+${_filteredCountries[index].dialCode}',
+                        Localizations.localeOf(context)=='en'?'+${_filteredCountries[index].dialCode}':'${_filteredCountries[index].dialCode}+',
+                        textDirection: Localizations.localeOf(context)=='en'?TextDirection.ltr:TextDirection.rtl,
                         style: widget.style?.countryCodeStyle ?? const TextStyle(fontWeight: FontWeight.w700),
                       ),
                       onTap: () {
