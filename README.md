@@ -111,6 +111,7 @@ Comment on Issue or Pull Request, asking @all-contributors to add a contributor:
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/The-Redhat"><img src="https://avatars.githubusercontent.com/u/33162310?v=4?s=100" width="100px;" alt="Gregor Weber"/><br /><sub><b>Gregor Weber</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=The-Redhat" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://beacons.ai/hanyi00i"><img src="https://avatars.githubusercontent.com/u/92980326?v=4?s=100" width="100px;" alt="Ooi Han Yi"/><br /><sub><b>Ooi Han Yi</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=hanyi00i" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://www.jimmyff.co.uk"><img src="https://avatars.githubusercontent.com/u/298850?v=4?s=100" width="100px;" alt="Jimmy Forrester-Fellowes"/><br /><sub><b>Jimmy Forrester-Fellowes</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=jimmyff" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://adilsonjuniordev.github.io/"><img src="https://avatars.githubusercontent.com/u/39710307?v=4?s=100" width="100px;" alt="Adilson Junior"/><br /><sub><b>Adilson Junior</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=adilsonjuniordev" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
