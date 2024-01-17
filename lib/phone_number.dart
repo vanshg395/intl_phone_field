@@ -22,6 +22,10 @@ class PhoneNumber {
       return PhoneNumber(countryISOCode: "", countryCode: "", number: "");
     }
 
+    // remove white spaces and dashes
+    completeNumber = completeNumber.replaceAll(RegExp(r'\s+'), '');
+    completeNumber = completeNumber.replaceAll(RegExp('-+'), '');
+
     try {
       Country country = getCountry(completeNumber);
       String number;
