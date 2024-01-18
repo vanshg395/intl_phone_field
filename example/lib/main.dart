@@ -54,6 +54,7 @@ class _MyAppState extends State<MyApp> {
                   height: 10,
                 ),
                 IntlPhoneField(
+                  favourite: ['AE'],
                   focusNode: focusNode,
                   decoration: InputDecoration(
                     labelText: 'Phone Number',
