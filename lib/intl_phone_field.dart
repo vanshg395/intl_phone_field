@@ -108,6 +108,13 @@ class IntlPhoneField extends StatefulWidget {
   ///    [TextInputAction.previous] for [textInputAction].
   final void Function(String)? onSubmitted;
 
+  ///
+  /// Number is valid ?
+  ///
+  /// @Gnac
+  ///
+  final void Function(bool)? onNumberValide;
+
   /// If false the widget is "disabled": it ignores taps, the [TextFormField]'s
   /// [decoration] is rendered in grey,
   /// [decoration]'s [InputDecoration.counterText] is set to `""`,
@@ -268,6 +275,7 @@ class IntlPhoneField extends StatefulWidget {
     this.style,
     this.dropdownTextStyle,
     this.onSubmitted,
+    this.onNumberValide,
     this.validator,
     this.onChanged,
     this.countries,
@@ -343,7 +351,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         number: widget.initialValue ?? '',
       );
 
-      final value = widget.validator?.call(initialPhoneNumber);
+      final value = widget.validator?.call(initialPhoneNumber) ?? '';
 
       if (value is String) {
         validatorMessage = value;
@@ -379,11 +387,20 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     if (mounted) setState(() {});
   }
 
+  String _getNumber() {
+    if (number.length >= _selectedCountry.minLength && number.length <= _selectedCountry.maxLength) {
+      widget.onNumberValide?.call(true);
+    } else {
+      widget.onNumberValide?.call(false);
+    }
+    return number;
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       key: widget.formFieldKey,
-      initialValue: (widget.controller == null) ? number : null,
+      initialValue: (widget.controller == null) ? _getNumber() : null,
       autofillHints: widget.disableAutoFillHints ? null : [AutofillHints.telephoneNumberNational],
       readOnly: widget.readOnly,
       obscureText: widget.obscureText,
@@ -426,14 +443,21 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
         widget.onChanged?.call(phoneNumber);
       },
+
+      /// @Gnac
       validator: (value) {
         if (value == null || !isNumeric(value)) return validatorMessage;
         if (!widget.disableLengthCheck) {
-          return value.length >= _selectedCountry.minLength && value.length <= _selectedCountry.maxLength
-              ? null
-              : widget.invalidNumberMessage;
+          if (value.length >= _selectedCountry.minLength && value.length <= _selectedCountry.maxLength) {
+            widget.onNumberValide?.call(true);
+            return null;
+          } else {
+            widget.onNumberValide?.call(false);
+            return widget.invalidNumberMessage;
+          }
         }
 
+        widget.onNumberValide?.call(false);
         return validatorMessage;
       },
       maxLength: widget.disableLengthCheck ? null : _selectedCountry.maxLength,
