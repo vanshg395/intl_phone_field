@@ -24,6 +24,10 @@ class PickerDialogStyle {
 
   final double? width;
 
+  final double? flagSize;
+  
+  final double? borderRadius;
+
   PickerDialogStyle({
     this.backgroundColor,
     this.countryCodeStyle,
@@ -35,6 +39,8 @@ class PickerDialogStyle {
     this.searchFieldInputDecoration,
     this.searchFieldPadding,
     this.width,
+    this. flagSize,
+    this.borderRadius,
   });
 }
 
@@ -69,10 +75,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
   @override
   void initState() {
     _selectedCountry = widget.selectedCountry;
-    _filteredCountries = widget.filteredCountries.toList()
-      ..sort(
-        (a, b) => a.localizedName(widget.languageCode).compareTo(b.localizedName(widget.languageCode)),
-      );
+    _filteredCountries = widget.filteredCountries.toList();
 
     super.initState();
   }
@@ -84,6 +87,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
     const defaultHorizontalPadding = 40.0;
     const defaultVerticalPadding = 24.0;
     return Dialog(
+       shape: BorderRadius.circular(widget.style?.borderRadius??16.sp),
       insetPadding: EdgeInsets.symmetric(
           vertical: defaultVerticalPadding,
           horizontal: mediaWidth > (width + defaultHorizontalPadding * 2)
@@ -128,7 +132,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                             )
                           : Text(
                               _filteredCountries[index].flag,
-                              style: const TextStyle(fontSize: 18),
+                              style: const TextStyle(fontSize: widget.style?.flagSize ?? 18),
                             ),
                       contentPadding: widget.style?.listTilePadding,
                       title: Text(
