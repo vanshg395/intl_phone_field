@@ -25,7 +25,7 @@ class PickerDialogStyle {
   final double? width;
 
   final double? flagSize;
-  
+
   final double? borderRadius;
 
   PickerDialogStyle({
@@ -39,7 +39,7 @@ class PickerDialogStyle {
     this.searchFieldInputDecoration,
     this.searchFieldPadding,
     this.width,
-    this. flagSize,
+    this.flagSize,
     this.borderRadius,
   });
 }
@@ -87,7 +87,9 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
     const defaultHorizontalPadding = 40.0;
     const defaultVerticalPadding = 24.0;
     return Dialog(
-       shape: BorderRadius.circular(widget.style?.borderRadius??16.sp),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(widget.style?.borderRadius ?? 16),
+      ),
       insetPadding: EdgeInsets.symmetric(
           vertical: defaultVerticalPadding,
           horizontal: mediaWidth > (width + defaultHorizontalPadding * 2)
@@ -132,7 +134,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                             )
                           : Text(
                               _filteredCountries[index].flag,
-                              style: const TextStyle(fontSize: widget.style?.flagSize ?? 18),
+                              style: TextStyle(fontSize: widget.style?.flagSize ?? 18),
                             ),
                       contentPadding: widget.style?.listTilePadding,
                       title: Text(
