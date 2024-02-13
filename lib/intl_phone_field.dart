@@ -1,6 +1,7 @@
 library intl_phone_field;
 
 import 'dart:async';
+
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,7 +17,6 @@ class IntlPhoneField extends StatefulWidget {
 
   /// Whether to hide the text being edited (e.g., for passwords).
   final bool obscureText;
-
 
   /// How the text should be aligned horizontally.
   final TextAlign textAlign;
@@ -255,7 +255,7 @@ class IntlPhoneField extends StatefulWidget {
     this.formFieldKey,
     this.initialCountryCode,
     this.languageCode = 'en',
-    this.autofillHints = [AutofillHints.phoneNumberNational],
+    this.autofillHints = const [AutofillHints.telephoneNumberNational],
     this.obscureText = false,
     this.textAlign = TextAlign.left,
     this.textAlignVertical,
