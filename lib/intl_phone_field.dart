@@ -1,6 +1,7 @@
 library intl_phone_field;
 
 import 'dart:async';
+
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -243,8 +244,8 @@ class IntlPhoneField extends StatefulWidget {
   /// If unset, defaults to [EdgeInsets.zero].
   final EdgeInsets flagsButtonMargin;
 
-  /// Enable the autofill hint for phone number.
-  final bool disableAutoFillHints;
+  /// The list of AutofillHints
+  final Iterable<String> autofillHints;
 
   /// If null, default magnification configuration will be used.
   final TextMagnifierConfiguration? magnifierConfiguration;
@@ -254,7 +255,7 @@ class IntlPhoneField extends StatefulWidget {
     this.formFieldKey,
     this.initialCountryCode,
     this.languageCode = 'en',
-    this.disableAutoFillHints = false,
+    this.autofillHints = const [AutofillHints.telephoneNumberNational],
     this.obscureText = false,
     this.textAlign = TextAlign.left,
     this.textAlignVertical,
@@ -384,7 +385,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     return TextFormField(
       key: widget.formFieldKey,
       initialValue: (widget.controller == null) ? number : null,
-      autofillHints: widget.disableAutoFillHints ? null : [AutofillHints.telephoneNumberNational],
+      autofillHints: widget.autofillHints,
       readOnly: widget.readOnly,
       obscureText: widget.obscureText,
       textAlign: widget.textAlign,
