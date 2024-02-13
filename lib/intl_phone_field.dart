@@ -245,7 +245,7 @@ class IntlPhoneField extends StatefulWidget {
   final EdgeInsets flagsButtonMargin;
 
   /// The list of AutofillHints
-  final List<AutofillHints> autofillHints;
+  final Iterable<String> autofillHints;
 
   /// If null, default magnification configuration will be used.
   final TextMagnifierConfiguration? magnifierConfiguration;
