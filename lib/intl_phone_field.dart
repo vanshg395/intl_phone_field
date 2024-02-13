@@ -17,6 +17,7 @@ class IntlPhoneField extends StatefulWidget {
   /// Whether to hide the text being edited (e.g., for passwords).
   final bool obscureText;
 
+
   /// How the text should be aligned horizontally.
   final TextAlign textAlign;
 
@@ -243,8 +244,8 @@ class IntlPhoneField extends StatefulWidget {
   /// If unset, defaults to [EdgeInsets.zero].
   final EdgeInsets flagsButtonMargin;
 
-  /// Enable the autofill hint for phone number.
-  final bool disableAutoFillHints;
+  /// The list of AutofillHints
+  final List<AutofillHints> autofillHints;
 
   /// If null, default magnification configuration will be used.
   final TextMagnifierConfiguration? magnifierConfiguration;
@@ -254,7 +255,7 @@ class IntlPhoneField extends StatefulWidget {
     this.formFieldKey,
     this.initialCountryCode,
     this.languageCode = 'en',
-    this.disableAutoFillHints = false,
+    this.autofillHints = [AutofillHints.phoneNumberNational],
     this.obscureText = false,
     this.textAlign = TextAlign.left,
     this.textAlignVertical,
@@ -384,7 +385,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     return TextFormField(
       key: widget.formFieldKey,
       initialValue: (widget.controller == null) ? number : null,
-      autofillHints: widget.disableAutoFillHints ? null : [AutofillHints.telephoneNumberNational, AutofillHints.telephoneNumber],
+      autofillHints: widget.autofillHints,
       readOnly: widget.readOnly,
       obscureText: widget.obscureText,
       textAlign: widget.textAlign,
