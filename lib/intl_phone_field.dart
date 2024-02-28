@@ -14,6 +14,9 @@ class IntlPhoneField extends StatefulWidget {
   /// The TextFormField key.
   final GlobalKey<FormFieldState>? formFieldKey;
 
+  /// Border for the input
+  final InputBorder? border;
+
   /// Whether to hide the text being edited (e.g., for passwords).
   final bool obscureText;
 
@@ -267,6 +270,7 @@ class IntlPhoneField extends StatefulWidget {
     this.decoration = const InputDecoration(),
     this.style,
     this.dropdownTextStyle,
+    this.border,
     this.onSubmitted,
     this.validator,
     this.onChanged,
@@ -402,6 +406,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       decoration: widget.decoration.copyWith(
         prefixIcon: _buildFlagsButton(),
         counterText: !widget.enabled ? '' : null,
+        border: widget.border,
+        enabledBorder: widget.border,
+        focusedBorder: widget.border,
       ),
       style: widget.style,
       onSaved: (value) {
