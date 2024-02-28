@@ -17,6 +17,12 @@ class IntlPhoneField extends StatefulWidget {
   /// Border for the input
   final InputBorder? border;
 
+  /// Prefix Dropdown Constraintss
+  final BoxConstraints? prefixIconConstraints;
+
+  /// Text Form Field fill Color
+  final Color? fillColor;
+
   /// Whether to hide the text being edited (e.g., for passwords).
   final bool obscureText;
 
@@ -271,6 +277,8 @@ class IntlPhoneField extends StatefulWidget {
     this.style,
     this.dropdownTextStyle,
     this.border,
+    this.fillColor,
+    this.prefixIconConstraints,
     this.onSubmitted,
     this.validator,
     this.onChanged,
@@ -409,6 +417,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         border: widget.border,
         enabledBorder: widget.border,
         focusedBorder: widget.border,
+        prefixIconConstraints: widget.prefixIconConstraints,
+        filled: widget.fillColor != null,
+        fillColor: widget.fillColor,
       ),
       style: widget.style,
       onSaved: (value) {
