@@ -2231,8 +2231,8 @@ const List<Country> countries = [
     flag: "🇫🇮",
     code: "FI",
     dialCode: "358",
-    minLength: 12,
-    maxLength: 12,
+    minLength: 9,
+    maxLength: 9,
   ),
   Country(
     name: "France",
@@ -3316,7 +3316,7 @@ const List<Country> countries = [
     flag: "🇮🇹",
     code: "IT",
     dialCode: "39",
-    minLength: 9,
+    minLength: 10,
     maxLength: 10,
   ),
   Country(
@@ -4091,8 +4091,8 @@ const List<Country> countries = [
     flag: "🇲🇾",
     code: "MY",
     dialCode: "60",
-    minLength: 9,
-    maxLength: 10,
+    minLength: 11,
+    maxLength: 11,
   ),
   Country(
     name: "Maldives",
@@ -6602,8 +6602,8 @@ const List<Country> countries = [
     flag: "🇸🇾",
     code: "SY",
     dialCode: "963",
-    minLength: 9,
-    maxLength: 9,
+    minLength: 10,
+    maxLength: 10,
   ),
   Country(
     name: "Taiwan",
