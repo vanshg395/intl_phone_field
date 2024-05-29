@@ -1,14 +1,16 @@
 library intl_phone_field;
 
 import 'dart:async';
+import 'package:dlibphonenumber/generated/classes/phone_number/phonenumber.pb.dart';
+import 'package:dlibphonenumber/phone_number_util.dart';
+import 'package:fixnum/fixnum.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
-import 'package:intl_phone_field/helpers.dart';
+import 'package:intl_phone_field/phone_number.dart';
 
 import './countries.dart';
-import './phone_number.dart';
 
 class IntlPhoneField extends StatefulWidget {
   /// The TextFormField key.
@@ -26,7 +28,7 @@ class IntlPhoneField extends StatefulWidget {
 
   /// {@macro flutter.widgets.editableText.readOnly}
   final bool readOnly;
-  final FormFieldSetter<PhoneNumber>? onSaved;
+  final FormFieldSetter<LocalPhoneNumber>? onSaved;
 
   /// {@macro flutter.widgets.editableText.onChanged}
   ///
@@ -36,7 +38,7 @@ class IntlPhoneField extends StatefulWidget {
   ///    runs and can validate and change ("format") the input value.
   ///  * [onEditingComplete], [onSubmitted], [onSelectionChanged]:
   ///    which are more specialized input change notifications.
-  final ValueChanged<PhoneNumber>? onChanged;
+  final ValueChanged<LocalPhoneNumber>? onChanged;
 
   final ValueChanged<Country>? onCountryChanged;
 
@@ -49,7 +51,7 @@ class IntlPhoneField extends StatefulWidget {
   /// By default, the validator checks whether the input number length is between selected country's phone numbers min and max length.
   /// If `disableLengthCheck` is not set to `true`, your validator returned value will be overwritten by the default validator.
   /// But, if `disableLengthCheck` is set to `true`, your validator will have to check phone number length itself.
-  final FutureOr<String?> Function(PhoneNumber?)? validator;
+  final FutureOr<String?> Function(LocalPhoneNumber?)? validator;
 
   /// {@macro flutter.widgets.editableText.keyboardType}
   final TextInputType keyboardType;
@@ -337,7 +339,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     }
 
     if (widget.autovalidateMode == AutovalidateMode.always) {
-      final initialPhoneNumber = PhoneNumber(
+      final initialPhoneNumber = LocalPhoneNumber(
         countryISOCode: _selectedCountry.code,
         countryCode: '+${_selectedCountry.dialCode}',
         number: widget.initialValue ?? '',
@@ -352,6 +354,22 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           validatorMessage = msg;
         });
       }
+    }
+  }
+
+  bool _validatePhoneNumber(String phoneNumber) {
+    try {
+      PhoneNumberUtil phoneUtil = PhoneNumberUtil.instance;
+
+      PhoneNumber parsedphoneNumber = phoneUtil.parse(phoneNumber, _selectedCountry.code);
+
+      // Check if the phone number is valid for the specified country code
+      final isValid = phoneUtil.isValidNumber(parsedphoneNumber);
+      return isValid;
+    } catch (e) {
+      // Handle errors such as invalid country code
+      print('Error validating phone number: $e');
+      return false;
     }
   }
 
@@ -406,7 +424,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       style: widget.style,
       onSaved: (value) {
         widget.onSaved?.call(
-          PhoneNumber(
+          LocalPhoneNumber(
             countryISOCode: _selectedCountry.code,
             countryCode: '+${_selectedCountry.dialCode}${_selectedCountry.regionCode}',
             number: value!,
@@ -414,27 +432,32 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         );
       },
       onChanged: (value) async {
-        final phoneNumber = PhoneNumber(
+        final phoneNumber = LocalPhoneNumber(
           countryISOCode: _selectedCountry.code,
           countryCode: '+${_selectedCountry.fullCountryCode}',
           number: value,
         );
 
-        if (widget.autovalidateMode != AutovalidateMode.disabled) {
-          validatorMessage = await widget.validator?.call(phoneNumber);
-        }
-
         widget.onChanged?.call(phoneNumber);
       },
-      validator: (value) {
-        if (value == null || !isNumeric(value)) return validatorMessage;
-        if (!widget.disableLengthCheck) {
-          return value.length >= _selectedCountry.minLength && value.length <= _selectedCountry.maxLength
-              ? null
-              : widget.invalidNumberMessage;
+      validator: (String? value) {
+        if (value == null || value.isEmpty) {
+          return widget.invalidNumberMessage;
         }
 
-        return validatorMessage;
+        // Check if the value is a valid phone number for the selected country
+        final isValidPhoneNumber = _validatePhoneNumber(value);
+        if (!isValidPhoneNumber) {
+          return widget.invalidNumberMessage;
+        }
+
+        if (!widget.disableLengthCheck) {
+          final isValidLength =
+              value.length >= _selectedCountry.minLength && value.length <= _selectedCountry.maxLength;
+          if (!isValidLength) return widget.invalidNumberMessage;
+        }
+
+        return null;
       },
       maxLength: widget.disableLengthCheck ? null : _selectedCountry.maxLength,
       keyboardType: widget.keyboardType,
