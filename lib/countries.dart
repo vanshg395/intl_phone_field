@@ -1,7 +1,7 @@
 // see: https://en.wikipedia.org/wiki/List_of_country_calling_codes
 // for list of country/calling codes
 
-const List<Country> countries = [
+List<Country> get countries => const [
   Country(
     name: "Afghanistan",
     nameTranslations: {
