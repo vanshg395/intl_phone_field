@@ -23,6 +23,7 @@ class IntlPhoneField extends StatefulWidget {
   /// How the text should be aligned vertically.
   final TextAlignVertical? textAlignVertical;
   final VoidCallback? onTap;
+  final TapRegionCallback? onTapOutside;
 
   /// {@macro flutter.widgets.editableText.readOnly}
   final bool readOnly;
@@ -259,6 +260,7 @@ class IntlPhoneField extends StatefulWidget {
     this.textAlign = TextAlign.left,
     this.textAlignVertical,
     this.onTap,
+    this.onTapOutside,
     this.readOnly = false,
     this.initialValue,
     this.keyboardType = TextInputType.phone,
@@ -391,6 +393,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       textAlignVertical: widget.textAlignVertical,
       cursorColor: widget.cursorColor,
       onTap: widget.onTap,
+      onTapOutside: widget.onTapOutside ?? (event) {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
       controller: widget.controller,
       focusNode: widget.focusNode,
       cursorHeight: widget.cursorHeight,
