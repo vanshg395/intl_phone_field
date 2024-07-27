@@ -6230,8 +6230,8 @@ const List<Country> countries = [
     flag: "🇸🇴",
     code: "SO",
     dialCode: "252",
-    minLength: 8,
-    maxLength: 8,
+    minLength: 9,
+    maxLength: 9,
   ),
   Country(
     name: "South Africa",
