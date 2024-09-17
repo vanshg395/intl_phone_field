@@ -249,6 +249,9 @@ class IntlPhoneField extends StatefulWidget {
   /// If null, default magnification configuration will be used.
   final TextMagnifierConfiguration? magnifierConfiguration;
 
+  /// The width of the country flag.
+  final double? flagWidth;
+
   const IntlPhoneField({
     Key? key,
     this.formFieldKey,
@@ -296,6 +299,7 @@ class IntlPhoneField extends StatefulWidget {
     this.pickerDialogStyle,
     this.flagsButtonMargin = EdgeInsets.zero,
     this.magnifierConfiguration,
+    this.flagWidth = 32,
   }) : super(key: key);
 
   @override
@@ -475,11 +479,11 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                       ? Image.asset(
                           'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
                           package: 'intl_phone_field',
-                          width: 32,
+                          width: widget.flagWidth,
                         )
                       : Text(
                           _selectedCountry.flag,
-                          style: const TextStyle(fontSize: 18),
+                          style: TextStyle(fontSize: widget.flagWidth! * 0.5625),
                         ),
                   const SizedBox(width: 8),
                 ],
