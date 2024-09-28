@@ -1,4 +1,4 @@
-name: intl_phone_field_example
+name: intl_phone_field_extended_example
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -12,7 +12,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  intl_phone_field:
+  intl_phone_field_extended:
     path: ../
 
 dev_dependencies:

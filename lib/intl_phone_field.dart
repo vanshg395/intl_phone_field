@@ -1,11 +1,11 @@
-library intl_phone_field;
+library intl_phone_field_extended;
 
 import 'dart:async';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl_phone_field/country_picker_dialog.dart';
-import 'package:intl_phone_field/helpers.dart';
+import 'package:intl_phone_field_extended/country_picker_dialog.dart';
+import 'package:intl_phone_field_extended/helpers.dart';
 
 import './countries.dart';
 import './phone_number.dart';
@@ -474,7 +474,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                   kIsWeb
                       ? Image.asset(
                           'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
-                          package: 'intl_phone_field',
+                          package: 'intl_phone_field_extended',
                           width: 32,
                         )
                       : Text(

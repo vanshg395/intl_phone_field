@@ -1,52 +1,31 @@
 # International Phone Field Package
 
-[![pub package](https://img.shields.io/pub/v/intl_phone_field.svg)](https://pub.dev/packages/intl_phone_field)
-[![CI](https://github.com/vanshg395/intl_phone_field/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/vanshg395/intl_phone_field/actions/workflows/ci.yml)
+[![CI](https://github.com/Alex-Kocharyan/intl_phone_field_extended/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Alex-Kocharyan/intl_phone_field_extended/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A customised Flutter TextFormField to input international phone number along with country code.
+A specialized Flutter TextFormField designed for seamless input of international phone numbers, complete with country code selection.
 
-This widget can be used to make customised text field to take phone number input for any country along with an option to choose country code from a dropdown.
+Allows users to input phone numbers for any country and provides a dropdown menu for selecting the appropriate country code.
 
-## ⚠️ The package is deprecated and this repository is no longer maintained ⚠️
+## About
 
-As of June 2021, I, @marcaureln, have been maintaining this Flutter package initially created by @vanshg395. Regrettably, Vansh has been unresponsive, and I am unable to release new versions (the last release is 6 months old as of writing).
+This is intl_phone_field_extended, a fork of the original [intl_phone_field](https://github.com/vanshg395/intl_phone_field) package. 
 
-Considering this, I recommend users to explore alternatives on [pub.dev](https://pub.dev/) or, if interested, fork this repository for continued support. Life can be hectic, and I wish Vansh is doing well.
-
-Thank you for your understanding and continued support.
-
-<details>
-  <summary>Old Readme</summary>
+This fork introduces important fixes and will continue delivering updates and improvements over time.
 
 ## Screenshots
 
-<img src="https://github.com/vanshg395/intl_phone_field/blob/master/1.png?raw=true" height="500px"> <img src="https://github.com/vanshg395/intl_phone_field/blob/master/2.png?raw=true" height="500px"> <img src="https://github.com/vanshg395/intl_phone_field/blob/master/3.png?raw=true" height="500px">
+<img src="https://github.com/Alex-Kocharyan/intl_phone_field_extended/blob/master/1.png?raw=true" height="500px"> <img src="https://github.com/Alex-Kocharyan/intl_phone_field_extended/blob/master/2.png?raw=true" height="500px"> <img src="https://github.com/Alex-Kocharyan/intl_phone_field_extended/blob/master/3.png?raw=true" height="500px">
 
-## Installing
+## Get started
 
-To use this package:
-
-Run this command:
-
-```yaml
-flutter pub add intl_phone_field
-```
-
-Or, add the following to your `pubspec.yaml` file:
+To use this package, add this to your pubspec.yaml
 
 ```yaml
 dependencies:
-  intl_phone_field: ^<latest_version>
-```
-
-Sometimes you may want to use the latest version of the package, instead of a published version. To do that, use the `git` syntax:
-
-```yaml
-dependencies:
-  intl_phone_field:
+  intl_phone_field_extended:
     git:
-      url: git://github.com/vanshg395/intl_phone_field.git
+      url: git://github.com/Alex-Kocharyan/intl_phone_field_extended.git
       ref: master
 ```
 
@@ -85,7 +64,11 @@ Comment on Issue or Pull Request, asking @all-contributors to add a contributor:
 
 **\<contributions>**: See the [Emoji Key (Contribution Types Reference)](https://allcontributors.org/docs/en/emoji-key) for a list of valid contribution types.
 
-## Maintainers
+## Maintainer
+
+- [Alex Kocharyan](https://github.com/Alex-Kocharyan)
+
+## Previous Maintainers
 
 - [Vansh Goel](https://github.com/vanshg395/)
 - [Alex N'Guessan](https://github.com/marcaureln/)
@@ -98,19 +81,19 @@ Comment on Issue or Pull Request, asking @all-contributors to add a contributor:
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="http://vansh.codes"><img src="https://avatars.githubusercontent.com/u/34906419?v=4?s=100" width="100px;" alt="Vansh Goel"/><br /><sub><b>Vansh Goel</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=vanshg395" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://twitter.com/Kunodayo_oboete"><img src="https://avatars.githubusercontent.com/u/23455702?v=4?s=100" width="100px;" alt="KNO3"/><br /><sub><b>KNO3</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=kno3a87" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://www.techarge.co.uk"><img src="https://avatars.githubusercontent.com/u/850493?v=4?s=100" width="100px;" alt="Ling Li"/><br /><sub><b>Ling Li</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=lingster" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://linkedin.com/in/anggaraputrapratama"><img src="https://avatars.githubusercontent.com/u/75307272?v=4?s=100" width="100px;" alt="Anggara Putra Pratama"/><br /><sub><b>Anggara Putra Pratama</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=anggaraputrapratama" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://geewax.org"><img src="https://avatars.githubusercontent.com/u/112928?v=4?s=100" width="100px;" alt="JJ Geewax"/><br /><sub><b>JJ Geewax</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=jgeewax" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/KevalPrajapati"><img src="https://avatars.githubusercontent.com/u/63007835?v=4?s=100" width="100px;" alt="Keval Prajapati"/><br /><sub><b>Keval Prajapati</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=KevalPrajapati" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://www.glaunay.fr"><img src="https://avatars.githubusercontent.com/u/18292489?v=4?s=100" width="100px;" alt="Guillaume Launay"/><br /><sub><b>Guillaume Launay</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=launay12u" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://vansh.codes"><img src="https://avatars.githubusercontent.com/u/34906419?v=4?s=100" width="100px;" alt="Vansh Goel"/><br /><sub><b>Vansh Goel</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field_extended/commits?author=vanshg395" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://twitter.com/Kunodayo_oboete"><img src="https://avatars.githubusercontent.com/u/23455702?v=4?s=100" width="100px;" alt="KNO3"/><br /><sub><b>KNO3</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field_extended/commits?author=kno3a87" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://www.techarge.co.uk"><img src="https://avatars.githubusercontent.com/u/850493?v=4?s=100" width="100px;" alt="Ling Li"/><br /><sub><b>Ling Li</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field_extended/commits?author=lingster" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://linkedin.com/in/anggaraputrapratama"><img src="https://avatars.githubusercontent.com/u/75307272?v=4?s=100" width="100px;" alt="Anggara Putra Pratama"/><br /><sub><b>Anggara Putra Pratama</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field_extended/commits?author=anggaraputrapratama" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://geewax.org"><img src="https://avatars.githubusercontent.com/u/112928?v=4?s=100" width="100px;" alt="JJ Geewax"/><br /><sub><b>JJ Geewax</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field_extended/commits?author=jgeewax" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/KevalPrajapati"><img src="https://avatars.githubusercontent.com/u/63007835?v=4?s=100" width="100px;" alt="Keval Prajapati"/><br /><sub><b>Keval Prajapati</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field_extended/commits?author=KevalPrajapati" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://www.glaunay.fr"><img src="https://avatars.githubusercontent.com/u/18292489?v=4?s=100" width="100px;" alt="Guillaume Launay"/><br /><sub><b>Guillaume Launay</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field_extended/commits?author=launay12u" title="Code">💻</a></td>
     </tr>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/2000calories"><img src="https://avatars.githubusercontent.com/u/25191098?v=4?s=100" width="100px;" alt="hans.huang"/><br /><sub><b>hans.huang</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=2000calories" title="Code">💻</a> <a href="https://github.com/vanshg395/intl_phone_field/commits?author=2000calories" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/The-Redhat"><img src="https://avatars.githubusercontent.com/u/33162310?v=4?s=100" width="100px;" alt="Gregor Weber"/><br /><sub><b>Gregor Weber</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=The-Redhat" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://beacons.ai/hanyi00i"><img src="https://avatars.githubusercontent.com/u/92980326?v=4?s=100" width="100px;" alt="Ooi Han Yi"/><br /><sub><b>Ooi Han Yi</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=hanyi00i" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://www.jimmyff.co.uk"><img src="https://avatars.githubusercontent.com/u/298850?v=4?s=100" width="100px;" alt="Jimmy Forrester-Fellowes"/><br /><sub><b>Jimmy Forrester-Fellowes</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field/commits?author=jimmyff" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/2000calories"><img src="https://avatars.githubusercontent.com/u/25191098?v=4?s=100" width="100px;" alt="hans.huang"/><br /><sub><b>hans.huang</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field_extended/commits?author=2000calories" title="Code">💻</a> <a href="https://github.com/vanshg395/intl_phone_field_extended/commits?author=2000calories" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/The-Redhat"><img src="https://avatars.githubusercontent.com/u/33162310?v=4?s=100" width="100px;" alt="Gregor Weber"/><br /><sub><b>Gregor Weber</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field_extended/commits?author=The-Redhat" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://beacons.ai/hanyi00i"><img src="https://avatars.githubusercontent.com/u/92980326?v=4?s=100" width="100px;" alt="Ooi Han Yi"/><br /><sub><b>Ooi Han Yi</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field_extended/commits?author=hanyi00i" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://www.jimmyff.co.uk"><img src="https://avatars.githubusercontent.com/u/298850?v=4?s=100" width="100px;" alt="Jimmy Forrester-Fellowes"/><br /><sub><b>Jimmy Forrester-Fellowes</b></sub></a><br /><a href="https://github.com/vanshg395/intl_phone_field_extended/commits?author=jimmyff" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
