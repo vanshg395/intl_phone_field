@@ -362,7 +362,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       useRootNavigator: false,
       builder: (context) => StatefulBuilder(
         builder: (ctx, setState) => CountryPickerDialog(
-          languageCode: widget.languageCode.toLowerCase(),
+          languageCode: widget.languageCode,
           style: widget.pickerDialogStyle,
           filteredCountries: filteredCountries,
           searchText: widget.searchText,
