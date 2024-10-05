@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:intl_phone_field/countries.dart';
-import 'package:intl_phone_field/helpers.dart';
+import 'package:intl_field_phone/countries.dart';
+import 'package:intl_field_phone/helpers.dart';
 
 class PickerDialogStyle {
   final Color? backgroundColor;

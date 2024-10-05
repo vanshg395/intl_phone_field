@@ -1518,8 +1518,8 @@ const List<Country> countries = [
     flag: "🇨🇬",
     code: "CG",
     dialCode: "242",
-    minLength: 7,
-    maxLength: 7,
+    minLength: 9, //
+    maxLength: 9,
   ),
   Country(
     name: "Congo, The Democratic Republic of the Congo",

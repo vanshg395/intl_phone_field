@@ -6,16 +6,16 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 //import 'package:flutter_test/flutter_test.dart';
-import 'package:intl_phone_field/countries.dart';
+import 'package:intl_field_phone/countries.dart';
 import 'package:test/test.dart';
-import 'package:intl_phone_field/phone_number.dart';
+import 'package:intl_field_phone/phone_number.dart';
 
 void main() {
   group('PhoneNumber', () {
     test('create a phone number', () {
-      PhoneNumber phoneNumber = PhoneNumber(countryISOCode: "UK", countryCode: "+44", number: "7891234567");
+      PhoneNumber phoneNumber = PhoneNumber(countryISOCode: "CD", countryCode: "+243", number: "812167999");
       String actual = phoneNumber.completeNumber;
-      String expected = "+447891234567";
+      String expected = "+243812167999";
 
       expect(actual, expected);
       expect(phoneNumber.isValidNumber(), true);
@@ -30,18 +30,11 @@ void main() {
       expect(phoneNumber.isValidNumber(), true);
     });
 
-    test('look up UK as a country code', () {
-      Country country = PhoneNumber.getCountry("+447891234567");
-      expect(country.name, "United Kingdom");
-      expect(country.code, "GB");
+    test('look up CD as a country code', () {
+      Country country = PhoneNumber.getCountry("+243812167999");
+      expect(country.name, "Congo, The Democratic Republic of the Congo");
+      expect(country.code, "CD");
       expect(country.regionCode, "");
-    });
-
-    test('look up Guernsey as a country code', () {
-      Country country = PhoneNumber.getCountry("+441481960194");
-      expect(country.name, "Guernsey");
-      expect(country.code, "GG");
-      expect(country.regionCode, "1481");
     });
 
     test('create with empty complete number', () {
@@ -71,19 +64,20 @@ void main() {
       expect(() => ph.isValidNumber(), throwsA(const TypeMatcher<NumberTooLongException>()));
     });
 
-    test('create UK PhoneNumber from +447891234567', () {
-      PhoneNumber phoneNumber = PhoneNumber.fromCompleteNumber(completeNumber: "+447891234567");
-      expect(phoneNumber.countryISOCode, "GB");
-      expect(phoneNumber.countryCode, "44");
-      expect(phoneNumber.number, "7891234567");
+    test('create CD PhoneNumber from +243812167999', () {
+      PhoneNumber phoneNumber = PhoneNumber.fromCompleteNumber(completeNumber: "+243812167999");
+      expect(phoneNumber.countryISOCode, "CD");
+      expect(phoneNumber.countryCode, "243");
+      expect(phoneNumber.number, "812167999");
       expect(phoneNumber.isValidNumber(), true);
     });
 
-    test('create Guernsey PhoneNumber from +441481960194', () {
-      PhoneNumber phoneNumber = PhoneNumber.fromCompleteNumber(completeNumber: "+441481960194");
-      expect(phoneNumber.countryISOCode, "GG");
-      expect(phoneNumber.countryCode, "441481");
-      expect(phoneNumber.number, "960194");
+    //Add test
+    test('create CG PhoneNumber from +242057009244', () {
+      PhoneNumber phoneNumber = PhoneNumber.fromCompleteNumber(completeNumber: "+242057009244");
+      expect(phoneNumber.countryISOCode, "CG");
+      expect(phoneNumber.countryCode, "242");
+      expect(phoneNumber.number, "057009244");
       expect(phoneNumber.isValidNumber(), true);
     });
 
