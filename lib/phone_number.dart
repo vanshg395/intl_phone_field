@@ -4,6 +4,8 @@ class NumberTooLongException implements Exception {}
 
 class NumberTooShortException implements Exception {}
 
+class CountryCodeTooShortException implements Exception {}
+
 class InvalidCharactersException implements Exception {}
 
 class PhoneNumber {
@@ -26,12 +28,16 @@ class PhoneNumber {
       Country country = getCountry(completeNumber);
       String number;
       if (completeNumber.startsWith('+')) {
-        number = completeNumber.substring(1 + country.dialCode.length + country.regionCode.length);
+        number = completeNumber
+            .substring(1 + country.dialCode.length + country.regionCode.length);
       } else {
-        number = completeNumber.substring(country.dialCode.length + country.regionCode.length);
+        number = completeNumber
+            .substring(country.dialCode.length + country.regionCode.length);
       }
       return PhoneNumber(
-          countryISOCode: country.code, countryCode: country.dialCode + country.regionCode, number: number);
+          countryISOCode: country.code,
+          countryCode: country.dialCode + country.regionCode,
+          number: number);
     } on InvalidCharactersException {
       rethrow;
       // ignore: unused_catch_clause
@@ -41,7 +47,7 @@ class PhoneNumber {
   }
 
   bool isValidNumber() {
-    Country country = getCountry(completeNumber);
+    Country country = getCountryByCountryCode(countryISOCode);
     if (number.length < country.minLength) {
       throw NumberTooShortException();
     }
@@ -68,12 +74,22 @@ class PhoneNumber {
     }
 
     if (phoneNumber.startsWith('+')) {
-      return countries
-          .firstWhere((country) => phoneNumber.substring(1).startsWith(country.dialCode + country.regionCode));
+      return countries.firstWhere((country) => phoneNumber
+          .substring(1)
+          .startsWith(country.dialCode + country.regionCode));
     }
-    return countries.firstWhere((country) => phoneNumber.startsWith(country.dialCode + country.regionCode));
+    return countries.firstWhere((country) =>
+        phoneNumber.startsWith(country.dialCode + country.regionCode));
+  }
+
+  static Country getCountryByCountryCode(String countryIsoCode) {
+    if (countryIsoCode == "") {
+      throw CountryCodeTooShortException();
+    }
+    return countries.firstWhere((country) => countryIsoCode == country.code);
   }
 
   @override
-  String toString() => 'PhoneNumber(countryISOCode: $countryISOCode, countryCode: $countryCode, number: $number)';
+  String toString() =>
+      'PhoneNumber(countryISOCode: $countryISOCode, countryCode: $countryCode, number: $number)';
 }
