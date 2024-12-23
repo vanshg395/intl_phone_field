@@ -124,10 +124,6 @@ class IntlPhoneField extends StatefulWidget {
   /// If unset, defaults to the brightness of [ThemeData.brightness].
   final Brightness? keyboardAppearance;
 
-  /// Initial Value for the field.
-  /// This property can be used to pre-fill the field.
-  final String? initialValue;
-
   final String languageCode;
 
   /// 2 letter ISO Code or country dial code.
@@ -260,7 +256,6 @@ class IntlPhoneField extends StatefulWidget {
     this.textAlignVertical,
     this.onTap,
     this.readOnly = false,
-    this.initialValue,
     this.keyboardType = TextInputType.phone,
     this.controller,
     this.focusNode,
@@ -306,7 +301,6 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   late List<Country> _countryList;
   late Country _selectedCountry;
   late List<Country> filteredCountries;
-  late String number;
 
   String? validatorMessage;
 
@@ -315,32 +309,25 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
     super.initState();
     _countryList = widget.countries ?? countries;
     filteredCountries = _countryList;
-    number = widget.initialValue ?? '';
-    if (widget.initialCountryCode == null && number.startsWith('+')) {
+    var number = widget.controller?.text ?? '';
+    if (number.startsWith('+')) {
       number = number.substring(1);
       // parse initial value
       _selectedCountry = countries.firstWhere((country) => number.startsWith(country.fullCountryCode),
           orElse: () => _countryList.first);
 
       // remove country code from the initial number value
-      number = number.replaceFirst(RegExp("^${_selectedCountry.fullCountryCode}"), "");
+      widget.controller?.text = number.replaceFirst(RegExp("^${_selectedCountry.fullCountryCode}"), "");
     } else {
       _selectedCountry = _countryList.firstWhere((item) => item.code == (widget.initialCountryCode ?? 'US'),
           orElse: () => _countryList.first);
-
-      // remove country code from the initial number value
-      if (number.startsWith('+')) {
-        number = number.replaceFirst(RegExp("^\\+${_selectedCountry.fullCountryCode}"), "");
-      } else {
-        number = number.replaceFirst(RegExp("^${_selectedCountry.fullCountryCode}"), "");
-      }
     }
 
     if (widget.autovalidateMode == AutovalidateMode.always) {
       final initialPhoneNumber = PhoneNumber(
         countryISOCode: _selectedCountry.code,
         countryCode: '+${_selectedCountry.dialCode}',
-        number: widget.initialValue ?? '',
+        number: widget.controller?.text ?? '',
       );
 
       final value = widget.validator?.call(initialPhoneNumber);
@@ -371,6 +358,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           onCountryChanged: (Country country) {
             _selectedCountry = country;
             widget.onCountryChanged?.call(country);
+            _sendUpdatedPhoneNumber();
             setState(() {});
           },
         ),
@@ -383,7 +371,6 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
   Widget build(BuildContext context) {
     return TextFormField(
       key: widget.formFieldKey,
-      initialValue: (widget.controller == null) ? number : null,
       autofillHints: widget.disableAutoFillHints ? null : [AutofillHints.telephoneNumberNational],
       readOnly: widget.readOnly,
       obscureText: widget.obscureText,
@@ -424,7 +411,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           validatorMessage = await widget.validator?.call(phoneNumber);
         }
 
-        widget.onChanged?.call(phoneNumber);
+        _sendUpdatedPhoneNumber();
       },
       validator: (value) {
         if (value == null || !isNumeric(value)) return validatorMessage;
@@ -500,6 +487,18 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+
+  void _sendUpdatedPhoneNumber() {
+    final country = _selectedCountry;
+    widget.onChanged?.call(
+      PhoneNumber(
+        countryISOCode: country.code,
+        countryCode: '+${country.dialCode}${country.regionCode}',
+        number: widget.controller?.text ?? '',
       ),
     );
   }
