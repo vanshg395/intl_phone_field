@@ -249,8 +249,11 @@ class IntlPhoneField extends StatefulWidget {
   /// If null, default magnification configuration will be used.
   final TextMagnifierConfiguration? magnifierConfiguration;
 
+  ///   Added by me
+  final bool showCounter;
   const IntlPhoneField({
     Key? key,
+    this.showCounter = true,
     this.formFieldKey,
     this.initialCountryCode,
     this.languageCode = 'en',
@@ -401,7 +404,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       magnifierConfiguration: widget.magnifierConfiguration,
       decoration: widget.decoration.copyWith(
         prefixIcon: _buildFlagsButton(),
-        counterText: !widget.enabled ? '' : null,
+        counterText: !widget.enabled ||!widget.showCounter? '' : null,
       ),
       style: widget.style,
       onSaved: (value) {
@@ -471,16 +474,24 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                   const SizedBox(width: 4),
                 ],
                 if (widget.showCountryFlag) ...[
-                  kIsWeb
-                      ? Image.asset(
-                          'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
-                          package: 'intl_phone_field',
-                          width: 32,
-                        )
-                      : Text(
-                          _selectedCountry.flag,
-                          style: const TextStyle(fontSize: 18),
-                        ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(2),
+                    child: Image.asset(
+                      'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
+                      package: 'intl_phone_field',
+                      width: 32,
+                    ),
+                  ),
+                  // kIsWeb
+                  //     ? Image.asset(
+                  //         'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
+                  //         package: 'intl_phone_field',
+                  //         width: 32,
+                  //       )
+                  //     : Text(
+                  //         _selectedCountry.flag,
+                  //         style: const TextStyle(fontSize: 18),
+                  //       ),
                   const SizedBox(width: 8),
                 ],
                 FittedBox(
