@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  GlobalKey<FormState> _formKey = GlobalKey();
+  final GlobalKey<FormState> _formKey = GlobalKey();
 
   FocusNode focusNode = FocusNode();
 
@@ -21,7 +23,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Phone Field Example'),
+          title: const Text('Phone Field Example'),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -30,8 +32,8 @@ class _MyAppState extends State<MyApp> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 30),
-                TextField(
+                const SizedBox(height: 30),
+                const TextField(
                   decoration: InputDecoration(
                     labelText: 'Name',
                     border: OutlineInputBorder(
@@ -39,10 +41,10 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                TextField(
+                const TextField(
                   decoration: InputDecoration(
                     labelText: 'Email',
                     border: OutlineInputBorder(
@@ -50,12 +52,12 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 IntlPhoneField(
-                  focusNode: focusNode,
-                  decoration: InputDecoration(
+                  /*  focusNode: focusNode,
+                  decoration: const InputDecoration(
                     labelText: 'Phone Number',
                     border: OutlineInputBorder(
                       borderSide: BorderSide(),
@@ -66,19 +68,61 @@ class _MyAppState extends State<MyApp> {
                     print(phone.completeNumber);
                   },
                   onCountryChanged: (country) {
-                    print('Country changed to: ' + country.name);
+                    print('Country changed to: ${country.name}');
+                  }, */
+                  style: const TextStyle(color: Colors.white),
+
+                  // controller: LoginOTPController.to.phoneNumberController,
+                  invalidNumberMessage: null,
+                  flagsButtonPadding: const EdgeInsets.only(bottom: 10),
+                  cursorColor: Colors.black,
+                  dropdownIconPosition: IconPosition.trailing,
+
+                  dropdownTextStyle: const TextStyle(
+                    color: Colors.grey,
+                    fontFamily: 'Nunito',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  showDropdownIcon: true,
+
+                  dropdownIcon: const Icon(
+                    Icons.arrow_drop_down_rounded,
+                    color: Colors.grey,
+                    size: 30,
+                  ),
+
+                  // dropdownDecoration:
+                  //     BoxDecoration(color: AppColors().tContainerColor),
+                  decoration: const InputDecoration(
+                    focusColor: Colors.orange,
+                    contentPadding: EdgeInsets.only(top: 5),
+                    counter: SizedBox(),
+                    hintText: 'Enter your Mobile number',
+                    hintStyle: TextStyle(
+                      color: Colors.white30,
+                      fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w400,
+                    ),
+                    border: InputBorder.none,
+                  ),
+
+                  initialCountryCode: 'IN',
+                  onChanged: (phone) {
+                    final phoneNumber = phone.completeNumber;
+                    print(phoneNumber);
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 MaterialButton(
-                  child: Text('Submit'),
                   color: Theme.of(context).primaryColor,
                   textColor: Colors.white,
                   onPressed: () {
                     _formKey.currentState?.validate();
                   },
+                  child: const Text('Submit'),
                 ),
               ],
             ),
