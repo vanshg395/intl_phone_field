@@ -70,9 +70,7 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
   void initState() {
     _selectedCountry = widget.selectedCountry;
     _filteredCountries = widget.filteredCountries.toList()
-      ..sort(
-        (a, b) => a.localizedName(widget.languageCode).compareTo(b.localizedName(widget.languageCode)),
-      );
+      ..sort((a, b) => a.localizedName(widget.languageCode).compareTo(b.localizedName(widget.languageCode)));
 
     super.initState();
   }
@@ -85,10 +83,11 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
     const defaultVerticalPadding = 24.0;
     return Dialog(
       insetPadding: EdgeInsets.symmetric(
-          vertical: defaultVerticalPadding,
-          horizontal: mediaWidth > (width + defaultHorizontalPadding * 2)
-              ? (mediaWidth - width) / 2
-              : defaultHorizontalPadding),
+        vertical: defaultVerticalPadding,
+        horizontal: mediaWidth > (width + defaultHorizontalPadding * 2)
+            ? (mediaWidth - width) / 2
+            : defaultHorizontalPadding,
+      ),
       backgroundColor: widget.style?.backgroundColor,
       child: Container(
         padding: widget.style?.padding ?? const EdgeInsets.all(10),
@@ -98,11 +97,9 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
               padding: widget.style?.searchFieldPadding ?? const EdgeInsets.all(0),
               child: TextField(
                 cursorColor: widget.style?.searchFieldCursorColor,
-                decoration: widget.style?.searchFieldInputDecoration ??
-                    InputDecoration(
-                      suffixIcon: const Icon(Icons.search),
-                      labelText: widget.searchText,
-                    ),
+                decoration:
+                    widget.style?.searchFieldInputDecoration ??
+                    InputDecoration(suffixIcon: const Icon(Icons.search), labelText: widget.searchText),
                 onChanged: (value) {
                   _filteredCountries = widget.countryList.stringSearch(value)
                     ..sort(
@@ -120,16 +117,11 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                 itemBuilder: (ctx, index) => Column(
                   children: <Widget>[
                     ListTile(
-                      leading: kIsWeb
-                          ? Image.asset(
-                              'assets/flags/${_filteredCountries[index].code.toLowerCase()}.png',
-                              package: 'intl_phone_field',
-                              width: 32,
-                            )
-                          : Text(
-                              _filteredCountries[index].flag,
-                              style: const TextStyle(fontSize: 18),
-                            ),
+                      leading: Image.asset(
+                        'assets/flags/${_filteredCountries[index].code.toLowerCase()}.png',
+                        package: 'intl_phone_field',
+                        width: 32,
+                      ),
                       contentPadding: widget.style?.listTilePadding,
                       title: Text(
                         _filteredCountries[index].localizedName(widget.languageCode),
