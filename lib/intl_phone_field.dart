@@ -24,6 +24,9 @@ class IntlPhoneField extends StatefulWidget {
   final TextAlignVertical? textAlignVertical;
   final VoidCallback? onTap;
 
+  /// when they tap outside of the text field. By default, this callback unfocused the text field, meaning it will lose focus when the user taps outside, which can help users exit the field more easily.
+  final TapRegionCallback? onTapOutside;
+
   /// {@macro flutter.widgets.editableText.readOnly}
   final bool readOnly;
   final FormFieldSetter<PhoneNumber>? onSaved;
@@ -259,6 +262,7 @@ class IntlPhoneField extends StatefulWidget {
     this.textAlign = TextAlign.left,
     this.textAlignVertical,
     this.onTap,
+    this.onTapOutside,
     this.readOnly = false,
     this.initialValue,
     this.keyboardType = TextInputType.phone,
@@ -391,6 +395,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       textAlignVertical: widget.textAlignVertical,
       cursorColor: widget.cursorColor,
       onTap: widget.onTap,
+      onTapOutside: widget.onTapOutside ?? (_) => FocusManager.instance.primaryFocus?.unfocus(),
       controller: widget.controller,
       focusNode: widget.focusNode,
       cursorHeight: widget.cursorHeight,
