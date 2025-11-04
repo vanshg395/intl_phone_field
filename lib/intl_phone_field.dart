@@ -1,19 +1,15 @@
-library intl_phone_field;
-
 import 'dart:async';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/helpers.dart';
 
-import './countries.dart';
-import './phone_number.dart';
+import 'package:intl_phone_field/countries.dart';
+import 'package:intl_phone_field/phone_number.dart';
 
 class IntlPhoneField extends StatefulWidget {
-  /// The TextFormField key.
-  final GlobalKey<FormFieldState>? formFieldKey;
-
   /// Whether to hide the text being edited (e.g., for passwords).
   final bool obscureText;
 
@@ -243,15 +239,13 @@ class IntlPhoneField extends StatefulWidget {
   /// If unset, defaults to [EdgeInsets.zero].
   final EdgeInsets flagsButtonMargin;
 
-  /// Enable the autofill hint for phone number.
+  //enable the autofill hint for phone number
   final bool disableAutoFillHints;
 
-  /// If null, default magnification configuration will be used.
-  final TextMagnifierConfiguration? magnifierConfiguration;
+  final String? fieldName;
 
   const IntlPhoneField({
-    Key? key,
-    this.formFieldKey,
+    super.key,
     this.initialCountryCode,
     this.languageCode = 'en',
     this.disableAutoFillHints = false,
@@ -295,11 +289,11 @@ class IntlPhoneField extends StatefulWidget {
     this.showCursor = true,
     this.pickerDialogStyle,
     this.flagsButtonMargin = EdgeInsets.zero,
-    this.magnifierConfiguration,
-  }) : super(key: key);
+    this.fieldName,
+  });
 
   @override
-  State<IntlPhoneField> createState() => _IntlPhoneFieldState();
+  _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
 }
 
 class _IntlPhoneFieldState extends State<IntlPhoneField> {
@@ -336,7 +330,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       }
     }
 
-    if (widget.autovalidateMode == AutovalidateMode.always) {
+    if (widget.autovalidateMode == AutovalidateMode.always ||
+        widget.autovalidateMode == AutovalidateMode.onUserInteraction) {
       final initialPhoneNumber = PhoneNumber(
         countryISOCode: _selectedCountry.code,
         countryCode: '+${_selectedCountry.dialCode}',
@@ -381,11 +376,11 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      key: widget.formFieldKey,
+    return FormBuilderTextField(
       initialValue: (widget.controller == null) ? number : null,
       autofillHints: widget.disableAutoFillHints ? null : [AutofillHints.telephoneNumberNational],
       readOnly: widget.readOnly,
+      name: widget.fieldName ?? 'phone',
       obscureText: widget.obscureText,
       textAlign: widget.textAlign,
       textAlignVertical: widget.textAlignVertical,
@@ -397,8 +392,6 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       cursorRadius: widget.cursorRadius,
       cursorWidth: widget.cursorWidth,
       showCursor: widget.showCursor,
-      onFieldSubmitted: widget.onSubmitted,
-      magnifierConfiguration: widget.magnifierConfiguration,
       decoration: widget.decoration.copyWith(
         prefixIcon: _buildFlagsButton(),
         counterText: !widget.enabled ? '' : null,
@@ -417,7 +410,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         final phoneNumber = PhoneNumber(
           countryISOCode: _selectedCountry.code,
           countryCode: '+${_selectedCountry.fullCountryCode}',
-          number: value,
+          number: value ?? '',
         );
 
         if (widget.autovalidateMode != AutovalidateMode.disabled) {
@@ -427,7 +420,9 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         widget.onChanged?.call(phoneNumber);
       },
       validator: (value) {
-        if (value == null || !isNumeric(value)) return validatorMessage;
+        if (value == null || value.isEmpty || !isNumeric(value)) {
+          return validatorMessage;
+        }
         if (!widget.disableLengthCheck) {
           return value.length >= _selectedCountry.minLength && value.length <= _selectedCountry.maxLength
               ? null
