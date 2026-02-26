@@ -46,6 +46,7 @@ class CountryPickerDialog extends StatefulWidget {
   final List<Country> filteredCountries;
   final PickerDialogStyle? style;
   final String languageCode;
+  final double flagSize;
 
   const CountryPickerDialog({
     Key? key,
@@ -55,6 +56,7 @@ class CountryPickerDialog extends StatefulWidget {
     required this.onCountryChanged,
     required this.selectedCountry,
     required this.filteredCountries,
+    required this.flagSize,
     this.style,
   }) : super(key: key);
 
@@ -124,11 +126,11 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                           ? Image.asset(
                               'assets/flags/${_filteredCountries[index].code.toLowerCase()}.png',
                               package: 'intl_phone_field',
-                              width: 32,
+                              width: widget.flagSize,
                             )
                           : Text(
                               _filteredCountries[index].flag,
-                              style: const TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: widget.flagSize),
                             ),
                       contentPadding: widget.style?.listTilePadding,
                       title: Text(
