@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 void main() {
@@ -6,12 +7,14 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
-  _MyAppState createState() => _MyAppState();
+  MyAppState createState() => MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
-  GlobalKey<FormState> _formKey = GlobalKey();
+class MyAppState extends State<MyApp> {
+  final GlobalKey<FormState> _formKey = GlobalKey();
 
   FocusNode focusNode = FocusNode();
 
@@ -63,22 +66,26 @@ class _MyAppState extends State<MyApp> {
                   ),
                   languageCode: "en",
                   onChanged: (phone) {
-                    print(phone.completeNumber);
+                    if (kDebugMode) {
+                      print(phone.completeNumber);
+                    }
                   },
                   onCountryChanged: (country) {
-                    print('Country changed to: ' + country.name);
+                    if (kDebugMode) {
+                      print('Country changed to: ${country.name}');
+                    }
                   },
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 MaterialButton(
-                  child: Text('Submit'),
                   color: Theme.of(context).primaryColor,
                   textColor: Colors.white,
                   onPressed: () {
                     _formKey.currentState?.validate();
                   },
+                  child: Text('Submit'),
                 ),
               ],
             ),

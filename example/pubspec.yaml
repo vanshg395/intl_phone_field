@@ -15,6 +15,7 @@ dependencies:
   intl_phone_field:
     path: ../
 
+  material_ui: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
