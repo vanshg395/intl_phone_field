@@ -328,11 +328,14 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       _selectedCountry = _countryList.firstWhere((item) => item.code == (widget.initialCountryCode ?? 'US'),
           orElse: () => _countryList.first);
 
-      // remove country code from the initial number value
-      if (number.startsWith('+')) {
-        number = number.replaceFirst(RegExp("^\\+${_selectedCountry.fullCountryCode}"), "");
-      } else {
-        number = number.replaceFirst(RegExp("^${_selectedCountry.fullCountryCode}"), "");
+      // remove country code from the initial number value only if
+      // the number is longer than maxLength (implying country code is included)
+      if (number.length > _selectedCountry.maxLength) {
+        if (number.startsWith('+')) {
+          number = number.replaceFirst(RegExp("^\\+${_selectedCountry.fullCountryCode}"), "");
+        } else {
+          number = number.replaceFirst(RegExp("^${_selectedCountry.fullCountryCode}"), "");
+        }
       }
     }
 

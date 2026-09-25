@@ -340,8 +340,8 @@ const List<Country> countries = [
     flag: "🇦🇷",
     code: "AR",
     dialCode: "54",
-    minLength: 12,
-    maxLength: 12,
+    minLength: 11,
+    maxLength: 13,
   ),
   Country(
     name: "Armenia",
@@ -7222,8 +7222,8 @@ const List<Country> countries = [
     flag: "🇺🇾",
     code: "UY",
     dialCode: "598",
-    minLength: 9,
-    maxLength: 9,
+    minLength: 8,
+    maxLength: 8,
   ),
   Country(
     name: "Uzbekistan",
