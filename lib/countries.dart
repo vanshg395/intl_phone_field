@@ -1238,7 +1238,7 @@ const List<Country> countries = [
     },
     flag: "🇰🇾",
     code: "KY",
-    dialCode: "345",
+    dialCode: "1345",
     minLength: 7,
     maxLength: 7,
   ),
@@ -2943,9 +2943,10 @@ const List<Country> countries = [
     },
     flag: "🇻🇦",
     code: "VA",
-    dialCode: "379",
-    minLength: 10,
-    maxLength: 10,
+    dialCode: "39",
+    regionCode: "06698",
+    minLength: 5,
+    maxLength: 5,
   ),
   Country(
     name: "Honduras",
@@ -3289,7 +3290,7 @@ const List<Country> countries = [
     maxLength: 9,
   ),
   Country(
-    name: "Campione d'Italia",
+    name: "Italy",
     nameTranslations: {
       "sk": "Taliansko",
       "se": "Itália",
